@@ -5,24 +5,30 @@ using System.Runtime.InteropServices;
 
 public sealed class SysExTest : MonoBehaviour
 {
-    IOManager _io;
+    MessageSender _sender;
+    MessageReceiver _receiver;
 
     async Awaitable Start()
     {
-        _io = new IOManager();
-        if (!_io.TryOpenPorts()) return;
-        if (await _io.RequestCurrentPatternDump()) DumpPatternData();
+        _sender = new MessageSender();
+        _receiver = new MessageReceiver();
+
+        var count = _receiver.PatternCount;
+        _sender.SendCurrentPatternDataDumpRequest();
+        while (count == _receiver.PatternCount) await Awaitable.NextFrameAsync();
+        DumpPatternData();
     }
 
     void DumpPatternData()
     {
-        foreach (var part in _io.PartsInPattern)
+        foreach (var part in _receiver.PartsInPattern)
             Debug.Log(part.ampLevel);
     }
 
     void OnDestroy()
     {
-        _io?.Dispose();
-        _io = null;
+        _sender?.Dispose();
+        _receiver?.Dispose();
+        (_sender, _receiver) = (null, null);
     }
 }

@@ -1,5 +1,0 @@
-public static class Request
-{
-    public static readonly byte[] CurrentPatternDataDump =
-      { 0xF0, 0x42, 0x30, 0x00, 0x01, 0x23, 0x10, 0xF7 };
-}
