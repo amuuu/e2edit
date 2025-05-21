@@ -3,15 +3,19 @@ using System.Runtime.InteropServices;
 
 sealed class MessageReceiver : IDisposable
 {
-    public int PatternCount => _patternCount;
+    public ReadOnlySpan<Pattern> PatternBuffer
+      => MemoryMarshal.Cast<byte, Pattern>
+           (new Span<byte>(_buffer, 0, 16384));
 
     public ReadOnlySpan<PartParameter> PartsInPattern
       => MemoryMarshal.Cast<byte, PartParameter>
            (new Span<byte>(_buffer, 2048, 816 * 16));
 
+    public int PatternUpdateCount => _patternUpdateCount;
+
     RtMidi.MidiIn _midiPort;
     byte[] _buffer = new byte[32 * 1024];
-    int _patternCount;
+    int _patternUpdateCount;
 
     public MessageReceiver()
     {
@@ -34,6 +38,6 @@ sealed class MessageReceiver : IDisposable
         if (data[5] != 0x23) return;
         if (data[6] != 0x40) return; // Current Pattern Data Dump
         SysExCodec.DecodeTo8Bit(data.Slice(7, 18720), _buffer);
-        _patternCount++;
+        _patternUpdateCount++;
     }
 }

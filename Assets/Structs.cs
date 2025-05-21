@@ -1,4 +1,69 @@
+using System;
 using System.Runtime.InteropServices;
+
+public static class MessageUtil
+{
+    public static string GetString(ReadOnlySpan<byte> source)
+    {
+        var temp = "";
+        foreach (var b in source)
+        {
+            if (b == 0) break;
+            temp += (char)b;
+        }
+        return temp;
+    }
+}
+
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public unsafe struct Pattern
+{
+    public fixed byte header[4];            // 0–3: 'PTST'
+    public uint size;                       // 4–7
+    public fixed byte reserved0[8];         // 8–15
+
+    public fixed byte patternName[18];      // 16–33: null-terminated
+    public ushort tempo;                    // 34–35: 200~3000 = 20.0 ~ 300.0
+    public sbyte swing;                     // 36: -48 ~ 48
+    public byte length;                     // 37: 0~3 = 1~4 bar
+    public byte beat;                       // 38: 0~3 = 16, 32, 8 tri, 16 tri
+    public byte key;                        // 39: 0~11 = C~B
+    public byte scale;                      // 40: 0~35
+    public byte chordSet;                   // 41: 0~4
+    public byte playLevel;                  // 42: 127 ~ 0 = 0 ~ 127
+    public byte reserved1;                  // 43
+
+    public fixed byte touchScaleParam[16];  // 42~57
+    public fixed byte masterFxParam[8];     // 58~65
+    public byte alt13_14;                   // 66: 0~1=OFF,ON
+    public byte alt15_16;                   // 67: 0~1=OFF,ON
+    public fixed byte reserved2[8];         // 68–77
+    public fixed byte reserved3[178];       // 78~255
+
+    public fixed byte motionSequence[1584]; // 256~1839 (Table 5)
+    public fixed byte reserved4[208];       // 1840~2048
+
+    public fixed byte part1[816];           // 2048~2863 (PartParameter x1)
+    public fixed byte part2[816];
+    public fixed byte part3[816];
+    public fixed byte part4[816];
+    public fixed byte part5[816];
+    public fixed byte part6[816];
+    public fixed byte part7[816];
+    public fixed byte part8[816];
+    public fixed byte part9[816];
+    public fixed byte part10[816];
+    public fixed byte part11[816];
+    public fixed byte part12[816];
+    public fixed byte part13[816];
+    public fixed byte part14[816];
+    public fixed byte part15[816];
+    public fixed byte part16[816];          // 14288~15103
+
+    public fixed byte reserved5[252];       // 15104~15355
+    public fixed byte footer[4];            // 15356~15359: 'PTED'
+    public fixed byte reserved6[1008];      // 15350~16383
+}
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public unsafe struct StepData
