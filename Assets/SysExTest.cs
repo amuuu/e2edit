@@ -7,10 +7,10 @@ public sealed class SysExTest : MonoBehaviour
 {
     MessageSender _sender;
     MessageReceiver _receiver;
+    PatternDataView _pattern = new();
 
     async Awaitable Start()
     {
-        unsafe {Debug.Log(sizeof(Pattern));}
         try
         {
             _sender = new MessageSender();
@@ -30,13 +30,8 @@ public sealed class SysExTest : MonoBehaviour
 
     unsafe void DumpPatternData()
     {
-        var pattern = _receiver.PatternBuffer;
-        fixed (byte* name = pattern[0].patternName) {
-        Debug.Log(MessageUtil.GetString(new Span<byte>(name, 18)));
-        }
-
-        foreach (var part in _receiver.PartsInPattern)
-            Debug.Log(part.ampLevel);
+        _pattern.UpdateData(_receiver.PatternBuffer);
+        Debug.Log(_pattern.PatternName);
     }
 
     void OnDestroy()

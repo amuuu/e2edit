@@ -3,13 +3,8 @@ using System.Runtime.InteropServices;
 
 sealed class MessageReceiver : IDisposable
 {
-    public ReadOnlySpan<Pattern> PatternBuffer
-      => MemoryMarshal.Cast<byte, Pattern>
-           (new Span<byte>(_buffer, 0, 16384));
-
-    public ReadOnlySpan<PartParameter> PartsInPattern
-      => MemoryMarshal.Cast<byte, PartParameter>
-           (new Span<byte>(_buffer, 2048, 816 * 16));
+    public ReadOnlySpan<byte> PatternBuffer
+      => new ReadOnlySpan<byte>(_buffer, 0, 16384);
 
     public int PatternUpdateCount => _patternUpdateCount;
 
