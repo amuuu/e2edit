@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 
 public sealed class PatternDataView
 {
+    public enum BeatType { _16, _32, _8Tri, _16Tri }
+
     #region Field accessors
 
     public string PatternName
@@ -12,6 +14,22 @@ public sealed class PatternDataView
     public float Tempo
       { get => _data.tempo * 0.1f;
         set => _data.tempo = (ushort)(value * 10); }
+
+    public float Swing
+      { get => _data.swing / 48.0f * 50;
+        set => _data.swing = (sbyte)(value * 48 / 50); }
+
+    public int Length
+      { get => _data.length + 1;
+        set => _data.length = (byte)(value - 1); }
+
+    public BeatType Beat
+      { get => (BeatType)_data.beat;
+        set => _data.beat = (byte)(value); }
+
+    public int PlayLevel
+      { get => 127 - _data.playLevel;
+        set => _data.playLevel = (byte)(127 - value); }
 
     #endregion
 

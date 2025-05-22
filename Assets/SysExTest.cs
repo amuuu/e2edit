@@ -32,6 +32,11 @@ public sealed class SysExTest : MonoBehaviour
     {
         _pattern.UpdateData(_receiver.PatternBuffer);
         Debug.Log(_pattern.PatternName);
+        Debug.Log($"Tempo: {_pattern.Tempo}");
+        Debug.Log($"Swing: {_pattern.Swing}");
+        Debug.Log($"Length: {_pattern.Length}");
+        Debug.Log($"Beat: {_pattern.Beat}");
+        Debug.Log($"PlayLevel: {_pattern.PlayLevel}");
     }
 
     void OnDestroy()
