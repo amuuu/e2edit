@@ -1,7 +1,8 @@
-using UnityEngine;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public sealed class SysExTest : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public sealed class SysExTest : MonoBehaviour
 
     async Awaitable Start()
     {
+        GetComponent<UIDocument>().rootVisualElement.dataSource = _pattern;
+
         try
         {
             _sender = new MessageSender();
@@ -20,23 +23,13 @@ public sealed class SysExTest : MonoBehaviour
             _sender.SendCurrentPatternDataDumpRequest();
             while (count == _receiver.PatternUpdateCount)
                 await Awaitable.NextFrameAsync();
-            DumpPatternData();
+
+            _pattern.UpdateData(_receiver.PatternBuffer);
         }
         catch (Exception e)
         {
-            Debug.Log(e);
+            Debug.LogError(e);
         }
-    }
-
-    unsafe void DumpPatternData()
-    {
-        _pattern.UpdateData(_receiver.PatternBuffer);
-        Debug.Log(_pattern.PatternName);
-        Debug.Log($"Tempo: {_pattern.Tempo}");
-        Debug.Log($"Swing: {_pattern.Swing}");
-        Debug.Log($"Length: {_pattern.Length}");
-        Debug.Log($"Beat: {_pattern.Beat}");
-        Debug.Log($"PlayLevel: {_pattern.PlayLevel}");
     }
 
     void OnDestroy()

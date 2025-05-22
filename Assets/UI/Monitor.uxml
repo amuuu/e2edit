@@ -1,0 +1,34 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp" style="flex-grow: 1;">
+        <ui:TextField label="Name" placeholder-text="filler text">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="PatternName" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:TextField>
+        <ui:FloatField label="Tempo" value="42.2">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="Tempo" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:FloatField>
+        <ui:FloatField label="Swing" value="42.2">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="Swing" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:FloatField>
+        <ui:EnumField label="Enum" value="Center" type="PatternDataView+BeatType, Assembly-CSharp">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:EnumField>
+        <ui:IntegerField label="Length" value="42">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="Length" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:IntegerField>
+        <ui:IntegerField label="Level" value="42">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:IntegerField>
+    </ui:VisualElement>
+</ui:UXML>
