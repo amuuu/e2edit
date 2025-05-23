@@ -1,5 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp" style="flex-grow: 1;">
+    <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp">
+        <ui:VisualElement style="flex-direction: row;">
+            <ui:Button text="Receive" name="receive-button" />
+            <ui:Button text="Send" name="send-button" />
+        </ui:VisualElement>
         <ui:TextField label="Name" placeholder-text="filler text">
             <Bindings>
                 <ui:DataBinding property="value" data-source-path="PatternName" binding-mode="TwoWay" />
@@ -15,7 +19,7 @@
                 <ui:DataBinding property="value" data-source-path="Swing" binding-mode="TwoWay" />
             </Bindings>
         </ui:FloatField>
-        <ui:EnumField label="Enum" value="Center" type="PatternDataView+BeatType, Assembly-CSharp">
+        <ui:EnumField label="Enum" value="_16thNote" type="PatternDataView+BeatType, Assembly-CSharp">
             <Bindings>
                 <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
             </Bindings>

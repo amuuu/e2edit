@@ -1,13 +1,12 @@
 {
   "dependencies": {
     "jp.keijiro.klak.ui-toolkit-assets": {
-      "version": "0.1.1",
+      "version": "file:../../UIToolkitAssets/Packages/jp.keijiro.klak.ui-toolkit-assets",
       "depth": 0,
-      "source": "registry",
+      "source": "local",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
-      },
-      "url": "https://registry.npmjs.com"
+      }
     },
     "jp.keijiro.rtmidi": {
       "version": "2.1.2",

@@ -4,21 +4,27 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public sealed class SysExTest : MonoBehaviour
+public sealed class PatternEditor : MonoBehaviour
 {
     MessageSender _sender;
     MessageReceiver _receiver;
     PatternDataView _pattern = new();
 
-    async Awaitable Start()
+    void Start()
     {
-        GetComponent<UIDocument>().rootVisualElement.dataSource = _pattern;
+        _sender = new MessageSender();
+        _receiver = new MessageReceiver();
 
+        var root = GetComponent<UIDocument>().rootVisualElement;
+        root.dataSource = _pattern;
+        root.Q<Button>("receive-button").clicked +=
+          () => AsyncUtil.Forget(RequestReceivePattern());
+    }
+
+    async Awaitable RequestReceivePattern()
+    {
         try
         {
-            _sender = new MessageSender();
-            _receiver = new MessageReceiver();
-
             var count = _receiver.PatternUpdateCount;
             _sender.SendCurrentPatternDataDumpRequest();
             while (count == _receiver.PatternUpdateCount)

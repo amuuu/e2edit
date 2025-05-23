@@ -6,7 +6,7 @@ public sealed class PatternDataView
 {
     #region Enum definitions
 
-    public enum BeatType { _16, _32, _8Tri, _16Tri }
+    public enum BeatType { _16thNote, _32ndNote, _8thTriplet, _16thTriplet }
 
     #endregion
 
@@ -47,13 +47,13 @@ public sealed class PatternDataView
     #region Public methods
 
     public void UpdateData(ReadOnlySpan<byte> source)
-      => _data = MemoryMarshal.Cast<byte, MessageSpec.Pattern>(source)[0];
+      => _data = MemoryMarshal.Cast<byte, MessageSpecs.Pattern>(source)[0];
 
     #endregion
 
     #region Raw data
 
-    MessageSpec.Pattern _data;
+    MessageSpecs.Pattern _data;
 
     #endregion
 

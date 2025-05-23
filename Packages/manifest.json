@@ -9,7 +9,7 @@
     }
   ],
   "dependencies": {
-    "jp.keijiro.klak.ui-toolkit-assets": "0.1.1",
+    "jp.keijiro.klak.ui-toolkit-assets": "file:../../UIToolkitAssets/Packages/jp.keijiro.klak.ui-toolkit-assets",
     "jp.keijiro.rtmidi": "2.1.2"
   }
 }

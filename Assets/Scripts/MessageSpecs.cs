@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace MessageSpec {
+namespace MessageSpecs {
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public unsafe struct Pattern
