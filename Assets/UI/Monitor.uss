@@ -1,12 +1,27 @@
 .controller-row {
     flex-direction: row;
     justify-content: space-between;
+    width: 400px;
+    flex-wrap: wrap;
+    background-color: rgb(31, 31, 31);
+    border-radius: 4px;
+    padding: 8px;
+    margin: 4px;
 }
 
 .unity-text-element {
     -unity-font-definition: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Fonts/Inter/static/Inter_18pt-Light.ttf?fileID=12800000&guid=b4cdd61aae027485b892e89d6a6c24be&type=3#Inter_18pt-Light");
-    font-size: 11px;
+    font-size: 10px;
     color: rgb(231, 231, 231);
+}
+
+.controller-caption {
+    -unity-font-definition: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Fonts/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=f84973951da7d4d5e858d2e8c9a1edb6&type=3#Inter_18pt-Bold");
+    font-size: 11px;
+    width: 100%;
+    margin: 0;
+    margin-top: -4px;
+    padding: 0;
 }
 
 .unity-base-field {
@@ -100,6 +115,7 @@
 .unity-toggle__checkmark {
     width: 14px;
     height: 14px;
+    margin-left: 8px;
     background-color: rgba(0, 0, 0, 0);
     -unity-background-image-tint-color: rgb(128, 128, 128);
     border-color: rgb(128, 128, 128);
