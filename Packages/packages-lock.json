@@ -1,13 +1,5 @@
 {
   "dependencies": {
-    "jp.keijiro.klak.ui-toolkit-assets": {
-      "version": "file:../../UIToolkitAssets/Packages/jp.keijiro.klak.ui-toolkit-assets",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.modules.uielements": "1.0.0"
-      }
-    },
     "jp.keijiro.rtmidi": {
       "version": "2.1.2",
       "depth": 0,
@@ -17,31 +9,31 @@
     },
     "com.unity.modules.hierarchycore": {
       "version": "1.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.imgui": {
       "version": "1.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.jsonserialize": {
       "version": "1.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.ui": {
       "version": "1.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {}
     },
     "com.unity.modules.uielements": {
       "version": "1.0.0",
-      "depth": 1,
+      "depth": 0,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",

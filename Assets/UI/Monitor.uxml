@@ -124,7 +124,7 @@
                     </Bindings>
                 </ui:IntegerField>
             </ui:VisualElement>
-            <ui:VisualElement name="filter-settings" class="controller-row" style="width: 103px;">
+            <ui:VisualElement name="filter-settings" class="controller-row" style="width: 107px;">
                 <ui:Label text="Filter" class="controller-caption" />
                 <ui:IntegerField label="Type">
                     <Bindings>
