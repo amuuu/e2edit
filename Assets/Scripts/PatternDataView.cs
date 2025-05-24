@@ -23,9 +23,9 @@ public sealed class PatternDataView
         set => _data.tempo = (ushort)(value * 10); }
 
     [CreateProperty]
-    public float Swing
-      { get => _data.swing / 48.0f * 50;
-        set => _data.swing = (sbyte)(value * 48 / 50); }
+    public int Swing
+      { get => _data.swing;
+        set => _data.swing = (sbyte)(value); }
 
     [CreateProperty]
     public int Length
@@ -50,7 +50,7 @@ public sealed class PatternDataView
     public enum MotionSequenceType { Off, Smooth, TriggerHold }
 
     [CreateProperty]
-    public int PartSelect { get; set; }
+    public int PartSelect { get; set; } = 1;
 
     [CreateProperty]
     public int LastStep
@@ -207,7 +207,7 @@ public sealed class PatternDataView
     public void UpdateData(ReadOnlySpan<byte> source)
       => _data = MemoryMarshal.Cast<byte, MessageSpecs.Pattern>(source)[0];
 
-    public ref MessageSpecs.Part CurrentPart => ref GetPartRef(PartSelect);
+    public ref MessageSpecs.Part CurrentPart => ref GetPartRef(PartSelect - 1);
 
     public ref MessageSpecs.Part GetPartRef(int index)
     {

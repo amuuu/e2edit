@@ -15,48 +15,48 @@
                         <ui:DataBinding property="value" data-source-path="PatternName" binding-mode="TwoWay" />
                     </Bindings>
                 </ui:TextField>
-                <ui:FloatField label="Tempo">
+                <Klak.UIToolkit.ClampedFloatField label="Tempo" low-value="20" high-value="300">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Tempo" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:FloatField>
-                <ui:FloatField label="Swing">
+                </Klak.UIToolkit.ClampedFloatField>
+                <Klak.UIToolkit.ClampedIntegerField label="Swing" low-value="-48" high-value="48">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Swing" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:FloatField>
+                </Klak.UIToolkit.ClampedIntegerField>
                 <ui:EnumField label="Beat Type" value="_16thNote" type="PatternDataView+BeatType, Assembly-CSharp">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
                     </Bindings>
                 </ui:EnumField>
-                <ui:IntegerField label="Length">
+                <Klak.UIToolkit.ClampedIntegerField label="Length" low-value="1" high-value="4">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Length" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Level">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Level" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
             <ui:VisualElement name="part-selector" class="controller-row" style="width: 80px; height: 59px;">
-                <ui:IntegerField label="Part Num">
+                <Klak.UIToolkit.ClampedIntegerField label="Part Num" low-value="1" high-value="16">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="PartSelect" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="part-row1" style="flex-direction: row;">
             <ui:VisualElement name="part-setting" class="controller-row" style="width: 299px;">
                 <ui:Label text="Part" class="controller-caption" />
-                <ui:IntegerField label="Steps">
+                <Klak.UIToolkit.ClampedIntegerField label="Steps" low-value="0" high-value="15">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
                 <ui:Toggle label="Mute">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Mute" binding-mode="TwoWay" />
@@ -90,108 +90,108 @@
             </ui:VisualElement>
             <ui:VisualElement name="groove-settings" class="controller-row" style="width: 66px;">
                 <ui:Label text="Groove" class="controller-caption" />
-                <ui:IntegerField label="Type">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="24">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="GrooveType" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Depth">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Depth" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="GrooveDepth" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
             <ui:VisualElement name="osc-settings" class="controller-row" style="width: 105px;">
                 <ui:Label text="Osc" class="controller-caption" />
-                <ui:IntegerField label="Type">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="500">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="OscillatorType" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Edit">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Edit" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="OscillatorEdit" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Pitch">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Pitch" low-value="-63" high-value="63">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="OscillatorPitch" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Glide">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Glide" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="OscillatorGlide" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
             <ui:VisualElement name="filter-settings" class="controller-row" style="width: 107px;">
                 <ui:Label text="Filter" class="controller-caption" />
-                <ui:IntegerField label="Type">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="16">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="FilterType" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Cutoff">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Cutoff" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="FilterCutoff" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Res">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Res" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="FilterResonance" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Env">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Env" low-value="-63" high-value="63">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="FilterEgInt" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="part-row2" style="flex-direction: row;">
             <ui:VisualElement name="mod-settings" class="controller-row" style="width: 110px;">
                 <ui:Label text="Mod" class="controller-caption" />
-                <ui:IntegerField label="Type">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="71">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="ModulationType" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Speed">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Speed" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="ModulationSpeed" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Depth">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Depth" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="ModulationDepth" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
             <ui:VisualElement name="env-settings" class="controller-row" style="width: 66px;">
                 <ui:Label text="EG" class="controller-caption" />
-                <ui:IntegerField label="Attack">
+                <Klak.UIToolkit.ClampedIntegerField label="Attack" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="EgAttack" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Decay">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Decay" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="EgDecayRelease" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
             <ui:VisualElement name="amp-settings" class="controller-row" style="width: 100px;">
                 <ui:Label text="Amp" class="controller-caption" />
-                <ui:IntegerField label="Level">
+                <Klak.UIToolkit.ClampedIntegerField label="Level" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="AmpLevel" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Pan">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Pan" low-value="-63" high-value="64">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="AmpPan" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
                 <ui:Toggle label="Env">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="EgOnOff" binding-mode="TwoWay" />
@@ -205,16 +205,16 @@
             </ui:VisualElement>
             <ui:VisualElement name="ifx-settings" class="controller-row" style="width: 83px;">
                 <ui:Label text="IFX" class="controller-caption" />
-                <ui:IntegerField label="Type">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="37">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
-                <ui:IntegerField label="Edit">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Edit" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:IntegerField>
+                </Klak.UIToolkit.ClampedIntegerField>
                 <ui:Toggle label="On">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
