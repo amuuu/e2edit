@@ -17,8 +17,12 @@ public sealed class PatternEditor : MonoBehaviour
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         root.dataSource = _pattern;
+
         root.Q<Button>("receive-button").clicked +=
           () => AsyncUtil.Forget(RequestReceivePattern());
+
+        root.Q<Button>("send-button").clicked +=
+          () => _sender.SendPatternData(_pattern.RawData);
     }
 
     async Awaitable RequestReceivePattern()

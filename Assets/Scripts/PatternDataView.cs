@@ -46,6 +46,9 @@ public sealed class PatternDataView
 
     #region Public methods
 
+    public ReadOnlySpan<byte> RawData
+      => MemoryMarshal.AsBytes(MemoryMarshal.CreateSpan(ref _data, 1));
+
     public void UpdateData(ReadOnlySpan<byte> source)
       => _data = MemoryMarshal.Cast<byte, MessageSpecs.Pattern>(source)[0];
 
@@ -74,7 +77,7 @@ public sealed class PatternDataView
     public unsafe void SetPatternName(string name)
     {
         var (i, len) = (0, System.Math.Min(17, name.Length));
-        while (i < len) _data.patternName[i] = (byte)name[i];
+        for (;i < len; i++) _data.patternName[i] = (byte)name[i];
         _data.patternName[i] = 0;
     }
 

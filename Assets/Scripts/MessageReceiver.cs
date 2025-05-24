@@ -32,7 +32,8 @@ sealed class MessageReceiver : IDisposable
         if (data[4] != 0x01) return;
         if (data[5] != 0x23) return;
         if (data[6] != 0x40) return; // Current Pattern Data Dump
-        SysExCodec.DecodeTo8Bit(data.Slice(7, 18720), _buffer);
+        var body_len = data.Length - 7 - 1;
+        var sp = SysExCodec.DecodeTo8Bit(data.Slice(7, body_len), _buffer);
         _patternUpdateCount++;
     }
 }

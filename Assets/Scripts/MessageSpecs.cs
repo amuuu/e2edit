@@ -50,7 +50,7 @@ public unsafe struct Pattern
 
     public fixed byte reserved5[252];       // 15104~15355
     public fixed byte footer[4];            // 15356~15359: 'PTED'
-    public fixed byte reserved6[1008];      // 15350~16383
+    public fixed byte reserved6[1024];      // 15360~16383
 }
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
