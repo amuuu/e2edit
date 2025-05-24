@@ -54,23 +54,7 @@ public unsafe struct Pattern
 }
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
-public unsafe struct StepData
-{
-    public byte onOff;                  // 0
-    public byte gateTime;               // 1
-    public byte velocity;               // 2
-    public byte trigger;                // 3
-
-    public byte noteSlot1;              // 4
-    public byte noteSlot2;              // 5
-    public byte noteSlot3;              // 6
-    public byte noteSlot4;              // 7
-
-    public fixed byte reserved[4];      // 8-11
-}
-
-[StructLayout(LayoutKind.Sequential, Pack = 1)]
-public unsafe struct PartParameter
+public unsafe struct Part
 {
     public byte lastStep;               // 0
     public byte mute;                   // 1
@@ -117,7 +101,23 @@ public unsafe struct PartParameter
 
     public fixed byte reserved6[10];    // 38~47
 
-    public fixed byte steps[768];       // 48~(48+64×12=816)
+    public fixed byte steps[768];       // 48~815
+}
+
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public unsafe struct StepData
+{
+    public byte onOff;                  // 0
+    public byte gateTime;               // 1
+    public byte velocity;               // 2
+    public byte trigger;                // 3
+
+    public byte noteSlot1;              // 4
+    public byte noteSlot2;              // 5
+    public byte noteSlot3;              // 6
+    public byte noteSlot4;              // 7
+
+    public fixed byte reserved[4];      // 8-11
 }
 
 } // namespace MessageSpecs

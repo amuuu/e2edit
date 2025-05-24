@@ -1,43 +1,205 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Monitor.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
-    <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp">
-        <ui:VisualElement style="flex-direction: row;">
-            <ui:Button text="Receive" name="receive-button" />
-            <ui:Button text="Send" name="send-button" />
+    <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp" name="root" style="position: absolute; top: 20px; left: 20px;">
+        <ui:VisualElement name="midi">
+            <ui:VisualElement style="flex-direction: row;">
+                <ui:Button text="Receive" name="receive-button" />
+                <ui:Button text="Send" name="send-button" />
+            </ui:VisualElement>
         </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement style="flex-direction: row;">
-        <ui:TextField label="Name" placeholder-text="filler text" name="TextField">
-            <Bindings>
-                <ui:DataBinding property="value" data-source-path="PatternName" binding-mode="TwoWay" />
-            </Bindings>
-        </ui:TextField>
-        <ui:FloatField label="Tempo" value="42.2">
-            <Bindings>
-                <ui:DataBinding property="value" data-source-path="Tempo" binding-mode="TwoWay" />
-            </Bindings>
-        </ui:FloatField>
-        <ui:FloatField label="Swing" value="42.2">
-            <Bindings>
-                <ui:DataBinding property="value" data-source-path="Swing" binding-mode="TwoWay" />
-            </Bindings>
-        </ui:FloatField>
-    </ui:VisualElement>
-    <ui:VisualElement style="flex-direction: row;">
-        <ui:EnumField label="Enum" value="_16thNote" type="PatternDataView+BeatType, Assembly-CSharp">
-            <Bindings>
-                <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
-            </Bindings>
-        </ui:EnumField>
-        <ui:IntegerField label="Length" value="42">
-            <Bindings>
-                <ui:DataBinding property="value" data-source-path="Length" binding-mode="TwoWay" />
-            </Bindings>
-        </ui:IntegerField>
-        <ui:IntegerField label="Level" value="42">
-            <Bindings>
-                <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
-            </Bindings>
-        </ui:IntegerField>
+        <ui:VisualElement class="controller-row">
+            <ui:TextField label="Name" placeholder-text="filler text" name="TextField">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="PatternName" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:TextField>
+            <ui:FloatField label="Tempo" value="42.2">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="Tempo" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:FloatField>
+            <ui:FloatField label="Swing" value="42.2">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="Swing" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:FloatField>
+            <ui:EnumField label="Beat Type" value="_16thNote" type="PatternDataView+BeatType, Assembly-CSharp">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:EnumField>
+            <ui:IntegerField label="Length" value="42">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="Length" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Level" value="42">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+        </ui:VisualElement>
+        <ui:VisualElement class="controller-row">
+            <ui:IntegerField label="Part Num">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="PartSelect" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+        </ui:VisualElement>
+        <ui:VisualElement class="controller-row">
+            <ui:IntegerField label="Last Step">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:Toggle label="Mute">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="Mute" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+            <ui:EnumField label="Voice Assign" value="Mono1" type="PatternDataView+VoiceAssignType, Assembly-CSharp">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="VoiceAssign" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:EnumField>
+            <ui:EnumField label="Motion Sequence" value="Off" type="PatternDataView+MotionSequenceType, Assembly-CSharp">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="MotionDequence" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:EnumField>
+            <ui:Toggle label="Pad Velocity">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="TrigPadVelocity" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+            <ui:Toggle label="Scale Mode">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="ScaleMode" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+            <ui:Toggle label="Priority">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="PartPriority" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+        </ui:VisualElement>
+        <ui:VisualElement class="controller-row">
+            <ui:IntegerField label="Osc Type">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="OscillatorType" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Osc Edit">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="OscillatorEdit" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Filter Type">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="FilterType" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Cutoff">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="FilterCutoff" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Resonance">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="FilterResonance" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="EG Int">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="FilterEgInt" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+        </ui:VisualElement>
+        <ui:VisualElement class="controller-row">
+            <ui:IntegerField label="Modulation Type">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="ModulationType" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Speed">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="ModulationSpeed" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Depth">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="ModulationDepth" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="EG Attack">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="EgAttack" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Decay/Release">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="EgDecayRelease" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+        </ui:VisualElement>
+        <ui:VisualElement class="controller-row">
+            <ui:IntegerField label="Amp Level">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="AmpLevel" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Pan">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="AmpPan" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:Toggle label="EG">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="EgOnOff" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+            <ui:Toggle label="MfxSendOnOff">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="MfxSendOnOff" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+            <ui:IntegerField label="Groove Type">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="GrooveType" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Depth">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="GrooveDepth" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+        </ui:VisualElement>
+        <ui:VisualElement class="controller-row">
+            <ui:Toggle label="IfxOnOff">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:Toggle>
+            <ui:IntegerField label="IFX Type">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Edit">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Oscillator Pitch">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="OscillatorPitch" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+            <ui:IntegerField label="Oscillator Glide">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="OscillatorGlide" binding-mode="TwoWay" />
+                </Bindings>
+            </ui:IntegerField>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

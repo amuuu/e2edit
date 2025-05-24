@@ -1,3 +1,8 @@
+.controller-row {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .unity-text-element {
     -unity-font-definition: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Fonts/Inter/static/Inter_18pt-Light.ttf?fileID=12800000&guid=b4cdd61aae027485b892e89d6a6c24be&type=3#Inter_18pt-Light");
     font-size: 11px;
@@ -10,6 +15,10 @@
 
 .unity-label {
     color: rgb(164, 164, 164);
+}
+
+.unity-base-field__label {
+    min-width: 0;
 }
 
 .unity-base-field__label--with-dragger {
@@ -31,6 +40,10 @@
 .unity-enum-field {
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-enum-field__text {
+    margin-right: 8px;
 }
 
 .unity-enum-field__input {
@@ -80,4 +93,16 @@
 
 .unity-button:active {
     background-color: rgb(41, 117, 185);
+}
+
+/* Toggle */
+
+.unity-toggle__checkmark {
+    width: 14px;
+    height: 14px;
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(128, 128, 128);
+    border-color: rgb(128, 128, 128);
+    border-width: 1px;
+    border-radius: 5px;
 }
