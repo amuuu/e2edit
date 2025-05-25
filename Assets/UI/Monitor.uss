@@ -10,7 +10,7 @@
 }
 
 .unity-text-element {
-    -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Black.ttf?fileID=12800000&guid=bae3938e488714b57a8c55ae8b1d15dc&type=3#Inter_18pt-Black");
+    -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
     font-size: 10px;
     color: rgb(226, 150, 65);
 }
@@ -127,4 +127,35 @@
 
 .unity-toggle > .unity-toggle__input:enabled > .unity-toggle__checkmark {
     border-color: rgb(226, 150, 65);
+}
+
+/* Tab */
+
+.unity-tab-view__header-container {
+    border-color: rgb(226, 150, 65);
+    border-width: 1px;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.unity-tab__header {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+}
+
+.unity-tab__header:checked {
+    background-color: rgb(226, 150, 65);
+}
+
+.unity-tab__header-label {
+    -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
+    color: rgb(226, 150, 65);
+}
+
+.unity-tab__header:checked > .unity-tab__header-label {
+    color: rgb(64, 64, 64);
+}
+
+.unity-tab__header-underline {
+    display: none;
 }
