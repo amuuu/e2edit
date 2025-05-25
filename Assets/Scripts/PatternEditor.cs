@@ -23,6 +23,13 @@ public sealed class PatternEditor : MonoBehaviour
 
         root.Q<Button>("send-button").clicked +=
           () => _sender.SendPatternData(_pattern.RawData);
+
+        for (var i = 1; i <= 16; i++)
+        {
+            var button = root.Q<Button>("part-select-button-" + i);
+            var temp = i;
+            button.clicked += () => _pattern.PartSelect = temp;
+        }
     }
 
     async Awaitable RequestReceivePattern()

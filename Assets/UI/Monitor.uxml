@@ -43,13 +43,27 @@
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
                     </ui:VisualElement>
-                    <ui:VisualElement name="part-selector" class="controller-row" style="width: 80px; height: 59px;">
-                        <Klak.UIToolkit.ClampedIntegerField label="Part Num" low-value="1" high-value="16">
-                            <Bindings>
-                                <ui:DataBinding property="value" data-source-path="PartSelect" binding-mode="TwoWay" />
-                            </Bindings>
-                        </Klak.UIToolkit.ClampedIntegerField>
+                    <ui:VisualElement name="part-selector" class="controller-row" style="width: 300px;">
+                        <ui:Label text="Part Select" class="controller-caption" />
+                        <ui:Button name="part-select-button-1" class="part-select-button" text="1" />
+                        <ui:Button name="part-select-button-2" class="part-select-button" text="2" />
+                        <ui:Button name="part-select-button-3" class="part-select-button" text="3" />
+                        <ui:Button name="part-select-button-4" class="part-select-button" text="4" />
+                        <ui:Button name="part-select-button-5" class="part-select-button" text="5" />
+                        <ui:Button name="part-select-button-6" class="part-select-button" text="6" />
+                        <ui:Button name="part-select-button-7" class="part-select-button" text="7" />
+                        <ui:Button name="part-select-button-8" class="part-select-button" text="8" />
+                        <ui:Button name="part-select-button-9" class="part-select-button" text="9" />
+                        <ui:Button name="part-select-button-10" class="part-select-button" text="10" />
+                        <ui:Button name="part-select-button-11" class="part-select-button" text="11" />
+                        <ui:Button name="part-select-button-12" class="part-select-button" text="12" />
+                        <ui:Button name="part-select-button-13" class="part-select-button" text="13" />
+                        <ui:Button name="part-select-button-14" class="part-select-button" text="14" />
+                        <ui:Button name="part-select-button-15" class="part-select-button" text="15" />
+                        <ui:Button name="part-select-button-16" class="part-select-button" text="16" />
                     </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="row2" style="flex-direction: row;">
                     <ui:VisualElement name="part-setting" class="controller-row" style="width: 299px;">
                         <ui:Label text="Part" class="controller-caption" />
                         <Klak.UIToolkit.ClampedIntegerField label="Steps" low-value="0" high-value="15">
@@ -88,8 +102,6 @@
                             </Bindings>
                         </ui:Toggle>
                     </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="row2" style="flex-direction: row;">
                     <ui:VisualElement name="groove-settings" class="controller-row" style="width: 66px;">
                         <ui:Label text="Groove" class="controller-caption" />
                         <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="24">
@@ -103,6 +115,8 @@
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
                     </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="row3" style="flex-direction: row;">
                     <ui:VisualElement name="osc-settings" class="controller-row" style="width: 105px;">
                         <ui:Label text="Osc" class="controller-caption" />
                         <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="500">

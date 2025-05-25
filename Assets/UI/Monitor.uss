@@ -112,6 +112,11 @@
     background-color: rgb(41, 117, 185);
 }
 
+.part-select-button {
+    width: 24px;
+    margin-top: 14px;
+}
+
 /* Toggle */
 
 .unity-toggle__checkmark {
