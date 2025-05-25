@@ -30,6 +30,13 @@ public sealed class PatternEditor : MonoBehaviour
             var temp = i;
             button.clicked += () => _pattern.PartSelect = temp;
         }
+
+        for (var i = 0; i < 64; i++)
+        {
+            var button = root.Q<Button>($"step-select-button-{(i / 16) + 1}-{(i % 16) + 1}");
+            var temp = i + 1;
+            button.clicked += () => _pattern.StepSelect = temp;
+        }
     }
 
     async Awaitable RequestReceivePattern()

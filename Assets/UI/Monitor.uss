@@ -117,6 +117,20 @@
     margin-top: 14px;
 }
 
+.step-select-button {
+    width: 20px;
+    height: 20px;
+    margin-top: 14px;
+}
+
+.step-selector-row {
+    flex-direction: row;
+}
+
+.step-spacer {
+    width: 8px;
+}
+
 /* Toggle */
 
 .unity-toggle__checkmark {

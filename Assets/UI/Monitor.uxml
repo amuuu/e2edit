@@ -45,22 +45,22 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="part-selector" class="controller-row" style="width: 300px;">
                         <ui:Label text="Part Select" class="controller-caption" />
-                        <ui:Button name="part-select-button-1" class="part-select-button" text="1" />
-                        <ui:Button name="part-select-button-2" class="part-select-button" text="2" />
-                        <ui:Button name="part-select-button-3" class="part-select-button" text="3" />
-                        <ui:Button name="part-select-button-4" class="part-select-button" text="4" />
-                        <ui:Button name="part-select-button-5" class="part-select-button" text="5" />
-                        <ui:Button name="part-select-button-6" class="part-select-button" text="6" />
-                        <ui:Button name="part-select-button-7" class="part-select-button" text="7" />
-                        <ui:Button name="part-select-button-8" class="part-select-button" text="8" />
-                        <ui:Button name="part-select-button-9" class="part-select-button" text="9" />
-                        <ui:Button name="part-select-button-10" class="part-select-button" text="10" />
-                        <ui:Button name="part-select-button-11" class="part-select-button" text="11" />
-                        <ui:Button name="part-select-button-12" class="part-select-button" text="12" />
-                        <ui:Button name="part-select-button-13" class="part-select-button" text="13" />
-                        <ui:Button name="part-select-button-14" class="part-select-button" text="14" />
-                        <ui:Button name="part-select-button-15" class="part-select-button" text="15" />
-                        <ui:Button name="part-select-button-16" class="part-select-button" text="16" />
+                        <ui:Button name="part-select-button-1" text="1" class="part-select-button" />
+                        <ui:Button name="part-select-button-2" text="2" class="part-select-button" />
+                        <ui:Button name="part-select-button-3" text="3" class="part-select-button" />
+                        <ui:Button name="part-select-button-4" text="4" class="part-select-button" />
+                        <ui:Button name="part-select-button-5" text="5" class="part-select-button" />
+                        <ui:Button name="part-select-button-6" text="6" class="part-select-button" />
+                        <ui:Button name="part-select-button-7" text="7" class="part-select-button" />
+                        <ui:Button name="part-select-button-8" text="8" class="part-select-button" />
+                        <ui:Button name="part-select-button-9" text="9" class="part-select-button" />
+                        <ui:Button name="part-select-button-10" text="10" class="part-select-button" />
+                        <ui:Button name="part-select-button-11" text="11" class="part-select-button" />
+                        <ui:Button name="part-select-button-12" text="12" class="part-select-button" />
+                        <ui:Button name="part-select-button-13" text="13" class="part-select-button" />
+                        <ui:Button name="part-select-button-14" text="14" class="part-select-button" />
+                        <ui:Button name="part-select-button-15" text="15" class="part-select-button" />
+                        <ui:Button name="part-select-button-16" text="16" class="part-select-button" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="row2" style="flex-direction: row;">
@@ -237,14 +237,94 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:Tab>
-            <ui:Tab label="Step">
+            <ui:Tab label="Step" name="Tab">
                 <ui:VisualElement name="row3" style="flex-direction: row;">
-                    <ui:VisualElement name="step-selector" class="controller-row" style="width: 80px; height: 59px;">
-                        <Klak.UIToolkit.ClampedIntegerField label="Step Num" low-value="1" high-value="64">
-                            <Bindings>
-                                <ui:DataBinding property="value" data-source-path="StepSelect" binding-mode="TwoWay" />
-                            </Bindings>
-                        </Klak.UIToolkit.ClampedIntegerField>
+                    <ui:VisualElement name="step-selector" class="controller-row" style="width: 500px;">
+                        <ui:Label text="Step Selector" class="controller-caption" />
+                        <ui:VisualElement class="step-selector-row">
+                            <ui:Button name="step-select-button-1-1" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-2" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-3" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-4" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-1-5" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-6" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-7" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-8" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-1-9" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-10" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-11" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-12" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-1-13" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-14" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-15" class="step-select-button" />
+                            <ui:Button name="step-select-button-1-16" class="step-select-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="step-selector-row">
+                            <ui:Button name="step-select-button-2-1" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-2" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-3" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-4" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-2-5" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-6" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-7" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-8" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-2-9" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-10" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-11" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-12" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-2-13" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-14" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-15" class="step-select-button" />
+                            <ui:Button name="step-select-button-2-16" class="step-select-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="step-selector-row">
+                            <ui:Button name="step-select-button-3-1" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-2" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-3" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-4" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-3-5" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-6" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-7" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-8" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-3-9" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-10" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-11" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-12" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-3-13" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-14" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-15" class="step-select-button" />
+                            <ui:Button name="step-select-button-3-16" class="step-select-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="step-selector-row">
+                            <ui:Button name="step-select-button-4-1" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-2" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-3" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-4" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-4-5" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-6" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-7" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-8" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-4-9" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-10" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-11" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-12" class="step-select-button" />
+                            <ui:VisualElement class="step-spacer" />
+                            <ui:Button name="step-select-button-4-13" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-14" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-15" class="step-select-button" />
+                            <ui:Button name="step-select-button-4-16" class="step-select-button" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="step-settings" class="controller-row" style="width: 198px;">
                         <ui:Label text="Step" class="controller-caption" />
