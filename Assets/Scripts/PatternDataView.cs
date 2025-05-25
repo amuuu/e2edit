@@ -47,7 +47,7 @@ public sealed class PatternDataView
     #region Part data accessors
 
     public enum VoiceAssignType { Mono1, Mono2, Poly1, Poly2 }
-    public enum MotionSequenceType { Off, Smooth, TriggerHold }
+    public enum MotionSequenceType { Off, Smooth, Hold }
 
     [CreateProperty]
     public int PartSelect { get; set; } = 1;

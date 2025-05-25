@@ -1,57 +1,111 @@
-.controller-row {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 400px;
-    flex-wrap: wrap;
-    background-color: rgb(31, 31, 31);
-    border-radius: 4px;
-    padding: 8px;
-    margin: 4px;
+/* Variables */
+
+:root {
+    --font-regular: url("project://database/Assets/UI/Inter/static/Inter_18pt-Regular.ttf?fileID=12800000&guid=eea54c8922cb94fc89584d64150870c0&type=3#Inter_18pt-Regular");
+    --font-bold: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
+    --font-black: url("project://database/Assets/UI/Inter/static/Inter_18pt-Black.ttf?fileID=12800000&guid=bae3938e488714b57a8c55ae8b1d15dc&type=3#Inter_18pt-Black");
+    --cursor-slide: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Textures/SlideCursor.png?fileID=2800000&guid=81c13d2e6280343cc9d75a5925a3b5b8&type=3#SlideCursor") 16 16;
 }
 
+/* Text elements */
+
 .unity-text-element {
-    -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
+    -unity-font-definition: var(--font-bold);
     font-size: 10px;
     color: rgb(226, 150, 65);
 }
 
 .unity-label {
-   -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Regular.ttf?fileID=12800000&guid=eea54c8922cb94fc89584d64150870c0&type=3#Inter_18pt-Regular");
+   -unity-font-definition: var(--font-regular);
     color: rgb(164, 164, 164);
 }
 
-.controller-caption {
-    -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Black.ttf?fileID=12800000&guid=bae3938e488714b57a8c55ae8b1d15dc&type=3#Inter_18pt-Black");
+/* Tab */
+
+.unity-tab-view__header-container {
+    border-color: rgb(226, 150, 65);
+    border-width: 1px;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.unity-tab__header {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+}
+
+.unity-tab__header:checked {
+    background-color: rgb(226, 150, 65);
+}
+
+.unity-tab__header-label {
+    -unity-font-definition: var(--font-bold);
+    color: rgb(226, 150, 65);
+}
+
+.unity-tab__header:checked > .unity-tab__header-label {
+    color: rgb(64, 64, 64);
+}
+
+.unity-tab__header-underline {
+    display: none;
+}
+
+/* Controller row */
+
+.control-group {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100px;
+    background-color: rgb(48, 48, 48);
+    border-radius: 4px;
+    padding: 6px;
+    padding-top: 20px;
+    margin: 4px;
+}
+
+.control-group-label {
+    -unity-font-definition: var(--font-black);
     font-size: 11px;
     width: 100%;
     margin: 0;
-    margin-top: -4px;
+    margin-top: -15px;
     padding: 0;
 }
 
+/* Base field */
+
 .unity-base-field {
     flex-direction: column;
+    min-width: 40px;
+    margin: 2px;
+    padding: 0;
+}
+
+.unity-base-field__input {
+    margin: 2px;
 }
 
 .unity-base-field__label {
     min-width: 0;
+    margin: 2px;
+    padding: 0;
 }
 
 .unity-base-field__label--with-dragger {
-    cursor: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Textures/SlideCursor.png?fileID=2800000&guid=81c13d2e6280343cc9d75a5925a3b5b8&type=3#SlideCursor") 16 16;
+    cursor: var(--cursor-slide);
 }
+
+/* Text field */
 
 .unity-base-text-field__input {
     background-color: rgba(0, 0, 0, 0);
     border-width: 0;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 4px;
     padding: 0;
 }
 
-/* Enum */
+/* Enum field */
 
 .unity-enum-field {
     flex-direction: column;
@@ -114,7 +168,7 @@
 
 .part-select-button {
     width: 24px;
-    margin-top: 14px;
+    margin-top: 7px;
 }
 
 .step-select-button {
@@ -136,7 +190,6 @@
 .unity-toggle__checkmark {
     width: 14px;
     height: 14px;
-    margin-left: 4px;
     background-color: rgba(0, 0, 0, 0);
     -unity-background-image-tint-color: rgb(226, 150, 65);
     border-color: rgb(226, 150, 65);
@@ -146,35 +199,4 @@
 
 .unity-toggle > .unity-toggle__input:enabled > .unity-toggle__checkmark {
     border-color: rgb(226, 150, 65);
-}
-
-/* Tab */
-
-.unity-tab-view__header-container {
-    border-color: rgb(226, 150, 65);
-    border-width: 1px;
-    border-radius: 8px;
-    margin: 4px;
-}
-
-.unity-tab__header {
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 8px;
-}
-
-.unity-tab__header:checked {
-    background-color: rgb(226, 150, 65);
-}
-
-.unity-tab__header-label {
-    -unity-font-definition: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
-    color: rgb(226, 150, 65);
-}
-
-.unity-tab__header:checked > .unity-tab__header-label {
-    color: rgb(64, 64, 64);
-}
-
-.unity-tab__header-underline {
-    display: none;
 }
