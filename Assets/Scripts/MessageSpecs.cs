@@ -105,7 +105,7 @@ public unsafe struct Part
 }
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
-public unsafe struct StepData
+public unsafe struct Step
 {
     public byte onOff;                  // 0
     public byte gateTime;               // 1

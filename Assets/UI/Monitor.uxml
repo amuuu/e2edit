@@ -1,13 +1,13 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Monitor.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
     <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp" name="root" style="position: absolute; top: 20px; left: 20px;">
-        <ui:VisualElement name="midi">
+        <ui:VisualElement name="tool-bar">
             <ui:VisualElement style="flex-direction: row;">
                 <ui:Button text="Receive" name="receive-button" />
                 <ui:Button text="Send" name="send-button" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="pattern-row" style="flex-direction: row;">
+        <ui:VisualElement name="row1" style="flex-direction: row;">
             <ui:VisualElement name="pattern-settings" class="controller-row" style="width: 220px;">
                 <ui:Label text="Pattern" class="controller-caption" />
                 <ui:TextField label="Name">
@@ -48,8 +48,6 @@
                     </Bindings>
                 </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="part-row1" style="flex-direction: row;">
             <ui:VisualElement name="part-setting" class="controller-row" style="width: 299px;">
                 <ui:Label text="Part" class="controller-caption" />
                 <Klak.UIToolkit.ClampedIntegerField label="Steps" low-value="0" high-value="15">
@@ -88,6 +86,8 @@
                     </Bindings>
                 </ui:Toggle>
             </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="row2" style="flex-direction: row;">
             <ui:VisualElement name="groove-settings" class="controller-row" style="width: 66px;">
                 <ui:Label text="Groove" class="controller-caption" />
                 <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="24">
@@ -147,8 +147,6 @@
                     </Bindings>
                 </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="part-row2" style="flex-direction: row;">
             <ui:VisualElement name="mod-settings" class="controller-row" style="width: 110px;">
                 <ui:Label text="Mod" class="controller-caption" />
                 <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="71">
@@ -220,6 +218,58 @@
                         <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
                     </Bindings>
                 </ui:Toggle>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="row3" style="flex-direction: row;">
+            <ui:VisualElement name="step-selector" class="controller-row" style="width: 80px; height: 59px;">
+                <Klak.UIToolkit.ClampedIntegerField label="Step Num" low-value="1" high-value="64">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepSelect" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+            </ui:VisualElement>
+            <ui:VisualElement name="step-settings" class="controller-row" style="width: 198px;">
+                <ui:Label text="Step" class="controller-caption" />
+                <ui:Toggle label="On">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepOnOff" binding-mode="TwoWay" />
+                    </Bindings>
+                </ui:Toggle>
+                <ui:Toggle label="Trig">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepTrigger" binding-mode="TwoWay" />
+                    </Bindings>
+                </ui:Toggle>
+                <Klak.UIToolkit.ClampedIntegerField label="Gate" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepGateTime" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Velocity" low-value="1" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepVelocity" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Note1" low-value="0" high-value="128">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepNote1" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Note2" low-value="0" high-value="128">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepNote2" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Note3" low-value="0" high-value="128">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepNote3" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Note4" low-value="0" high-value="128">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepNote4" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
