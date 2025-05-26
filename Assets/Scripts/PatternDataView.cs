@@ -4,12 +4,6 @@ using Unity.Properties;
 
 public sealed class PatternDataView
 {
-    #region Enum definitions
-
-    public enum BeatType { _16thNote, _32ndNote, _8thTriplet, _16thTriplet }
-
-    #endregion
-
     #region Pattern data accessors
 
     [CreateProperty]
@@ -33,8 +27,8 @@ public sealed class PatternDataView
         set => _data.length = (byte)(value - 1); }
 
     [CreateProperty]
-    public BeatType Beat
-      { get => (BeatType)_data.beat;
+    public MessageSpecs.Beat Beat
+      { get => (MessageSpecs.Beat)_data.beat;
         set => _data.beat = (byte)(value); }
 
     [CreateProperty]
@@ -45,9 +39,6 @@ public sealed class PatternDataView
     #endregion
 
     #region Part data accessors
-
-    public enum VoiceAssignType { Mono1, Mono2, Poly1, Poly2 }
-    public enum MotionSequenceType { Off, Smooth, Hold }
 
     [CreateProperty]
     public int PartSelect { get; set; } = 1;
@@ -63,13 +54,13 @@ public sealed class PatternDataView
         set => CurrentPart.mute = (byte)(value ? 1 : 0); }
 
     [CreateProperty]
-    public VoiceAssignType VoiceAssign
-      { get => (VoiceAssignType)CurrentPart.voiceAssign;
+    public MessageSpecs.VoiceType VoiceType
+      { get => (MessageSpecs.VoiceType)CurrentPart.voiceAssign;
         set => CurrentPart.voiceAssign = (byte)value; }
 
     [CreateProperty]
-    public MotionSequenceType MotionSequence
-      { get => (MotionSequenceType)CurrentPart.motionSequence;
+    public MessageSpecs.MotionType MotionType
+      { get => (MessageSpecs.MotionType)CurrentPart.motionSequence;
         set => CurrentPart.motionSequence = (byte)value; }
 
     [CreateProperty]

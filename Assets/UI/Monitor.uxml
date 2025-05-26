@@ -22,7 +22,7 @@
                                 <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
-                        <ui:EnumField label="Beat Type" style="width:100px" value="_16thNote" type="PatternDataView+BeatType, Assembly-CSharp">
+                        <ui:EnumField label="Beat Type" style="width:100px" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
                             </Bindings>
@@ -91,14 +91,14 @@
                                 <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
-                        <ui:EnumField label="Voice" value="Mono1" style="width:80px" type="PatternDataView+VoiceAssignType, Assembly-CSharp">
+                        <ui:EnumField label="Voice" value="Mono1" style="width:80px" type="MessageSpecs.VoiceType, Assembly-CSharp">
                             <Bindings>
-                                <ui:DataBinding property="value" data-source-path="VoiceAssign" binding-mode="TwoWay" />
+                                <ui:DataBinding property="value" data-source-path="VoiceType" binding-mode="TwoWay" />
                             </Bindings>
                         </ui:EnumField>
-                        <ui:EnumField label="Motion Seq" value="Off" style="width:80px" type="PatternDataView+MotionSequenceType, Assembly-CSharp">
+                        <ui:EnumField label="Motion Seq" value="Off" style="width:80px" type="MessageSpecs.MotionType, Assembly-CSharp">
                             <Bindings>
-                                <ui:DataBinding property="value" data-source-path="MotionDequence" binding-mode="TwoWay" />
+                                <ui:DataBinding property="value" data-source-path="MotionType" binding-mode="TwoWay" />
                             </Bindings>
                         </ui:EnumField>
                     </ui:VisualElement>

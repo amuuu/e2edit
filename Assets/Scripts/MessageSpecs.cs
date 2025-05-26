@@ -3,6 +3,39 @@ using System.Runtime.InteropServices;
 
 namespace MessageSpecs {
 
+public enum Beat
+  { _16thNote, _32ndNote, _8thTriplet, _16thTriplet }
+
+public enum VoiceType
+  { Mono1, Mono2, Poly1, Poly2 }
+
+public enum MotionType
+  { Off, Smooth, Hold }
+
+public enum MotionDest
+{
+    Off,
+    Reserved,
+    OscillatorPitch,
+    OscillatorGlide,
+    OscillatorEdit,
+    FilterCutoff,
+    FilterResonance,
+    FilterEgInt,
+    ModulationDepth,
+    ModulationSpeed,
+    AmpLevel,
+    AmpPan,
+    EgAttack,
+    EgDecayRelease,
+    IfxEdit,
+    MasterFxX,
+    MasterFxY,
+    IfxOnOff,
+    MfxSendOnOff,
+    MfxXyPadOnOff
+};
+
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public unsafe struct Pattern
 {
@@ -118,6 +151,14 @@ public unsafe struct Step
     public byte noteSlot4;              // 7
 
     public fixed byte reserved[4];      // 8-11
+}
+
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public unsafe struct Motion
+{
+    public fixed byte partSlots[24];          // 0~23
+    public fixed byte destinations[24];       // 24~47
+    public fixed byte sequence[64 * 24];      // 48~1584
 }
 
 } // namespace MessageSpecs
