@@ -171,10 +171,19 @@
     margin-top: 7px;
 }
 
+.part-select-button-selected {
+    background-color: rgb(226, 150, 65);
+    color: rgb(64, 64, 64);
+}
+
 .step-select-button {
     width: 20px;
     height: 20px;
     margin-top: 14px;
+}
+
+.step-select-button-selected {
+    background-color: rgb(226, 150, 65);
 }
 
 .step-selector-row {
