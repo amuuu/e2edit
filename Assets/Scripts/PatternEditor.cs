@@ -1,55 +1,44 @@
 using System;
-using System.IO;
-using System.Runtime.InteropServices;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public sealed class PatternEditor : MonoBehaviour
 {
+    #region Private members
+
     MessageSender _sender;
     MessageReceiver _receiver;
     PatternDataView _pattern = new();
 
-    void Start()
-    {
-        _sender = new MessageSender();
-        _receiver = new MessageReceiver();
+    #endregion
 
-        var root = GetComponent<UIDocument>().rootVisualElement;
-        root.dataSource = _pattern;
+    #region UI helpers
 
-        root.Q<Button>("receive-button").clicked +=
-          () => AsyncUtil.Forget(RequestReceivePattern());
+    VisualElement UIRoot
+      => GetComponent<UIDocument>().rootVisualElement;
 
-        root.Q<Button>("send-button").clicked +=
-          () => _sender.SendPatternData(_pattern.RawData);
+    Button ReceiveButton
+      => UIRoot.Q<Button>("receive-button");
 
-        for (var i = 1; i <= 16; i++)
-        {
-            var button = root.Q<Button>("part-select-button-" + i);
-            var temp = i;
-            button.clicked += () => SelectPattern(temp);
-        }
+    Button SendButton
+      => UIRoot.Q<Button>("send-button");
 
-        for (var i = 1; i <= 64; i++)
-        {
-            var temp = i;
-            GetStepButton(i).clicked += () => SelectStep(temp);
-        }
-
-        SelectPattern(1);
-        SelectStep(1);
-    }
+    Button GetPartButton(int i)
+      => UIRoot.Q<Button>("part-select-button-" + i);
 
     Button GetStepButton(int i)
-      => GetComponent<UIDocument>().rootVisualElement.Q<Button>
+      => UIRoot.Q<Button>
            ($"step-select-button-{((i - 1) / 16) + 1}-{((i - 1) % 16) + 1}");
+
+    #endregion
+
+    #region Callbacks
 
     void SelectPattern(int i)
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
-        var prev = root.Q<Button>("part-select-button-" + _pattern.PartSelect);
-        var next = root.Q<Button>("part-select-button-" + i);
+        var prev = GetPartButton(_pattern.PartSelect);
+        var next = GetPartButton(i);
         prev.RemoveFromClassList("part-select-button-selected");
         next.AddToClassList("part-select-button-selected");
         _pattern.PartSelect = i;
@@ -72,7 +61,6 @@ public sealed class PatternEditor : MonoBehaviour
             _sender.SendCurrentPatternDataDumpRequest();
             while (count == _receiver.PatternUpdateCount)
                 await Awaitable.NextFrameAsync();
-
             _pattern.UpdateData(_receiver.PatternBuffer);
         }
         catch (Exception e)
@@ -81,10 +69,36 @@ public sealed class PatternEditor : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region MonoBehaviour implementation
+
+    void Start()
+    {
+        _sender = new MessageSender();
+        _receiver = new MessageReceiver();
+
+        UIRoot.dataSource = _pattern;
+
+        ReceiveButton.clicked += () => AsyncUtil.Forget(RequestReceivePattern());
+        SendButton.clicked += () => _sender.SendPatternData(_pattern.RawData);
+
+        foreach (var i in Enumerable.Range(1, 16))
+            GetPartButton(i).clicked += () => SelectPattern(i);
+
+        foreach (var i in Enumerable.Range(1, 64))
+            GetStepButton(i).clicked += () => SelectStep(i);
+
+        SelectPattern(1);
+        SelectStep(1);
+    }
+
     void OnDestroy()
     {
         _sender?.Dispose();
         _receiver?.Dispose();
         (_sender, _receiver) = (null, null);
     }
+
+    #endregion
 }
