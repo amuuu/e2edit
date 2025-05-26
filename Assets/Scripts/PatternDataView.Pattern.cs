@@ -11,28 +11,28 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public float Tempo
-      { get => _data.tempo * 0.1f;
-        set => _data.tempo = (ushort)(value * 10); }
+      { get => Data.tempo * 0.1f;
+        set => Data.tempo = (ushort)(value * 10); }
 
     [CreateProperty]
     public int Swing
-      { get => _data.swing;
-        set => _data.swing = (sbyte)(value); }
+      { get => Data.swing;
+        set => Data.swing = (sbyte)(value); }
 
     [CreateProperty]
     public int Length
-      { get => _data.length + 1;
-        set => _data.length = (byte)(value - 1); }
+      { get => Data.length + 1;
+        set => Data.length = (byte)(value - 1); }
 
     [CreateProperty]
     public MessageSpecs.Beat Beat
-      { get => (MessageSpecs.Beat)_data.beat;
-        set => _data.beat = (byte)(value); }
+      { get => (MessageSpecs.Beat)Data.beat;
+        set => Data.beat = (byte)(value); }
 
     [CreateProperty]
     public int PlayLevel
-      { get => 127 - _data.playLevel;
-        set => _data.playLevel = (byte)(127 - value); }
+      { get => 127 - Data.playLevel;
+        set => Data.playLevel = (byte)(127 - value); }
 
     #endregion
 
@@ -43,7 +43,7 @@ public sealed partial class PatternDataView
         var temp = "";
         for (var i = 0; i < 18; i++)
         {
-            var b = _data.patternName[i];
+            var b = Data.patternName[i];
             if (b == 0) break;
             temp += (char)b;
         }
@@ -53,8 +53,8 @@ public sealed partial class PatternDataView
     unsafe void SetPatternName(string name)
     {
         var (i, len) = (0, System.Math.Min(17, name.Length));
-        for (;i < len; i++) _data.patternName[i] = (byte)name[i];
-        _data.patternName[i] = 0;
+        for (;i < len; i++) Data.patternName[i] = (byte)name[i];
+        Data.patternName[i] = 0;
     }
 
     #endregion

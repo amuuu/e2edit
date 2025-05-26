@@ -1,11 +1,27 @@
 using Unity.Properties;
+using System.Runtime.InteropServices;
 
 public sealed partial class PatternDataView
 {
-    #region Part data accessors
+    #region Part data window
 
     [CreateProperty]
     public int PartSelect { get; set; } = 1;
+
+    public ref MessageSpecs.Part CurrentPart
+      => ref GetPartRef(PartSelect - 1);
+
+    public ref MessageSpecs.Part GetPartRef(int part)
+    {
+        var source = MemoryMarshal.CreateSpan(ref Data, 1);
+        var offs = 2048 + 816 * part;
+        var span = MemoryMarshal.AsBytes(source).Slice(offs, 816);
+        return ref MemoryMarshal.Cast<byte, MessageSpecs.Part>(span)[0];
+    }
+
+    #endregion
+
+    #region Current part data accessors
 
     [CreateProperty]
     public int LastStep

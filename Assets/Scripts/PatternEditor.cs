@@ -61,7 +61,7 @@ public sealed class PatternEditor : MonoBehaviour
             _sender.SendCurrentPatternDataDumpRequest();
             while (count == _receiver.PatternUpdateCount)
                 await Awaitable.NextFrameAsync();
-            _pattern.UpdateData(_receiver.PatternBuffer);
+            _receiver.PatternBuffer.CopyTo(_pattern.AsBytes);
         }
         catch (Exception e)
         {
@@ -81,7 +81,7 @@ public sealed class PatternEditor : MonoBehaviour
         UIRoot.dataSource = _pattern;
 
         ReceiveButton.clicked += () => AsyncUtil.Forget(RequestReceivePattern());
-        SendButton.clicked += () => _sender.SendPatternData(_pattern.RawData);
+        SendButton.clicked += () => _sender.SendPatternData(_pattern.AsBytes);
 
         foreach (var i in Enumerable.Range(1, 16))
             GetPartButton(i).clicked += () => SelectPattern(i);

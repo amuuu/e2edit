@@ -1,11 +1,27 @@
 using Unity.Properties;
+using System.Runtime.InteropServices;
 
 public sealed partial class PatternDataView
 {
-    #region Step data accessors
+    #region Step data window
 
     [CreateProperty]
     public int StepSelect { get; set; } = 1;
+
+    public ref MessageSpecs.Step CurrentStep
+      => ref GetStepRef(PartSelect - 1, StepSelect - 1);
+
+    public ref MessageSpecs.Step GetStepRef(int part, int step)
+    {
+        var source = MemoryMarshal.CreateSpan(ref Data, 1);
+        var offs = 2048 + 816 * part + 48 + 12 * step;
+        var span = MemoryMarshal.AsBytes(source).Slice(offs, 12);
+        return ref MemoryMarshal.Cast<byte, MessageSpecs.Step>(span)[0];
+    }
+
+    #endregion
+
+    #region Current step data accessors
 
     [CreateProperty]
     public bool StepOnOff
