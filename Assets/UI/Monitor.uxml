@@ -10,7 +10,7 @@
         <ui:TabView>
             <ui:Tab label="Pattern">
                 <ui:VisualElement name="row1" style="flex-direction: row;">
-                    <ui:VisualElement name="pattern-settings" class="control-group" style="width: 270px;">
+                    <ui:VisualElement name="pattern-settings" class="control-group" style="width: 280px;">
                         <ui:Label text="Pattern" class="control-group-label" />
                         <ui:TextField label="Name" placeholder-text="(empty)" hide-placeholder-on-focus="true" style="width:170px">
                             <Bindings>
@@ -22,7 +22,7 @@
                                 <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
-                        <ui:EnumField label="Beat Type" style="width:100px" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp">
+                        <ui:EnumField label="Beat Type" style="width:112px" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
                             </Bindings>
@@ -64,7 +64,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="row2" style="flex-direction: row;">
-                    <ui:VisualElement name="part-setting" class="control-group" style="width: 230px;">
+                    <ui:VisualElement name="part-setting" class="control-group" style="width: 250px;">
                         <ui:Label text="Part" class="control-group-label" />
                         <ui:Toggle label="Mute">
                             <Bindings>
@@ -91,12 +91,12 @@
                                 <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
-                        <ui:EnumField label="Voice" value="Mono1" style="width:80px" type="MessageSpecs.VoiceType, Assembly-CSharp">
+                        <ui:EnumField label="Voice" value="Mono1" style="width:96px" type="MessageSpecs.VoiceType, Assembly-CSharp">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="VoiceType" binding-mode="TwoWay" />
                             </Bindings>
                         </ui:EnumField>
-                        <ui:EnumField label="Motion Seq" value="Off" style="width:80px" type="MessageSpecs.MotionType, Assembly-CSharp">
+                        <ui:EnumField label="Motion Seq" value="Off" style="width:96px" type="MessageSpecs.MotionType, Assembly-CSharp">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="MotionType" binding-mode="TwoWay" />
                             </Bindings>
@@ -372,19 +372,19 @@
                 </ui:VisualElement>
             </ui:Tab>
             <ui:Tab label="Motion">
-                <ui:VisualElement name="motion-selector" class="control-group" style="width: 270px;">
+                <ui:VisualElement name="motion-selector" class="control-group" style="width: 400px;">
                     <ui:Label text="Motion Sequence" class="control-group-label" />
                     <Klak.UIToolkit.ClampedIntegerField label="Slot" low-value="1" high-value="24">
                         <Bindings>
                             <ui:DataBinding property="value" data-source-path="MotionSelect" binding-mode="TwoWay" />
                         </Bindings>
                     </Klak.UIToolkit.ClampedIntegerField>
-                    <ui:EnumField label="Target" style="width:100px" value="Off" type="MessageSpecs.MotionTarget, Assembly-CSharp">
+                    <ui:EnumField label="Target" style="width:112px" value="Off" type="MessageSpecs.MotionTarget, Assembly-CSharp">
                         <Bindings>
                             <ui:DataBinding property="value" data-source-path="MotionTarget" binding-mode="TwoWay" />
                         </Bindings>
                     </ui:EnumField>
-                    <ui:EnumField label="Dest" style="width:100px" value="Off" type="MessageSpecs.MotionDest, Assembly-CSharp">
+                    <ui:EnumField label="Dest" style="width:170px" value="Off" type="MessageSpecs.MotionDest, Assembly-CSharp">
                         <Bindings>
                             <ui:DataBinding property="value" data-source-path="MotionDest" binding-mode="TwoWay" />
                         </Bindings>

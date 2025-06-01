@@ -18,6 +18,8 @@
 .unity-label {
    -unity-font-definition: var(--font-regular);
     color: rgb(164, 164, 164);
+    margin: 0;
+    padding: 0;
 }
 
 /* Tab */
@@ -140,6 +142,33 @@
 
 .unity-base-dropdown__checkmark {
     align-self: center;
+    margin: 4px;
+}
+
+.unity-scroller--vertical {
+    width: 6px;
+}
+
+.unity-scroller__low-button {
+    display: none;
+}
+
+.unity-scroller__high-button {
+    display: none;
+}
+
+.unity-scroller--vertical > .unity-scroller__slider {
+    width: 8px;
+    margin: 0;
+}
+
+.unity-scroller--vertical .unity-base-slider__dragger {
+    width: 6px;
+    border-radius: 3px;
+}
+
+.unity-scroller--vertical .unity-base-slider__tracker {
+    display: none;
 }
 
 /* Button */
