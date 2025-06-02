@@ -12,52 +12,6 @@ public enum VoiceType
 public enum MotionType
   { Off, Smooth, Hold }
 
-public enum MotionDest
-{
-    Off,
-    Reserved,
-    OscillatorPitch,
-    OscillatorGlide,
-    OscillatorEdit,
-    FilterCutoff,
-    FilterResonance,
-    FilterEgInt,
-    ModulationDepth,
-    ModulationSpeed,
-    AmpLevel,
-    AmpPan,
-    EgAttack,
-    EgDecayRelease,
-    IfxEdit,
-    MasterFxX,
-    MasterFxY,
-    IfxOnOff,
-    MfxSendOnOff,
-    MfxXyPadOnOff
-}
-
-public enum MotionTarget
-{
-    Off,
-    Part1,
-    Part2,
-    Part3,
-    Part4,
-    Part5,
-    Part6,
-    Part7,
-    Part8,
-    Part9,
-    Part10,
-    Part11,
-    Part12,
-    Part13,
-    Part14,
-    Part15,
-    Part16,
-    MasterFx
-}
-
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public unsafe struct Pattern
 {

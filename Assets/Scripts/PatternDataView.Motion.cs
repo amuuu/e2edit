@@ -19,13 +19,13 @@ public sealed partial class PatternDataView
     }
 
     [CreateProperty]
-    public unsafe MessageSpecs.MotionTarget MotionTarget
-      { get => (MessageSpecs.MotionTarget)Motion.partSlots[MotionSelect - 1];
+    public unsafe int MotionTarget
+      { get => Motion.partSlots[MotionSelect - 1];
         set => Motion.partSlots[MotionSelect - 1] = (byte)value; }
 
     [CreateProperty]
-    public unsafe MessageSpecs.MotionDest MotionDest
-      { get => (MessageSpecs.MotionDest)Motion.destinations[MotionSelect - 1];
+    public unsafe int MotionDest
+      { get => Motion.destinations[MotionSelect - 1];
         set => Motion.destinations[MotionSelect - 1] = (byte)value; }
 
     int MotionValueOffset => (MotionSelect - 1)  * 64;

@@ -379,16 +379,16 @@
                             <ui:DataBinding property="value" data-source-path="MotionSelect" binding-mode="TwoWay" />
                         </Bindings>
                     </Klak.UIToolkit.ClampedIntegerField>
-                    <ui:EnumField label="Target" value="Off" type="MessageSpecs.MotionTarget, Assembly-CSharp" style="width: 112px;">
+                    <ui:DropdownField label="Target" choices="Off,Part1,Part2,Part3,Part4,Part5,Part6,Part7,Part8,Part9,Part10,Part11,Part12,Part13,Part14,Part15,Part16,MasterFx" index="0" style="width: 104px;">
                         <Bindings>
-                            <ui:DataBinding property="value" data-source-path="MotionTarget" binding-mode="TwoWay" />
+                            <ui:DataBinding property="index" data-source-path="MotionTarget" binding-mode="TwoWay" />
                         </Bindings>
-                    </ui:EnumField>
-                    <ui:EnumField label="Dest" value="Off" type="MessageSpecs.MotionDest, Assembly-CSharp" style="width: 170px;">
+                    </ui:DropdownField>
+                    <ui:DropdownField label="Dest" choices="Off,Reserved,Osc Pitch,Osc Glide,Osc Edit,Filter Cutoff,Filter Reso,Filter EG Int,Mod Depth,Mod Speed,Level,Pan,EG Attack,EG Decay,IFX Edit,MasterFx-X,MasterFx-Y,IFX On/Off,MFX Send On/Off,MFX Pad On/Off" index="0" style="width: 144px;">
                         <Bindings>
-                            <ui:DataBinding property="value" data-source-path="MotionDest" binding-mode="TwoWay" />
+                            <ui:DataBinding property="index" data-source-path="MotionDest" binding-mode="TwoWay" />
                         </Bindings>
-                    </ui:EnumField>
+                    </ui:DropdownField>
                 </ui:VisualElement>
                 <ui:VisualElement name="motion-step-editor" class="control-group" style="width: 740px;">
                     <ui:Label text="Step Values" class="control-group-label" />
