@@ -23,10 +23,14 @@ public sealed partial class PatternDataView
       { get => Motion.partSlots[MotionSelect - 1];
         set => Motion.partSlots[MotionSelect - 1] = (byte)value; }
 
-    [CreateProperty]
-    public unsafe int MotionDest
+    public unsafe int MotionDestRaw
       { get => Motion.destinations[MotionSelect - 1];
         set => Motion.destinations[MotionSelect - 1] = (byte)value; }
+
+    [CreateProperty]
+    public int MotionDest
+      { get => MotionDestRaw == 0 ? 0 : MotionDestRaw - 1;
+        set => MotionDestRaw = value == 0 ? 0 : value + 1; }
 
     int MotionValueOffset => (MotionSelect - 1)  * 64;
 
