@@ -1,0 +1,833 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fbfbeb0daf34270b52b2d75e73efbd, type: 3}
+  m_Name: OscillatorType
+  m_EditorClassIdentifier: 
+  _typeList:
+  - name: SubBeef
+    category: 0
+  - name: Lazy
+    category: 0
+  - name: Echoes
+    category: 0
+  - name: Lay
+    category: 0
+  - name: Hardstyle
+    category: 0
+  - name: Hardcore
+    category: 0
+  - name: Southpaw
+    category: 0
+  - name: 8BitGrime
+    category: 0
+  - name: Noiz
+    category: 0
+  - name: HiKnock
+    category: 0
+  - name: LoKnock
+    category: 0
+  - name: Tronica
+    category: 0
+  - name: HiClicky
+    category: 0
+  - name: LoClicky
+    category: 0
+  - name: Subsonic
+    category: 0
+  - name: Threed
+    category: 0
+  - name: Lololow
+    category: 0
+  - name: Risky
+    category: 0
+  - name: ShortBoom
+    category: 0
+  - name: AttackEight
+    category: 0
+  - name: PureEight
+    category: 0
+  - name: UltraEight
+    category: 0
+  - name: SnipEight
+    category: 0
+  - name: ShortNine
+    category: 0
+  - name: PureNine
+    category: 0
+  - name: BoostNine
+    category: 0
+  - name: Harder
+    category: 0
+  - name: BitBreak
+    category: 0
+  - name: Finger
+    category: 0
+  - name: Filthy
+    category: 0
+  - name: Visual
+    category: 0
+  - name: Breaker
+    category: 0
+  - name: Urban
+    category: 0
+  - name: Roomy
+    category: 0
+  - name: Studio
+    category: 0
+  - name: Twinkling
+    category: 0
+  - name: Hippy
+    category: 0
+  - name: Ringy
+    category: 0
+  - name: Womp
+    category: 0
+  - name: Hip
+    category: 0
+  - name: Jungle
+    category: 0
+  - name: EastCoast
+    category: 0
+  - name: Jazz
+    category: 0
+  - name: Rock
+    category: 0
+  - name: Warm
+    category: 0
+  - name: Breaks
+    category: 0
+  - name: 80'sR&B1
+    category: 0
+  - name: 80'sR&B2
+    category: 0
+  - name: 80'sR&B3
+    category: 0
+  - name: DDD1
+    category: 0
+  - name: DoncaMatic
+    category: 0
+  - name: BeatVox1
+    category: 0
+  - name: BeatVox2
+    category: 0
+  - name: BeatVox3
+    category: 0
+  - name: Reverse1
+    category: 0
+  - name: Reverse2
+    category: 0
+  - name: Aftertaste
+    category: 1
+  - name: Sharp
+    category: 1
+  - name: Toofer
+    category: 1
+  - name: Clpsnr
+    category: 1
+  - name: Bosh
+    category: 1
+  - name: Wide
+    category: 1
+  - name: BreaksLofi
+    category: 1
+  - name: Beach
+    category: 1
+  - name: Hefty
+    category: 1
+  - name: Goodie
+    category: 1
+  - name: Steady
+    category: 1
+  - name: Tech
+    category: 1
+  - name: Lay
+    category: 1
+  - name: LoNine
+    category: 1
+  - name: HiNine
+    category: 1
+  - name: CompNine
+    category: 1
+  - name: PureEight
+    category: 1
+  - name: BodyEight
+    category: 1
+  - name: TrapEight
+    category: 1
+  - name: Shortate
+    category: 1
+  - name: LeanSnare
+    category: 1
+  - name: Seventy
+    category: 1
+  - name: DDD1
+    category: 1
+  - name: Nuxx
+    category: 1
+  - name: Oldie
+    category: 1
+  - name: Bigger
+    category: 1
+  - name: 80'sR&B1
+    category: 1
+  - name: 80'sR&B2
+    category: 1
+  - name: Jazz1
+    category: 1
+  - name: Jazz2
+    category: 1
+  - name: Snappy
+    category: 1
+  - name: Ambee
+    category: 1
+  - name: Verdy
+    category: 1
+  - name: Tubeverb
+    category: 1
+  - name: Open1
+    category: 1
+  - name: Open2
+    category: 1
+  - name: Oldskool
+    category: 1
+  - name: Hoppy
+    category: 1
+  - name: Ringy
+    category: 1
+  - name: OldBreaks
+    category: 1
+  - name: Piccolo
+    category: 1
+  - name: Jungla
+    category: 1
+  - name: EastCoast
+    category: 1
+  - name: D'n'B
+    category: 1
+  - name: Ambig
+    category: 1
+  - name: Juggler
+    category: 1
+  - name: DoncaMatic
+    category: 1
+  - name: Whip
+    category: 1
+  - name: Arcade
+    category: 1
+  - name: RimVox
+    category: 1
+  - name: Parched
+    category: 1
+  - name: Rimmy
+    category: 1
+  - name: AmbiRim
+    category: 1
+  - name: SnareVox
+    category: 1
+  - name: Waffle
+    category: 1
+  - name: Blast
+    category: 1
+  - name: Reverse1
+    category: 1
+  - name: Reverse2
+    category: 1
+  - name: PureEight
+    category: 2
+  - name: AmbEight
+    category: 2
+  - name: DirtySouth
+    category: 2
+  - name: PureNine
+    category: 2
+  - name: Mixed
+    category: 2
+  - name: Trap
+    category: 2
+  - name: Small
+    category: 2
+  - name: Clapper
+    category: 2
+  - name: Doubler
+    category: 2
+  - name: EastCoast
+    category: 2
+  - name: Liteclap
+    category: 2
+  - name: DDD1
+    category: 2
+  - name: Crispy
+    category: 2
+  - name: B.Boy
+    category: 2
+  - name: Crumbles
+    category: 2
+  - name: FingerSnap
+    category: 2
+  - name: NineClose1
+    category: 3
+  - name: NineOpen1
+    category: 3
+  - name: NineClose2
+    category: 3
+  - name: NineOpen2
+    category: 3
+  - name: EightClose1
+    category: 3
+  - name: EightOpen1
+    category: 3
+  - name: EightOpen2
+    category: 3
+  - name: CompClose
+    category: 3
+  - name: CompOpen
+    category: 3
+  - name: EastClose
+    category: 3
+  - name: EastOpen
+    category: 3
+  - name: DDD1Close
+    category: 3
+  - name: DDD1Open
+    category: 3
+  - name: WarmClose
+    category: 3
+  - name: WarmOpen
+    category: 3
+  - name: ZeeClose
+    category: 3
+  - name: ZeeOpen
+    category: 3
+  - name: RoomyClose
+    category: 3
+  - name: RoomyOpen
+    category: 3
+  - name: RockClose
+    category: 3
+  - name: RockOpen
+    category: 3
+  - name: JazzClose
+    category: 3
+  - name: JazzOpen
+    category: 3
+  - name: HoppyClose
+    category: 3
+  - name: HoppyOpen
+    category: 3
+  - name: PhaseClose
+    category: 3
+  - name: PhaseOpen
+    category: 3
+  - name: NuHopClose
+    category: 3
+  - name: NuHopOpen
+    category: 3
+  - name: RightClose
+    category: 3
+  - name: RightOpen
+    category: 3
+  - name: NoizClose
+    category: 3
+  - name: NoizOpen
+    category: 3
+  - name: GranClose
+    category: 3
+  - name: GranOpen
+    category: 3
+  - name: Ambi
+    category: 3
+  - name: Crackle
+    category: 3
+  - name: Hippy
+    category: 3
+  - name: Pump
+    category: 3
+  - name: Voice1
+    category: 3
+  - name: Voice2
+    category: 3
+  - name: Reverse
+    category: 3
+  - name: NineCym
+    category: 4
+  - name: HiCymbal
+    category: 4
+  - name: DoncaMatic
+    category: 4
+  - name: EastCoast
+    category: 4
+  - name: Rock
+    category: 4
+  - name: Synth
+    category: 4
+  - name: WhiteNoiz
+    category: 4
+  - name: RevCrash
+    category: 4
+  - name: NineRide
+    category: 4
+  - name: JazzRide1
+    category: 4
+  - name: JazzRide2
+    category: 4
+  - name: RockRide
+    category: 4
+  - name: ZeeRide
+    category: 4
+  - name: RevRide
+    category: 4
+  - name: Real Hi
+    category: 5
+  - name: Real MidHi
+    category: 5
+  - name: Real MidLo
+    category: 5
+  - name: Real Lo
+    category: 5
+  - name: Driven
+    category: 5
+  - name: Zee Hi
+    category: 5
+  - name: Zee Lo
+    category: 5
+  - name: OldSkool
+    category: 5
+  - name: Crunchy
+    category: 5
+  - name: E.Tom
+    category: 5
+  - name: Synth Hi1
+    category: 5
+  - name: Synth Mid1
+    category: 5
+  - name: Synth Lo1
+    category: 5
+  - name: Synth Hi2
+    category: 5
+  - name: Synth Lo2
+    category: 5
+  - name: TomEight
+    category: 5
+  - name: Conga1
+    category: 6
+  - name: Conga2
+    category: 6
+  - name: Conga3
+    category: 6
+  - name: Conga4
+    category: 6
+  - name: Conga5
+    category: 6
+  - name: Bongo1
+    category: 6
+  - name: Bongo2
+    category: 6
+  - name: Bongo3
+    category: 6
+  - name: Bongo4
+    category: 6
+  - name: Bongo5
+    category: 6
+  - name: Bongo6
+    category: 6
+  - name: Djembe1
+    category: 6
+  - name: Djembe2
+    category: 6
+  - name: Djembe3
+    category: 6
+  - name: Djembe4
+    category: 6
+  - name: Darbuka1
+    category: 6
+  - name: Darbuka2
+    category: 6
+  - name: Darbuka3
+    category: 6
+  - name: Darbuka4
+    category: 6
+  - name: Timbales Hi
+    category: 6
+  - name: Timbales Lo
+    category: 6
+  - name: CowBell1
+    category: 6
+  - name: CowBell2
+    category: 6
+  - name: CowBell3
+    category: 6
+  - name: Tambourine1
+    category: 6
+  - name: Tambourine2
+    category: 6
+  - name: Clave
+    category: 6
+  - name: Guiro
+    category: 6
+  - name: Cabasa
+    category: 6
+  - name: Shaker
+    category: 6
+  - name: WaveDrum1
+    category: 6
+  - name: WaveDrum2
+    category: 6
+  - name: WaveDrum3
+    category: 6
+  - name: WaveDrum4
+    category: 6
+  - name: WaveDrum5
+    category: 6
+  - name: WaveDrum6
+    category: 6
+  - name: WaveDrum7
+    category: 6
+  - name: WaveDrum8
+    category: 6
+  - name: ShakerHit
+    category: 6
+  - name: RimPerc
+    category: 6
+  - name: Wavestation
+    category: 6
+  - name: RimNine
+    category: 6
+  - name: RimEight
+    category: 6
+  - name: SynthShake
+    category: 6
+  - name: CowbellEight
+    category: 6
+  - name: DoncaCongaS
+    category: 6
+  - name: DoncaCongaL
+    category: 6
+  - name: DoncaMaracas
+    category: 6
+  - name: DoncaClaves
+    category: 6
+  - name: DoncaW.block
+    category: 6
+  - name: Synthclave
+    category: 6
+  - name: ClickRoll
+    category: 6
+  - name: GlitchDmg
+    category: 6
+  - name: MouthPop
+    category: 6
+  - name: Droplet
+    category: 6
+  - name: Rave
+    category: 7
+  - name: Whoo
+    category: 7
+  - name: Ohooo
+    category: 7
+  - name: ComOn
+    category: 7
+  - name: Nahh
+    category: 7
+  - name: Ahaa..
+    category: 7
+  - name: Haa
+    category: 7
+  - name: Baaa
+    category: 7
+  - name: Grun
+    category: 7
+  - name: Ahaaw
+    category: 7
+  - name: Paa
+    category: 7
+  - name: Hey
+    category: 7
+  - name: Doh
+    category: 7
+  - name: GlitchEey
+    category: 7
+  - name: BotVox1
+    category: 7
+  - name: BotVox2
+    category: 7
+  - name: NoizyVox
+    category: 8
+  - name: Noiser
+    category: 8
+  - name: Botox
+    category: 8
+  - name: ShockSonar
+    category: 8
+  - name: Quark
+    category: 8
+  - name: ebPerc
+    category: 8
+  - name: Needle
+    category: 8
+  - name: SqueakyBum
+    category: 8
+  - name: SynSiren
+    category: 8
+  - name: Bubble
+    category: 8
+  - name: Burp
+    category: 8
+  - name: Lux
+    category: 8
+  - name: Squirt
+    category: 8
+  - name: Degraded
+    category: 8
+  - name: Flyby
+    category: 8
+  - name: SonicDrop
+    category: 8
+  - name: LoZap
+    category: 8
+  - name: SubBang
+    category: 8
+  - name: Stabium
+    category: 9
+  - name: Futurize
+    category: 9
+  - name: LilChord
+    category: 9
+  - name: Ploinky
+    category: 9
+  - name: Strippa
+    category: 9
+  - name: BigChords
+    category: 9
+  - name: StarBurst
+    category: 9
+  - name: WishWash
+    category: 9
+  - name: BangPop
+    category: 9
+  - name: RegulatePop
+    category: 9
+  - name: TigerPad
+    category: 9
+  - name: LofiSynth
+    category: 9
+  - name: BlastBass
+    category: 9
+  - name: BenderBass
+    category: 9
+  - name: RockHit1
+    category: 9
+  - name: RockHit2
+    category: 9
+  - name: FormantBass
+    category: 9
+  - name: SynGrowl
+    category: 9
+  - name: BrassHit1
+    category: 10
+  - name: BrassHit2
+    category: 10
+  - name: StringsHit1
+    category: 10
+  - name: StringsHit2
+    category: 10
+  - name: BadOrch
+    category: 10
+  - name: CarmOrch
+    category: 10
+  - name: Sho2DOrch
+    category: 10
+  - name: V2Orch
+    category: 10
+  - name: Suspended
+    category: 10
+  - name: Jazz
+    category: 10
+  - name: Jazzy
+    category: 10
+  - name: Hop
+    category: 10
+  - name: OldBrass
+    category: 10
+  - name: Record
+    category: 10
+  - name: Rave
+    category: 10
+  - name: Oldie
+    category: 10
+  - name: SAW
+    category: 11
+  - name: BOOST-SAW
+    category: 11
+  - name: PULSE
+    category: 11
+  - name: TRIANGLE
+    category: 11
+  - name: SINE
+    category: 11
+  - name: DUAL-SAW
+    category: 11
+  - name: DUAL-SQU
+    category: 11
+  - name: DUAL-TRI
+    category: 11
+  - name: DUAL-SINE
+    category: 11
+  - name: OCT-SAW
+    category: 11
+  - name: OCT-SQU
+    category: 11
+  - name: OCT-TRI
+    category: 11
+  - name: OCT-SINE
+    category: 11
+  - name: UNI-SAW
+    category: 11
+  - name: UNI-SQU
+    category: 11
+  - name: UNI-TRI
+    category: 11
+  - name: UNI-SINE
+    category: 11
+  - name: SYNC-SAW
+    category: 11
+  - name: SYNC-SQU
+    category: 11
+  - name: SYNC-TRI
+    category: 11
+  - name: SYNC-SINE
+    category: 11
+  - name: CHIP-TRI 1
+    category: 11
+  - name: CHIP-TRI 2
+    category: 11
+  - name: CHIP-PULSE
+    category: 11
+  - name: CHIP-NOISE
+    category: 11
+  - name: RING-SAW
+    category: 11
+  - name: RING-SQU
+    category: 11
+  - name: RING-TRI
+    category: 11
+  - name: RING-SINE
+    category: 11
+  - name: X-SAW 1
+    category: 11
+  - name: X-SAW 2
+    category: 11
+  - name: X-SQUARE 1
+    category: 11
+  - name: X-SQUARE 2
+    category: 11
+  - name: X-TRI 1
+    category: 11
+  - name: X-TRI 2
+    category: 11
+  - name: X-SINE 1
+    category: 11
+  - name: X-SINE 2
+    category: 11
+  - name: VPM-SAW
+    category: 11
+  - name: VPM-SQUARE
+    category: 11
+  - name: VPM-TRI
+    category: 11
+  - name: VPM-SINE 1
+    category: 11
+  - name: VPM-SINE 2
+    category: 11
+  - name: VPM-SINE 3
+    category: 11
+  - name: VPM-SINE 4
+    category: 11
+  - name: SYN-SINE 1
+    category: 11
+  - name: SYN-SINE 2
+    category: 11
+  - name: SYN-SINE 3
+    category: 11
+  - name: SYN-SINE 4
+    category: 11
+  - name: SYN-SINE 5
+    category: 11
+  - name: SYN-SINE 6
+    category: 11
+  - name: SYN-SINE 7
+    category: 11
+  - name: HPF NOISE
+    category: 11
+  - name: LPF NOISE
+    category: 11
+  - name: LOFI NOISE
+    category: 11
+  - name: RES NOISE
+    category: 11
+  - name: M1 Piano
+    category: 12
+  - name: E.P.Roads
+    category: 12
+  - name: E.P.Wurly
+    category: 12
+  - name: Clav
+    category: 12
+  - name: M1 Organ
+    category: 12
+  - name: Brass Ens.
+    category: 12
+  - name: Tenor Sax
+    category: 12
+  - name: Alto Sax
+    category: 12
+  - name: Strings Ens.
+    category: 12
+  - name: Strings Pizz
+    category: 12
+  - name: Vox Pop Ah
+    category: 12
+  - name: Vox Pad
+    category: 12
+  - name: Vox Helium
+    category: 12
+  - name: A.Bass
+    category: 12
+  - name: E.Bass Finger
+    category: 12
+  - name: E.Bass Pick
+    category: 12
+  - name: E.Bass Slap
+    category: 12
+  - name: E.Bass Dist.
+    category: 12
+  - name: A.Guitar
+    category: 12
+  - name: E.Guitar1
+    category: 12
+  - name: E.Guitar2
+    category: 12
+  - name: Kalimba
+    category: 12
+  - name: Metal Bell
+    category: 12
+  - name: GamelanWave
+    category: 12
+  - name: Bell1
+    category: 12
+  - name: Bell2
+    category: 12
+  - name: Bell3
+    category: 12
+  - name: Bell4
+    category: 12
+  - name: Audio In
+    category: 13

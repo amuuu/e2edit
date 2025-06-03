@@ -16,10 +16,17 @@
 }
 
 .unity-label {
-   -unity-font-definition: var(--font-regular);
+    -unity-font-definition: var(--font-regular);
     color: rgb(164, 164, 164);
     margin: 0;
     padding: 0;
+}
+
+.osc-type-label {
+    -unity-font-definition: var(--font-regular);
+    font-size: 10px;
+    color: rgb(128, 128, 128);
+    padding-bottom: 3px;
 }
 
 /* Tab */

@@ -60,8 +60,16 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public int OscillatorType
-      { get => CurrentPart.oscillatorType;
-        set => CurrentPart.oscillatorType = (ushort)(value); }
+      { get => CurrentPart.oscillatorType + 1;
+        set => CurrentPart.oscillatorType = (ushort)(value - 1); }
+
+    [CreateProperty]
+    public string OscillatorTypeName
+      => OscillatorTypeCatalog.Instance[OscillatorType - 1].name;
+
+    [CreateProperty]
+    public OscillatorType.Category OscillatorTypeCategory
+      => OscillatorTypeCatalog.Instance[OscillatorType - 1].category;
 
     [CreateProperty]
     public int OscillatorEdit

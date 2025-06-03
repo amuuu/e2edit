@@ -115,15 +115,25 @@
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
                     </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="row3" style="flex-direction: row;">
-                    <ui:VisualElement name="osc-settings" class="control-group">
-                        <ui:Label text="Osc" class="control-group-label" />
-                        <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="500">
+                    <ui:VisualElement name="osc-settings" class="control-group" style="width: 150px;">
+                        <ui:Label text="Oscillator" class="control-group-label" />
+                        <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="409">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="OscillatorType" binding-mode="TwoWay" />
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
+                        <ui:VisualElement style="justify-content: flex-end; width: 90px">
+                            <ui:Label text="Oscillator Name" class="osc-type-label">
+                                <Bindings>
+                                    <ui:DataBinding property="text" data-source-path="OscillatorTypeName" binding-mode="ToTarget" />
+                                </Bindings>
+                            </ui:Label>
+                            <ui:Label text="Category" class="osc-type-label" style="width: 30px">
+                                <Bindings>
+                                    <ui:DataBinding property="text" data-source-path="OscillatorTypeCategory" binding-mode="ToTarget" />
+                                </Bindings>
+                            </ui:Label>
+                        </ui:VisualElement>
                         <Klak.UIToolkit.ClampedIntegerField label="Edit" low-value="0" high-value="127">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="OscillatorEdit" binding-mode="TwoWay" />
@@ -140,6 +150,8 @@
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
                     </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="row3" style="flex-direction: row;">
                     <ui:VisualElement name="filter-settings" class="control-group">
                         <ui:Label text="Filter" class="control-group-label" />
                         <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="16">
@@ -152,7 +164,7 @@
                                 <ui:DataBinding property="value" data-source-path="FilterCutoff" binding-mode="TwoWay" />
                             </Bindings>
                         </Klak.UIToolkit.ClampedIntegerField>
-                        <Klak.UIToolkit.ClampedIntegerField label="Res" low-value="0" high-value="127">
+                        <Klak.UIToolkit.ClampedIntegerField label="Reso" low-value="0" high-value="127">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="FilterResonance" binding-mode="TwoWay" />
                             </Bindings>
@@ -164,7 +176,7 @@
                         </Klak.UIToolkit.ClampedIntegerField>
                     </ui:VisualElement>
                     <ui:VisualElement name="mod-settings" class="control-group">
-                        <ui:Label text="Mod" class="control-group-label" />
+                        <ui:Label text="Modulation" class="control-group-label" />
                         <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="71">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="ModulationType" binding-mode="TwoWay" />
@@ -218,7 +230,7 @@
                         </ui:Toggle>
                     </ui:VisualElement>
                     <ui:VisualElement name="ifx-settings" class="control-group">
-                        <ui:Label text="IFX" class="control-group-label" />
+                        <ui:Label text="Insert FX" class="control-group-label" />
                         <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="37">
                             <Bindings>
                                 <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
