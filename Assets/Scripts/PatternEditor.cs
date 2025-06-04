@@ -1,57 +1,28 @@
 using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public sealed class PatternEditor : MonoBehaviour
+public sealed partial class PatternEditor : MonoBehaviour
 {
-    #region Private members
+    #region Pattern data handlers
 
-    MessageSender _sender;
-    MessageReceiver _receiver;
     PatternDataView _pattern = new();
+    MessageReceiver _receiver;
+    MessageSender _sender;
 
     #endregion
 
-    #region UI helpers
+    #region UI helper
 
     VisualElement UIRoot
       => GetComponent<UIDocument>().rootVisualElement;
 
-    Button ReceiveButton
-      => UIRoot.Q<Button>("receive-button");
-
-    Button SendButton
-      => UIRoot.Q<Button>("send-button");
-
-    Button GetPartButton(int i)
-      => UIRoot.Q<Button>("part-select-button-" + i);
-
-    Button GetStepButton(int i)
-      => UIRoot.Q<Button>
-           ($"step-select-button-{((i - 1) / 16) + 1}-{((i - 1) % 16) + 1}");
-
     #endregion
 
-    #region Callbacks
+    #region Button callback
 
-    void SelectPattern(int i)
-    {
-        var prev = GetPartButton(_pattern.PartSelect);
-        var next = GetPartButton(i);
-        prev.RemoveFromClassList("part-select-button-selected");
-        next.AddToClassList("part-select-button-selected");
-        _pattern.PartSelect = i;
-    }
-
-    void SelectStep(int i)
-    {
-        var prev = GetStepButton(_pattern.StepSelect);
-        var next = GetStepButton(i);
-        prev.RemoveFromClassList("step-select-button-selected");
-        next.AddToClassList("step-select-button-selected");
-        _pattern.StepSelect = i;
-    }
+    void ReceivePattern()
+      => AsyncUtil.Forget(RequestReceivePattern());
 
     async Awaitable RequestReceivePattern()
     {
@@ -69,28 +40,24 @@ public sealed class PatternEditor : MonoBehaviour
         }
     }
 
+    void SendPattern()
+      => _sender.SendPatternData(_pattern.AsBytes);
+
     #endregion
 
     #region MonoBehaviour implementation
 
     void Start()
     {
-        _sender = new MessageSender();
         _receiver = new MessageReceiver();
+        _sender = new MessageSender();
 
         UIRoot.dataSource = _pattern;
+        UIRoot.Q<Button>("receive-button").clicked += ReceivePattern;
+        UIRoot.Q<Button>("send-button").clicked += SendPattern;
 
-        ReceiveButton.clicked += () => AsyncUtil.Forget(RequestReceivePattern());
-        SendButton.clicked += () => _sender.SendPatternData(_pattern.AsBytes);
-
-        foreach (var i in Enumerable.Range(1, 16))
-            GetPartButton(i).clicked += () => SelectPattern(i);
-
-        foreach (var i in Enumerable.Range(1, 64))
-            GetStepButton(i).clicked += () => SelectStep(i);
-
-        SelectPattern(1);
-        SelectStep(1);
+        InitPatternPage();
+        InitStepPage();
     }
 
     void OnDestroy()
