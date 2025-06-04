@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public sealed partial class PatternEditor : MonoBehaviour
 {
     Button GetPartButton(int i)
-      => UIRoot.Q<Button>("part-select-button-" + i);
+      => _uiRoot.Q<Button>("part-select-button-" + i);
 
     void SelectPattern(int i)
     {

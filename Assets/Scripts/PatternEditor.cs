@@ -12,16 +12,16 @@ public sealed partial class PatternEditor : MonoBehaviour
 
     #endregion
 
-    #region UI helper
+    #region UI elements
 
-    VisualElement UIRoot
-      => GetComponent<UIDocument>().rootVisualElement;
+    VisualElement _uiRoot;
+    (Tab step, Tab pattern, Tab motion) _tab;
 
     #endregion
 
-    #region Button callback
+    #region UI callbacks
 
-    void ReceivePattern()
+    void OnReceiveButton()
       => AsyncUtil.Forget(RequestReceivePattern());
 
     async Awaitable RequestReceivePattern()
@@ -38,10 +38,17 @@ public sealed partial class PatternEditor : MonoBehaviour
         {
             Debug.LogError(e);
         }
+
+        RefreshStepPage();
     }
 
-    void SendPattern()
+    void OnSendButton()
       => _sender.SendPatternData(_pattern.AsBytes);
+
+    void OnTabChanged(Tab prevTab, Tab newTab)
+    {
+        if (newTab == _tab.step) RefreshStepPage();
+    }
 
     #endregion
 
@@ -52,9 +59,15 @@ public sealed partial class PatternEditor : MonoBehaviour
         _receiver = new MessageReceiver();
         _sender = new MessageSender();
 
-        UIRoot.dataSource = _pattern;
-        UIRoot.Q<Button>("receive-button").clicked += ReceivePattern;
-        UIRoot.Q<Button>("send-button").clicked += SendPattern;
+        _uiRoot = GetComponent<UIDocument>().rootVisualElement;
+        _uiRoot.dataSource = _pattern;
+        _uiRoot.Q<Button>("receive-button").clicked += OnReceiveButton;
+        _uiRoot.Q<Button>("send-button").clicked += OnSendButton;
+        _uiRoot.Q<TabView>().activeTabChanged += OnTabChanged;
+
+        _tab.pattern = _uiRoot.Q<Tab>("step-pattern");
+        _tab.step = _uiRoot.Q<Tab>("step-tab");
+        _tab.motion = _uiRoot.Q<Tab>("step-motion");
 
         InitPatternPage();
         InitStepPage();

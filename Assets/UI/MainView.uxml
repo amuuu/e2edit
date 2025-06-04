@@ -11,13 +11,13 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:TabView>
-            <ui:Tab label="Pattern">
+            <ui:Tab label="Pattern" name="pattern-tab">
                 <ui:Instance template="PatternTab" />
             </ui:Tab>
-            <ui:Tab label="Step">
+            <ui:Tab label="Step" name="step-tab">
                 <ui:Instance template="StepTab" />
             </ui:Tab>
-            <ui:Tab label="Motion">
+            <ui:Tab label="Motion" name="motion-tab">
                 <ui:Instance template="MotionTab" />
             </ui:Tab>
         </ui:TabView>

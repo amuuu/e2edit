@@ -242,6 +242,10 @@
     margin-top: 14px;
 }
 
+.step-select-button-on {
+    background-color: rgba(226, 150, 65, 0.3);
+}
+
 .step-select-button-selected {
     background-color: rgb(226, 150, 65);
 }
