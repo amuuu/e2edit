@@ -12,7 +12,7 @@
                 <ui:DataBinding property="index" data-source-path="MotionTarget" binding-mode="TwoWay" />
             </Bindings>
         </ui:DropdownField>
-        <ui:DropdownField label="Destination" choices="Off,Oscillator Pitch,Oscillator Glide,Oscillator Edit,Filter Cutoff,Filter Resonance,Filter EG Int,Modulation Depth,Modulation Speed,Level,Pan,EG Attack,EG Decay/Release,Insert FX Edit,MFX Pad X,MFX Pad Y,IFX On,MFX Send On,MFX Pad On" index="0" style="width: 144px;">
+        <ui:DropdownField label="Destination" choices="Off,Oscillator Pitch,Oscillator Glide,Oscillator Edit,Filter Cutoff,Filter Resonance,Filter EG Int,Modulation Depth,Modulation Speed,Level,Pan,EG Attack,EG Decay/Release,Insert FX Edit,MFX Pad X,MFX Pad Y,IFX On,MFX Send On,MFX Pad On" index="0" style="width: 150px;">
             <Bindings>
                 <ui:DataBinding property="index" data-source-path="MotionDest" binding-mode="TwoWay" />
             </Bindings>
