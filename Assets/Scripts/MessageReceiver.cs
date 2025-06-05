@@ -15,6 +15,7 @@ sealed class MessageReceiver : IDisposable
     public MessageReceiver()
     {
         _midiPort = MidiPortProbe.OpenInPort();
+        if (_midiPort == null) return;
         _midiPort.MessageReceived = OnMessageReceived;
     }
 
