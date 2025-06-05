@@ -4,7 +4,13 @@
     --font-regular: url("project://database/Assets/UI/Inter/static/Inter_18pt-Regular.ttf?fileID=12800000&guid=eea54c8922cb94fc89584d64150870c0&type=3#Inter_18pt-Regular");
     --font-bold: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
     --font-black: url("project://database/Assets/UI/Inter/static/Inter_18pt-Black.ttf?fileID=12800000&guid=bae3938e488714b57a8c55ae8b1d15dc&type=3#Inter_18pt-Black");
-    --cursor-slide: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Textures/SlideCursor.png?fileID=2800000&guid=81c13d2e6280343cc9d75a5925a3b5b8&type=3#SlideCursor") 16 16;
+    --image-slide_cursor: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Textures/SlideCursor.png?fileID=2800000&guid=81c13d2e6280343cc9d75a5925a3b5b8&type=3#SlideCursor") 16 16;
+    --color-focus: rgb(80, 150, 220);
+    --color-line: rgb(226, 150, 65);
+    --color-line-dim: rgba(226, 150, 65, 0.3);
+    --color-line-dim-hover: rgba(226, 150, 65, 0.4);
+    --color-highlight-hover: rgba(255, 255, 255, 0.05);
+    --color-highlight-active: rgba(255, 255, 255, 0.1);
 }
 
 /* Text elements */
@@ -103,7 +109,7 @@
 }
 
 .unity-base-field__label--with-dragger {
-    cursor: var(--cursor-slide);
+    cursor: var(--image-slide_cursor);
 }
 
 /* Text field */
@@ -205,26 +211,28 @@
 /* Button */
 
 .unity-button {
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgb(226, 150, 65);
+    background-color: initial;
+    border-color: var(--color-line);
     border-width: 1px;
     border-radius: 5px;
     margin: 4px;
     padding: 5px;
 }
 
-.unity-button:hover {
-    background-color: rgb(63, 63, 63);
-    border-radius: 5px;
+.unity-button:enabled:hover {
+    background-color: var(--color-highlight-hover);
+    border-color: var(--color-line);
 }
 
-.unity-base-field:focus {
-    border-color: rgb(41, 117, 185);
+.unity-button:enabled:active {
+    background-color: var(--color-highlight-active);
 }
 
-.unity-button:active {
-    background-color: rgb(41, 117, 185);
+.unity-button:enabled:focus {
+    border-color: var(--color-focus);
 }
+
+/* Part select button */
 
 .part-select-button {
     width: 24px;
@@ -232,9 +240,15 @@
 }
 
 .part-select-button-selected {
-    background-color: rgb(226, 150, 65);
+    background-color: var(--color-line);
     color: rgb(64, 64, 64);
 }
+
+.part-select-button-selected:enabled:hover {
+    background-color: var(--color-line);
+}
+
+/* Step select button */
 
 .step-select-button {
     width: 20px;
@@ -243,11 +257,19 @@
 }
 
 .step-select-button-on {
-    background-color: rgba(226, 150, 65, 0.3);
+    background-color: var(--color-line-dim);
+}
+
+.step-select-button-on:enabled:hover {
+    background-color: var(--color-line-dim-hover);
 }
 
 .step-select-button-selected {
-    background-color: rgb(226, 150, 65);
+    background-color: var(--color-line);
+}
+
+.step-select-button-selected:enabled:hover {
+    background-color: var(--color-line);
 }
 
 .step-selector-row {
