@@ -113,13 +113,13 @@
                     <ui:DataBinding property="value" data-source-path="OscillatorType" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="justify-content: flex-end; width: 90px;">
-                <ui:Label text="Category" class="osc-type-label" style="width: 30px;">
+            <ui:VisualElement style="justify-content: center; width: 94px;">
+                <ui:Label text="Category" class="caption-label">
                     <Bindings>
                         <ui:DataBinding property="text" data-source-path="OscillatorTypeCategory" binding-mode="ToTarget" />
                     </Bindings>
                 </ui:Label>
-                <ui:Label text="Oscillator Name" class="osc-type-label">
+                <ui:Label text="Oscillator Name" class="caption-label">
                     <Bindings>
                         <ui:DataBinding property="text" data-source-path="OscillatorTypeName" binding-mode="ToTarget" />
                     </Bindings>
@@ -166,13 +166,20 @@
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
         </ui:VisualElement>
-        <ui:VisualElement name="mod-settings" class="control-group">
+        <ui:VisualElement name="mod-settings" class="control-group" style="width: 140px;">
             <ui:Label text="Modulation" class="control-group-label" />
-            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="71">
+            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="72">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="ModulationType" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
+            <ui:VisualElement style="justify-content: center; width: 84px;">
+                <ui:Label text="Name" class="caption-label">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="ModulationTypeName" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
             <Klak.UIToolkit.ClampedIntegerField label="Speed" low-value="0" high-value="127">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="ModulationSpeed" binding-mode="TwoWay" />

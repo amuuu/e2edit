@@ -65,11 +65,11 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string OscillatorTypeName
-      => OscillatorTypeCatalog.Instance[OscillatorType - 1].name;
+      => StringTable.Instance.oscillatorTypes[OscillatorType - 1];
 
     [CreateProperty]
-    public OscillatorType.Category OscillatorTypeCategory
-      => OscillatorTypeCatalog.Instance[OscillatorType - 1].category;
+    public string OscillatorTypeCategory
+      => StringTable.Instance.oscillatorCategories[OscillatorType - 1];
 
     [CreateProperty]
     public int OscillatorEdit
@@ -98,8 +98,12 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public int ModulationType
-      { get => CurrentPart.modulationType;
-        set => CurrentPart.modulationType = (byte)value; }
+      { get => CurrentPart.modulationType + 1;
+        set => CurrentPart.modulationType = (byte)(value - 1); }
+
+    [CreateProperty]
+    public string ModulationTypeName
+      => StringTable.Instance.modulationTypes[ModulationType - 1];
 
     [CreateProperty]
     public int ModulationSpeed

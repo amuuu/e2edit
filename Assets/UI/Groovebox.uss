@@ -3,10 +3,15 @@
 
 /* Labels */
 
-.osc-type-label {
+.caption-label {
     -unity-font-definition: var(--font-regular);
     font-size: 10px;
     color: var(--color-label-dim);
+    border-left-width: 1px;
+    border-color: rgb(128, 128, 128);
+    margin: 0;
+    padding: 1px;
+    padding-left: 4px;
 }
 
 .control-group-label {
