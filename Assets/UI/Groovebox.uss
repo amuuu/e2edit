@@ -7,7 +7,6 @@
     -unity-font-definition: var(--font-regular);
     font-size: 10px;
     color: var(--color-label-dim);
-    padding-bottom: 3px;
 }
 
 .control-group-label {

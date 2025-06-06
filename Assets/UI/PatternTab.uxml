@@ -77,7 +77,7 @@
                     <ui:DataBinding property="value" data-source-path="PartPriority" binding-mode="TwoWay" />
                 </Bindings>
             </ui:Toggle>
-            <Klak.UIToolkit.ClampedIntegerField label="Steps" low-value="0" high-value="15">
+            <Klak.UIToolkit.ClampedIntegerField label="Steps" low-value="1" high-value="16">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
                 </Bindings>
@@ -114,14 +114,14 @@
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
             <ui:VisualElement style="justify-content: flex-end; width: 90px;">
-                <ui:Label text="Oscillator Name" class="osc-type-label">
-                    <Bindings>
-                        <ui:DataBinding property="text" data-source-path="OscillatorTypeName" binding-mode="ToTarget" />
-                    </Bindings>
-                </ui:Label>
                 <ui:Label text="Category" class="osc-type-label" style="width: 30px;">
                     <Bindings>
                         <ui:DataBinding property="text" data-source-path="OscillatorTypeCategory" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Oscillator Name" class="osc-type-label">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="OscillatorTypeName" binding-mode="ToTarget" />
                     </Bindings>
                 </ui:Label>
             </ui:VisualElement>
