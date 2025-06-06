@@ -13,7 +13,7 @@
                     <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
-            <ui:EnumField label="Beat Type" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp" style="width: 112px;">
+            <ui:EnumField label="Beat Type" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp" style="width: 120px;">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
                 </Bindings>
@@ -82,12 +82,12 @@
                     <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
-            <ui:EnumField label="Voice" value="Mono1" type="MessageSpecs.VoiceType, Assembly-CSharp" style="width: 96px;">
+            <ui:EnumField label="Voice" value="Mono1" type="MessageSpecs.VoiceType, Assembly-CSharp" style="width: 100px;">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="VoiceType" binding-mode="TwoWay" />
                 </Bindings>
             </ui:EnumField>
-            <ui:EnumField label="Motion Seq" value="Off" type="MessageSpecs.MotionType, Assembly-CSharp" style="width: 96px;">
+            <ui:EnumField label="Motion Seq" value="Off" type="MessageSpecs.MotionType, Assembly-CSharp" style="width: 100px;">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="MotionType" binding-mode="TwoWay" />
                 </Bindings>
