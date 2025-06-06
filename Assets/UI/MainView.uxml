@@ -2,7 +2,7 @@
     <ui:Template name="PatternTab" src="project://database/Assets/UI/PatternTab.uxml?fileID=9197481963319205126&amp;guid=89f1567b6ca6640c999344f21200d9cd&amp;type=3#PatternTab" />
     <ui:Template name="StepTab" src="project://database/Assets/UI/StepTab.uxml?fileID=9197481963319205126&amp;guid=303fff210a20e4c189dd7e278abb4e61&amp;type=3#StepTab" />
     <ui:Template name="MotionTab" src="project://database/Assets/UI/MotionTab.uxml?fileID=9197481963319205126&amp;guid=1ad67e24472744b20a5111fb3dd5df2a&amp;type=3#MotionTab" />
-    <Style src="project://database/Assets/UI/Monitor.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
+    <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
     <ui:VisualElement data-source-type="PatternDataView, Assembly-CSharp" name="root" style="position: absolute; top: 20px; left: 20px;">
         <ui:VisualElement name="tool-bar">
             <ui:VisualElement style="flex-direction: row;">

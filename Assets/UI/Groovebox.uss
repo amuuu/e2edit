@@ -1,0 +1,82 @@
+@import "Groovebox.Common.uss";
+@import "Groovebox.Controls.uss";
+
+/* Labels */
+
+.osc-type-label {
+    -unity-font-definition: var(--font-regular);
+    font-size: 10px;
+    color: var(--color-label-dim);
+    padding-bottom: 3px;
+}
+
+.control-group-label {
+    -unity-font-definition: var(--font-black);
+    font-size: 11px;
+    width: 100%;
+    margin: 0;
+    margin-top: -15px;
+    padding: 0;
+}
+
+/* Controller row */
+
+.control-group {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100px;
+    background-color: var(--color-panel);
+    border-radius: 4px;
+    padding: 6px;
+    padding-top: 20px;
+    margin: 4px;
+}
+
+/* Part select button */
+
+.part-select-button {
+    width: 24px;
+    margin-top: 7px;
+}
+
+.part-select-button-selected {
+    background-color: var(--color-line);
+    color: var(--color-panel);
+}
+
+.part-select-button-selected:enabled:hover {
+    background-color: var(--color-line);
+}
+
+/* Step select button */
+
+.step-select-button {
+    width: 20px;
+    height: 20px;
+    margin-top: 14px;
+}
+
+.step-select-button-on {
+    background-color: var(--color-line-dim);
+}
+
+.step-select-button-on:enabled:hover {
+    background-color: var(--color-line-dim-hover);
+}
+
+.step-select-button-selected {
+    background-color: var(--color-line);
+}
+
+.step-select-button-selected:enabled:hover {
+    background-color: var(--color-line);
+}
+
+.step-selector-row {
+    flex-direction: row;
+}
+
+.step-spacer {
+    width: 8px;
+}

@@ -1,0 +1,45 @@
+/* Variables */
+
+:root {
+    --font-regular: url("project://database/Assets/UI/Inter/static/Inter_18pt-Regular.ttf?fileID=12800000&guid=eea54c8922cb94fc89584d64150870c0&type=3#Inter_18pt-Regular");
+    --font-bold: url("project://database/Assets/UI/Inter/static/Inter_18pt-Bold.ttf?fileID=12800000&guid=b3f9c34a5703a496898fbf7a419e698d&type=3#Inter_18pt-Bold");
+    --font-black: url("project://database/Assets/UI/Inter/static/Inter_18pt-Black.ttf?fileID=12800000&guid=bae3938e488714b57a8c55ae8b1d15dc&type=3#Inter_18pt-Black");
+    --image-slide_cursor: url("project://database/Packages/jp.keijiro.klak.ui-toolkit-assets/Runtime/Textures/SlideCursor.png?fileID=2800000&guid=81c13d2e6280343cc9d75a5925a3b5b8&type=3#SlideCursor") 16 16;
+    --color-focus: rgb(100, 120, 180);
+    --color-panel: rgb(48, 48, 48);
+    --color-line: rgb(226, 150, 65);
+    --color-label: rgb(164, 164, 164);
+    --color-label-dim: rgb(128, 128, 128);
+    --color-line-dim: rgba(226, 150, 65, 0.3);
+    --color-line-dim-hover: rgba(226, 150, 65, 0.4);
+    --color-bg-hover: rgba(255, 255, 255, 0.05);
+    --color-bg-active: rgba(255, 255, 255, 0.1);
+}
+
+/* Base fields */
+
+.unity-base-field {
+    flex-direction: column;
+    min-width: 40px;
+    margin: 2px;
+    padding: 0;
+}
+
+.unity-base-field__input {
+    margin: 2px;
+    padding: 0;
+}
+
+.unity-base-field__label {
+    min-width: 0;
+    margin: 2px;
+    padding: 0;
+}
+
+.unity-base-field__label--with-dragger {
+    cursor: var(--image-slide_cursor);
+}
+
+.unity-base-field:enabled:focus > .unity-base-field__label {
+    color: var(--color-focus);
+}
