@@ -40,6 +40,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         }
 
         RefreshStepPage();
+        RefreshMotionPage();
     }
 
     void OnSendButton()
@@ -48,6 +49,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     void OnTabChanged(Tab prevTab, Tab newTab)
     {
         if (newTab == _tab.step) RefreshStepPage();
+        if (newTab == _tab.motion) RefreshMotionPage();
     }
 
     #endregion
@@ -65,12 +67,13 @@ public sealed partial class PatternEditor : MonoBehaviour
         _uiRoot.Q<Button>("send-button").clicked += OnSendButton;
         _uiRoot.Q<TabView>().activeTabChanged += OnTabChanged;
 
-        _tab.pattern = _uiRoot.Q<Tab>("step-pattern");
+        _tab.pattern = _uiRoot.Q<Tab>("pattern-tab");
         _tab.step = _uiRoot.Q<Tab>("step-tab");
-        _tab.motion = _uiRoot.Q<Tab>("step-motion");
+        _tab.motion = _uiRoot.Q<Tab>("motion-tab");
 
         InitPatternPage();
         InitStepPage();
+        InitMotionPage();
     }
 
     void OnDestroy()
