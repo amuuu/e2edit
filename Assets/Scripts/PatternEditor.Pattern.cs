@@ -7,7 +7,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     Button GetPartButton(int i)
       => _uiRoot.Q<Button>("part-select-button-" + i);
 
-    void SelectPattern(int i)
+    void SelectPart(int i)
     {
         var prev = GetPartButton(_pattern.PartSelect);
         var next = GetPartButton(i);
@@ -19,7 +19,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     void InitPatternPage()
     {
         foreach (var i in Enumerable.Range(1, 16))
-            GetPartButton(i).clicked += () => SelectPattern(i);
-        SelectPattern(1);
+            GetPartButton(i).clicked += () => SelectPart(i);
+        SelectPart(1);
     }
 }

@@ -18,7 +18,7 @@
             </Bindings>
         </ui:DropdownField>
     </ui:VisualElement>
-    <ui:VisualElement name="motion-step-editor" class="control-group" style="width: 740px;">
+    <ui:VisualElement name="motion-step-editor" class="control-group" style="width: 700px;">
         <ui:Label text="Step Values" class="control-group-label" />
         <ui:VisualElement class="step-selector-row">
             <Klak.UIToolkit.ClampedIntegerField label="1" low-value="0" high-value="127">
