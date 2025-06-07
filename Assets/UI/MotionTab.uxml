@@ -18,7 +18,7 @@
             </Bindings>
         </ui:DropdownField>
     </ui:VisualElement>
-    <ui:VisualElement name="motion-step-editor" class="control-group" style="width: 700px;">
+    <ui:VisualElement name="motion-step-editor" class="control-group" style="width: 550px;">
         <ui:Label text="Step Values" class="control-group-label" />
     </ui:VisualElement>
 </ui:UXML>
