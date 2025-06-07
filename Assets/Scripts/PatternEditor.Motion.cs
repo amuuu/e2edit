@@ -9,7 +9,7 @@ public sealed partial class PatternEditor : MonoBehaviour
       new (ClampedIntegerField, VisualElement)[64];
 
     // Motion step control factory
-    (ClampedIntegerField field, VisualElement bar) MakeMotionStep(int index)
+    (ClampedIntegerField field, VisualElement bar) CreateMotionStep(int index)
     {
         // Int field
         var field = new ClampedIntegerField()
@@ -34,14 +34,6 @@ public sealed partial class PatternEditor : MonoBehaviour
         bar.SendToBack();
 
         return (field, bar);
-    }
-
-    // Motion step spacer factory
-    VisualElement MakeStepSpacer()
-    {
-        var spacer = new VisualElement();
-        spacer.AddToClassList("step-spacer");
-        return spacer;
     }
 
     // Motion bar height update based on motion value
@@ -76,15 +68,15 @@ public sealed partial class PatternEditor : MonoBehaviour
             for (int i = 0; i < 16; i++)
             {
                 var index = bar * 16 + i;
-                _motionSteps[index] = MakeMotionStep(index);
+                _motionSteps[index] = CreateMotionStep(index);
                 row.Add(_motionSteps[index].field);
 
                 // Spaces per four steps
-                if (i % 4 == 3 && i != 15) row.Add(MakeStepSpacer());
+                if (i % 4 == 3 && i != 15) row.Add(CreateStepSpacer());
             }
         }
 
-        // Refresh with slot changes
+        // Slot change callback
         _uiRoot.Q<IntegerField>("slot-selector").
           RegisterValueChangedCallback(e => RefreshMotionPage());
     }

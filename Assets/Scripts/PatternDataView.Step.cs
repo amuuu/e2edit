@@ -63,5 +63,21 @@ public sealed partial class PatternDataView
       { get => CurrentStep.noteSlot4;
         set => CurrentStep.noteSlot4 = (byte)value; }
 
+    [CreateProperty]
+    public string StepNote1Name
+      => NoteUtil.GetNoteName(StepNote1);
+
+    [CreateProperty]
+    public string StepNote2Name
+      => NoteUtil.GetNoteName(StepNote2);
+
+    [CreateProperty]
+    public string StepNote3Name
+      => NoteUtil.GetNoteName(StepNote3);
+
+    [CreateProperty]
+    public string StepNote4Name
+      => NoteUtil.GetNoteName(StepNote4);
+
     #endregion
 }
