@@ -93,13 +93,20 @@
                 </Bindings>
             </ui:EnumField>
         </ui:VisualElement>
-        <ui:VisualElement name="groove-settings" class="control-group" style="width: 55px;">
+        <ui:VisualElement name="groove-settings" class="control-group" style="width: 130px;">
             <ui:Label text="Groove" class="control-group-label" />
-            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="24">
+            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="25">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="GrooveType" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
+            <ui:VisualElement style="justify-content: center; width: 74px;">
+                <ui:Label text="Name" class="caption-label">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="GrooveTypeName" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
             <Klak.UIToolkit.ClampedIntegerField label="Depth" low-value="0" high-value="127">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="GrooveDepth" binding-mode="TwoWay" />
@@ -143,13 +150,20 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="row3" style="flex-direction: row;">
-        <ui:VisualElement name="filter-settings" class="control-group">
+        <ui:VisualElement name="filter-settings" class="control-group" style="width: 145px;">
             <ui:Label text="Filter" class="control-group-label" />
-            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="16">
+            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="17">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="FilterType" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
+            <ui:VisualElement style="justify-content: center; width: 88px;">
+                <ui:Label text="Name" class="caption-label">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="FilterTypeName" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
             <Klak.UIToolkit.ClampedIntegerField label="Cutoff" low-value="0" high-value="127">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="FilterCutoff" binding-mode="TwoWay" />
@@ -227,13 +241,20 @@
                 </Bindings>
             </ui:Toggle>
         </ui:VisualElement>
-        <ui:VisualElement name="ifx-settings" class="control-group">
+        <ui:VisualElement name="ifx-settings" class="control-group" style="width: 140px;">
             <ui:Label text="Insert FX" class="control-group-label" />
-            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="0" high-value="37">
+            <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="38">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
                 </Bindings>
             </Klak.UIToolkit.ClampedIntegerField>
+            <ui:VisualElement style="justify-content: center; width: 84px;">
+                <ui:Label text="Name" class="caption-label">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="IfxTypeName" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
             <Klak.UIToolkit.ClampedIntegerField label="Edit" low-value="0" high-value="127">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />

@@ -78,8 +78,12 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public int FilterType
-      { get => CurrentPart.filterType;
-        set => CurrentPart.filterType = (byte)value; }
+      { get => CurrentPart.filterType + 1;
+        set => CurrentPart.filterType = (byte)(value - 1); }
+
+    [CreateProperty]
+    public string FilterTypeName
+      => StringTable.Instance.filterTypes[FilterType - 1];
 
     [CreateProperty]
     public int FilterCutoff
@@ -147,8 +151,12 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public int GrooveType
-      { get => CurrentPart.grooveType;
-        set => CurrentPart.grooveType = (byte)value; }
+      { get => CurrentPart.grooveType + 1;
+        set => CurrentPart.grooveType = (byte)(value - 1); }
+
+    [CreateProperty]
+    public string GrooveTypeName
+      => StringTable.Instance.grooveTypes[GrooveType - 1];
 
     [CreateProperty]
     public int GrooveDepth
@@ -162,8 +170,12 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public int IfxType
-      { get => CurrentPart.ifxType;
-        set => CurrentPart.ifxType = (byte)value; }
+      { get => CurrentPart.ifxType + 1;
+        set => CurrentPart.ifxType = (byte)(value - 1); }
+
+    [CreateProperty]
+    public string IfxTypeName
+      => StringTable.Instance.ifxTypes[IfxType - 1];
 
     [CreateProperty]
     public int IfxEdit
