@@ -30,8 +30,12 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public int StepGateTime
-      { get => CurrentStep.gateTime;
-        set => CurrentStep.gateTime = (byte)value; }
+      { get => System.Math.Min(97, (int)CurrentStep.gateTime);
+        set => CurrentStep.gateTime = (byte)(value == 97 ? 127 : value); }
+
+    [CreateProperty]
+    public string StepGateTimeText
+      => StepGateTime == 97 ? "Tie" : $"{StepGateTime * 100 / 97}%";
 
     [CreateProperty]
     public int StepVelocity
