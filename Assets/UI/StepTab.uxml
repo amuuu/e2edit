@@ -1,89 +1,96 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
-    <ui:VisualElement name="row1" style="flex-direction: row;">
-        <ui:VisualElement name="step-selector" class="control-group" style="width: 484px;">
+    <ui:VisualElement class="control-row">
+        <ui:VisualElement name="step-selector" class="control-group">
             <ui:Label text="Step Selector" class="control-group-label" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="row2" style="flex-direction: row;">
-        <ui:VisualElement name="step-parameters" class="control-group" style="width: 144px;">
+    <ui:VisualElement class="control-row">
+        <ui:VisualElement name="step-parameters" class="control-group">
             <ui:Label text="Parameters" class="control-group-label" />
-            <ui:Toggle label="On">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepOnOff" binding-mode="TwoWay" />
-                </Bindings>
-            </ui:Toggle>
-            <Klak.UIToolkit.ClampedIntegerField label="Gate" low-value="0" high-value="97">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepGateTime" binding-mode="TwoWay" />
-                </Bindings>
-            </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="justify-content: center; width: 34px;">
-                <ui:Label text="99%" class="caption-label">
-                    <ui:DataBinding property="text" data-source-path="StepGateTimeText" binding-mode="ToTarget" />
-                </ui:Label>
+            <ui:VisualElement class="control-row">
+                <ui:Toggle label="On">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepOnOff" binding-mode="TwoWay" />
+                    </Bindings>
+                </ui:Toggle>
+                <Klak.UIToolkit.ClampedIntegerField label="Gate" low-value="0" high-value="97">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepGateTime" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 34px;">
+                    <ui:Label text="99%" class="caption-label">
+                        <ui:DataBinding property="text" data-source-path="StepGateTimeText" binding-mode="ToTarget" />
+                    </ui:Label>
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Toggle label="Trig">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepTrigger" binding-mode="TwoWay" />
-                </Bindings>
-            </ui:Toggle>
-            <Klak.UIToolkit.ClampedIntegerField label="Velocity" low-value="1" high-value="127">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepVelocity" binding-mode="TwoWay" />
-                </Bindings>
-            </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="width: 34px;" />
+            <ui:VisualElement class="control-row">
+                <ui:Toggle label="Trig">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepTrigger" binding-mode="TwoWay" />
+                    </Bindings>
+                </ui:Toggle>
+                <Klak.UIToolkit.ClampedIntegerField label="Velocity" low-value="1" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepVelocity" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="step-notes" class="control-group" style="width: 180px;">
+        <ui:VisualElement name="step-notes" class="control-group">
             <ui:Label text="Notes" class="control-group-label" />
-            <Klak.UIToolkit.ClampedIntegerField label="Note1" low-value="0" high-value="128">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepNote1" binding-mode="TwoWay" />
-                </Bindings>
-            </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="justify-content: center; width: 34px;">
-                <ui:Label text="C#4" class="caption-label">
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Note1" low-value="0" high-value="128">
                     <Bindings>
-                        <ui:DataBinding property="text" data-source-path="StepNote1Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="value" data-source-path="StepNote1" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:Label>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 34px;">
+                    <ui:Label text="C#4" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote1Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+                <Klak.UIToolkit.ClampedIntegerField label="Note2" low-value="0" high-value="128">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepNote2" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 34px;">
+                    <ui:Label text="C#4" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote2Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
             </ui:VisualElement>
-            <Klak.UIToolkit.ClampedIntegerField label="Note2" low-value="0" high-value="128">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepNote2" binding-mode="TwoWay" />
-                </Bindings>
-            </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="justify-content: center; width: 34px;">
-                <ui:Label text="C#4" class="caption-label">
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Note3" low-value="0" high-value="128">
                     <Bindings>
-                        <ui:DataBinding property="text" data-source-path="StepNote2Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="value" data-source-path="StepNote3" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:Label>
-            </ui:VisualElement>
-            <Klak.UIToolkit.ClampedIntegerField label="Note3" low-value="0" high-value="128">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepNote3" binding-mode="TwoWay" />
-                </Bindings>
-            </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="justify-content: center; width: 34px;">
-                <ui:Label text="C#4" class="caption-label">
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 34px;">
+                    <ui:Label text="C#4" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote3Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+                <Klak.UIToolkit.ClampedIntegerField label="Note4" low-value="0" high-value="128">
                     <Bindings>
-                        <ui:DataBinding property="text" data-source-path="StepNote3Name" binding-mode="ToTarget" />
+                        <ui:DataBinding property="value" data-source-path="StepNote4" binding-mode="TwoWay" />
                     </Bindings>
-                </ui:Label>
-            </ui:VisualElement>
-            <Klak.UIToolkit.ClampedIntegerField label="Note4" low-value="0" high-value="128">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="StepNote4" binding-mode="TwoWay" />
-                </Bindings>
-            </Klak.UIToolkit.ClampedIntegerField>
-            <ui:VisualElement style="justify-content: center; width: 34px;">
-                <ui:Label text="C#4" class="caption-label">
-                    <Bindings>
-                        <ui:DataBinding property="text" data-source-path="StepNote4Name" binding-mode="ToTarget" />
-                    </Bindings>
-                </ui:Label>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 34px;">
+                    <ui:Label text="C#4" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote4Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

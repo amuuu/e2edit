@@ -67,7 +67,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         {
             // Row container
             var row = new VisualElement();
-            row.AddToClassList("step-selector-row");
+            row.AddToClassList("control-row");
             panel.Add(row);
 
             // 16 steps
