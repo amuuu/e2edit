@@ -7,8 +7,8 @@
         <ui:VisualElement class="control-group">
             <ui:Label text="Step Functions" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <ui:Button text="Copy" class="step-function-button" />
-                <ui:Button text="Paste" class="step-function-button" />
+                <ui:Button name="step-copy-button" text="Copy" class="step-function-button" />
+                <ui:Button name="step-paste-button" text="Paste" class="step-function-button" />
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
                 <ui:Button text="Insert" class="step-function-button" />
