@@ -4,6 +4,21 @@
         <ui:VisualElement name="step-selector" class="control-group">
             <ui:Label text="Step Selector" class="control-group-label" />
         </ui:VisualElement>
+        <ui:VisualElement class="control-group">
+            <ui:Label text="Step Functions" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <ui:Button text="Copy" class="step-function-button" />
+                <ui:Button text="Paste" class="step-function-button" />
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <ui:Button text="Insert" class="step-function-button" />
+                <ui:Button text="Delete" class="step-function-button" />
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <ui:Button text="Set Tie" class="step-function-button" />
+                <ui:Button text="Dup Prev" class="step-function-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement class="control-row">
         <ui:VisualElement name="step-parameters" class="control-group">
@@ -91,6 +106,39 @@
                         </Bindings>
                     </ui:Label>
                 </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="control-group">
+            <ui:Label text="Step Transpose" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <ui:Button text="-1" class="step-function-button" />
+                <ui:Button text="+1" class="step-function-button" />
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <ui:Button text="-Oct" class="step-function-button" />
+                <ui:Button text="+Oct" class="step-function-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement class="control-row">
+        <ui:VisualElement class="control-group">
+            <ui:Label text="Transpose All" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <ui:Button text="-1" class="step-function-button" />
+                <ui:Button text="+1" class="step-function-button" />
+                <ui:Button text="-Oct" class="step-function-button" />
+                <ui:Button text="+Oct" class="step-function-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="control-group">
+            <ui:Label text="Repeat Steps" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Length" low-value="0" high-value="128">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepNote4" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:Button text="Repeat" class="step-function-button" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
