@@ -15,7 +15,14 @@ public sealed partial class PatternEditor : MonoBehaviour
     #region UI elements
 
     VisualElement _uiRoot;
-    (Tab step, Tab pattern, Tab motion) _tab;
+    (TabView parent, Tab step, Tab pattern, Tab motion) _tab;
+
+    #endregion
+
+    #region Tab helpers
+
+    bool IsStepTabActive
+      => _tab.parent.activeTab == _tab.step;
 
     #endregion
 
@@ -67,6 +74,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         _uiRoot.Q<Button>("send-button").clicked += OnSendButton;
         _uiRoot.Q<TabView>().activeTabChanged += OnTabChanged;
 
+        _tab.parent = _uiRoot.Q<TabView>();
         _tab.pattern = _uiRoot.Q<Tab>("pattern-tab");
         _tab.step = _uiRoot.Q<Tab>("step-tab");
         _tab.motion = _uiRoot.Q<Tab>("motion-tab");

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public static class AsyncUtil
 {
@@ -27,4 +28,13 @@ public static class NoteUtil
     }
 
     public static string GetNoteName(int note) => _noteNames[note];
+}
+
+public static class UIUtil
+{
+    public static void InvokeButton(Button button)
+    {
+        using (var e = new NavigationSubmitEvent() { target = button } )
+            button.SendEvent(e);
+    }
 }

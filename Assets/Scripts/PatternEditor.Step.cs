@@ -52,11 +52,11 @@ public sealed partial class PatternEditor : MonoBehaviour
     #region Function buttons
 
     // Copy button
-    void OnStepCopyButtonPressed()
+    void OnStepCopyButton()
       => GUIUtility.systemCopyBuffer = JsonUtility.ToJson(_pattern.CurrentStep);
 
     // Paste button
-    void OnStepPasteButtonPressed()
+    void OnStepPasteButton()
     {
         try
         {
@@ -66,26 +66,55 @@ public sealed partial class PatternEditor : MonoBehaviour
         catch { /* Simply ignores incompatible data */ }
     }
 
-    // Button invocation helper
-    void InvokeButton(Button button)
+    // Insert button
+    void OnStepInsertButton()
     {
-        using (var e = new NavigationSubmitEvent() { target = button } )
-            button.SendEvent(e);
+        for (var i = 63; i > _pattern.StepSelect - 1; i--)
+            _pattern.GetStepRef(_pattern.PartSelect - 1, i) =
+              _pattern.GetStepRef(_pattern.PartSelect - 1, i - 1);
+        RefreshStepPage();
+    }
+
+    // Delete button
+    void OnStepDeleteButton()
+    {
+        for (var i = _pattern.StepSelect - 1; i < 63; i++)
+            _pattern.GetStepRef(_pattern.PartSelect - 1, i) =
+              _pattern.GetStepRef(_pattern.PartSelect - 1, i + 1);
+        RefreshStepPage();
     }
 
     // Initialization
     void InitStepFunctions()
     {
-        // Function buttons
-        var copyButton = _uiRoot.Q<Button>("step-copy-button");
-        var pasteButton = _uiRoot.Q<Button>("step-paste-button");
+        var copy = _uiRoot.Q<Button>("step-copy-button");
+        var paste = _uiRoot.Q<Button>("step-paste-button");
+        var insert = _uiRoot.Q<Button>("step-insert-button");
+        var delete = _uiRoot.Q<Button>("step-delete-button");
 
-        copyButton.clicked += OnStepCopyButtonPressed;
-        pasteButton.clicked += OnStepPasteButtonPressed;
+        copy.clicked += OnStepCopyButton;
+        paste.clicked += OnStepPasteButton;
+        insert.clicked += OnStepInsertButton;
+        delete.clicked += OnStepDeleteButton;
 
-        _uiRoot.RegisterCallback<KeyDownEvent>
-          (evt => { if (evt.keyCode == KeyCode.C) InvokeButton(copyButton);
-                    if (evt.keyCode == KeyCode.V) InvokeButton(pasteButton); });
+        _uiRoot.RegisterCallback<KeyDownEvent>(evt => {
+           if (!IsStepTabActive) return;
+           if (evt.keyCode == KeyCode.C) UIUtil.InvokeButton(copy);
+           if (evt.keyCode == KeyCode.I) UIUtil.InvokeButton(insert);
+           if (evt.keyCode == KeyCode.D) UIUtil.InvokeButton(delete);
+           if (evt.keyCode == KeyCode.V) UIUtil.InvokeButton(paste);
+        });
+
+        _uiRoot.RegisterCallback<NavigationMoveEvent>(e => {
+           if (!IsStepTabActive) return;
+           if (e.direction is not
+               (NavigationMoveEvent.Direction.Up or
+                NavigationMoveEvent.Direction.Down or
+                NavigationMoveEvent.Direction.Left or
+                NavigationMoveEvent.Direction.Right)) return;
+           e.StopPropagation();
+           _uiRoot.focusController.IgnoreEvent(e);
+         });
     }
 
     #endregion

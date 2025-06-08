@@ -11,8 +11,8 @@
                 <ui:Button name="step-paste-button" text="Paste" class="step-function-button" />
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
-                <ui:Button text="Insert" class="step-function-button" />
-                <ui:Button text="Delete" class="step-function-button" />
+                <ui:Button name="step-insert-button" text="Insert" class="step-function-button" />
+                <ui:Button name="step-delete-button" text="Delete" class="step-function-button" />
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
                 <ui:Button text="Set Tie" class="step-function-button" />
