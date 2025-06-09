@@ -71,26 +71,6 @@
         </ui:VisualElement>
         <ui:VisualElement name="part-selector" class="control-group">
             <ui:Label text="Part Select" class="control-group-label" />
-            <ui:VisualElement class="control-row">
-                <ui:Button name="part-select-button-1" text="1" class="part-select-button" />
-                <ui:Button name="part-select-button-2" text="2" class="part-select-button" />
-                <ui:Button name="part-select-button-3" text="3" class="part-select-button" />
-                <ui:Button name="part-select-button-4" text="4" class="part-select-button" />
-                <ui:Button name="part-select-button-5" text="5" class="part-select-button" />
-                <ui:Button name="part-select-button-6" text="6" class="part-select-button" />
-                <ui:Button name="part-select-button-7" text="7" class="part-select-button" />
-                <ui:Button name="part-select-button-8" text="8" class="part-select-button" />
-            </ui:VisualElement>
-            <ui:VisualElement class="control-row">
-                <ui:Button name="part-select-button-9" text="9" class="part-select-button" />
-                <ui:Button name="part-select-button-10" text="10" class="part-select-button" />
-                <ui:Button name="part-select-button-11" text="11" class="part-select-button" />
-                <ui:Button name="part-select-button-12" text="12" class="part-select-button" />
-                <ui:Button name="part-select-button-13" text="13" class="part-select-button" />
-                <ui:Button name="part-select-button-14" text="14" class="part-select-button" />
-                <ui:Button name="part-select-button-15" text="15" class="part-select-button" />
-                <ui:Button name="part-select-button-16" text="16" class="part-select-button" />
-            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement class="control-row">

@@ -18,7 +18,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     {
         var button = new Button();
         button.AddToClassList("step-select-button");
-        button.RegisterCallback<ClickEvent>(e => SelectStep(index));
+        button.clicked += () => SelectStep(index);
         return button;
     }
 
