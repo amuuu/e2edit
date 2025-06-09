@@ -176,6 +176,15 @@ public sealed partial class PatternEditor : MonoBehaviour
         }
     }
 
+    void OnRepeatStepsButton()
+    {
+        var pat = _pattern.PartSelect - 1;
+        var length = _uiRoot.Q<IntegerField>("repeat-steps-length").value;
+        for (var i = length; i < 64; i++)
+            _pattern.GetStepRef(pat, i) = _pattern.GetStepRef(pat, i % length);
+        RefreshStepPage();
+    }
+
     // Initialization
     void InitStepFunctions()
     {
@@ -192,6 +201,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         var allNoteUp = _uiRoot.Q<Button>("pattern-note-up-button");
         var allOctDown = _uiRoot.Q<Button>("pattern-oct-down-button");
         var allOctUp = _uiRoot.Q<Button>("pattern-oct-up-button");
+        var repeat = _uiRoot.Q<Button>("repeat-steps-button");
 
         copy.clicked += OnStepCopyButton;
         cut.clicked += OnStepCutButton;
@@ -206,6 +216,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         allNoteUp.clicked += OnPatternNoteUpButton;
         allOctDown.clicked += OnPatternOctaveDownButton;
         allOctUp.clicked += OnPatternOctaveUpButton;
+        repeat.clicked += OnRepeatStepsButton;
 
         _uiRoot.RegisterCallback<KeyDownEvent>(evt => {
            if (!IsStepTabActive) return;

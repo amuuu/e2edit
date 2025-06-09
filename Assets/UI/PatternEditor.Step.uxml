@@ -132,12 +132,8 @@
         <ui:VisualElement class="control-group">
             <ui:Label text="Repeat Steps" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <Klak.UIToolkit.ClampedIntegerField label="Length" low-value="0" high-value="128">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="StepNote4" binding-mode="TwoWay" />
-                    </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
-                <ui:Button text="Repeat" class="step-function-button" />
+                <Klak.UIToolkit.ClampedIntegerField name="repeat-steps-length" label="Length" value="4" low-value="1" high-value="63" />
+                <ui:Button name="repeat-steps-button" text="Repeat" class="step-function-button" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
