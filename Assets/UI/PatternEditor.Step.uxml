@@ -11,12 +11,11 @@
                 <ui:Button name="step-paste-button" text="Paste" class="step-function-button" />
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
+                <ui:Button name="step-cut-button" text="Cut" class="step-function-button" />
                 <ui:Button name="step-insert-button" text="Insert" class="step-function-button" />
-                <ui:Button name="step-delete-button" text="Delete" class="step-function-button" />
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
-                <ui:Button text="Set Tie" class="step-function-button" />
-                <ui:Button text="Dup Prev" class="step-function-button" />
+                <ui:Button name="step-duplicate-button" text="Dup Prev" class="step-function-button" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
@@ -111,12 +110,12 @@
         <ui:VisualElement class="control-group">
             <ui:Label text="Step Transpose" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <ui:Button text="-1" class="step-function-button" />
-                <ui:Button text="+1" class="step-function-button" />
+                <ui:Button name="step-note-down-button" text="-1" class="step-function-button" />
+                <ui:Button name="step-note-up-button" text="+1" class="step-function-button" />
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
-                <ui:Button text="-Oct" class="step-function-button" />
-                <ui:Button text="+Oct" class="step-function-button" />
+                <ui:Button name="step-oct-down-button" text="-Oct" class="step-function-button" />
+                <ui:Button name="step-oct-up-button" text="+Oct" class="step-function-button" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
@@ -124,10 +123,10 @@
         <ui:VisualElement class="control-group">
             <ui:Label text="Transpose All" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <ui:Button text="-1" class="step-function-button" />
-                <ui:Button text="+1" class="step-function-button" />
-                <ui:Button text="-Oct" class="step-function-button" />
-                <ui:Button text="+Oct" class="step-function-button" />
+                <ui:Button name="pattern-note-down-button" text="-1" class="step-function-button" />
+                <ui:Button name="pattern-note-up-button" text="+1" class="step-function-button" />
+                <ui:Button name="pattern-oct-down-button" text="-Oct" class="step-function-button" />
+                <ui:Button name="pattern-oct-up-button" text="+Oct" class="step-function-button" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
