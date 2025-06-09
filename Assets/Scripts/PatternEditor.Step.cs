@@ -95,87 +95,18 @@ public sealed partial class PatternEditor : MonoBehaviour
     }
 
     // Step note transpose buttons
-    void OnStepNoteDownButton()
-    {
-        _pattern.StepNote1 = System.Math.Max(0, _pattern.StepNote1 - 1);
-        _pattern.StepNote2 = System.Math.Max(0, _pattern.StepNote2 - 1);
-        _pattern.StepNote3 = System.Math.Max(0, _pattern.StepNote3 - 1);
-        _pattern.StepNote4 = System.Math.Max(0, _pattern.StepNote4 - 1);
-    }
-
-    void OnStepNoteUpButton()
-    {
-        _pattern.StepNote1 = System.Math.Min(128, _pattern.StepNote1 + 1);
-        _pattern.StepNote2 = System.Math.Min(128, _pattern.StepNote2 + 1);
-        _pattern.StepNote3 = System.Math.Min(128, _pattern.StepNote3 + 1);
-        _pattern.StepNote4 = System.Math.Min(128, _pattern.StepNote4 + 1);
-    }
-
-    void OnStepOctaveDownButton()
-    {
-        _pattern.StepNote1 = System.Math.Max(0, _pattern.StepNote1 - 12);
-        _pattern.StepNote2 = System.Math.Max(0, _pattern.StepNote2 - 12);
-        _pattern.StepNote3 = System.Math.Max(0, _pattern.StepNote3 - 12);
-        _pattern.StepNote4 = System.Math.Max(0, _pattern.StepNote4 - 12);
-    }
-
-    void OnStepOctaveUpButton()
-    {
-        _pattern.StepNote1 = System.Math.Min(128, _pattern.StepNote1 + 12);
-        _pattern.StepNote2 = System.Math.Min(128, _pattern.StepNote2 + 12);
-        _pattern.StepNote3 = System.Math.Min(128, _pattern.StepNote3 + 12);
-        _pattern.StepNote4 = System.Math.Min(128, _pattern.StepNote4 + 12);
-    }
+    void OnStepNoteTransposeButton(int delta)
+      => NoteUtil.Transpose(ref _pattern.CurrentStep, delta);
 
     // Pattern note transpose buttons
-    void OnPatternNoteDownButton()
+    void OnPatternNoteTransposeButton(int delta)
     {
+        var pat = _pattern.PartSelect - 1;
         for (var i = 0; i < 64; i++)
-        {
-            ref var step = ref _pattern.GetStepRef(_pattern.PartSelect - 1, i);
-            step.noteSlot1 = (byte)System.Math.Max(0, step.noteSlot1 - 1);
-            step.noteSlot2 = (byte)System.Math.Max(0, step.noteSlot2 - 1);
-            step.noteSlot3 = (byte)System.Math.Max(0, step.noteSlot3 - 1);
-            step.noteSlot4 = (byte)System.Math.Max(0, step.noteSlot4 - 1);
-        }
+            NoteUtil.Transpose(ref _pattern.GetStepRef(pat, i), delta);
     }
 
-    void OnPatternNoteUpButton()
-    {
-        for (var i = 0; i < 64; i++)
-        {
-            ref var step = ref _pattern.GetStepRef(_pattern.PartSelect - 1, i);
-            step.noteSlot1 = (byte)System.Math.Min(128, step.noteSlot1 + 1);
-            step.noteSlot2 = (byte)System.Math.Min(128, step.noteSlot2 + 1);
-            step.noteSlot3 = (byte)System.Math.Min(128, step.noteSlot3 + 1);
-            step.noteSlot4 = (byte)System.Math.Min(128, step.noteSlot4 + 1);
-        }
-    }
-
-    void OnPatternOctaveDownButton()
-    {
-        for (var i = 0; i < 64; i++)
-        {
-            ref var step = ref _pattern.GetStepRef(_pattern.PartSelect - 1, i);
-            step.noteSlot1 = (byte)System.Math.Max(0, step.noteSlot1 - 12);
-            step.noteSlot2 = (byte)System.Math.Max(0, step.noteSlot2 - 12);
-            step.noteSlot3 = (byte)System.Math.Max(0, step.noteSlot3 - 12);
-            step.noteSlot4 = (byte)System.Math.Max(0, step.noteSlot4 - 12);
-        }
-    }
-
-    void OnPatternOctaveUpButton()
-    {
-        for (var i = 0; i < 64; i++)
-        {
-            ref var step = ref _pattern.GetStepRef(_pattern.PartSelect - 1, i);
-            step.noteSlot1 = (byte)System.Math.Min(128, step.noteSlot1 + 12);
-            step.noteSlot2 = (byte)System.Math.Min(128, step.noteSlot2 + 12);
-            step.noteSlot3 = (byte)System.Math.Min(128, step.noteSlot3 + 12);
-            step.noteSlot4 = (byte)System.Math.Min(128, step.noteSlot4 + 12);
-        }
-    }
-
+    // Repeat steps button
     void OnRepeatStepsButton()
     {
         var pat = _pattern.PartSelect - 1;
@@ -208,14 +139,14 @@ public sealed partial class PatternEditor : MonoBehaviour
         paste.clicked += OnStepPasteButton;
         insert.clicked += OnStepInsertButton;
         duplicate.clicked += OnStepDuplicateButton;
-        noteDown.clicked += OnStepNoteDownButton;
-        noteUp.clicked += OnStepNoteUpButton;
-        octDown.clicked += OnStepOctaveDownButton;
-        octUp.clicked += OnStepOctaveUpButton;
-        allNoteDown.clicked += OnPatternNoteDownButton;
-        allNoteUp.clicked += OnPatternNoteUpButton;
-        allOctDown.clicked += OnPatternOctaveDownButton;
-        allOctUp.clicked += OnPatternOctaveUpButton;
+        noteDown.clicked += () => OnStepNoteTransposeButton(-1);
+        noteUp.clicked += () => OnStepNoteTransposeButton(1);
+        octDown.clicked += () => OnStepNoteTransposeButton(-12);
+        octUp.clicked += () => OnStepNoteTransposeButton(12);
+        allNoteDown.clicked += () => OnPatternNoteTransposeButton(-1);
+        allNoteUp.clicked += () => OnPatternNoteTransposeButton(1);
+        allOctDown.clicked += () => OnPatternNoteTransposeButton(-12);
+        allOctUp.clicked += () => OnPatternNoteTransposeButton(12);
         repeat.clicked += OnRepeatStepsButton;
 
         _uiRoot.RegisterCallback<KeyDownEvent>(evt => {
