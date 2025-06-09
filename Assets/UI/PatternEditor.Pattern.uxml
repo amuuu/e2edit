@@ -38,6 +38,37 @@
                 </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement class="control-group">
+            <ui:Label text="Master FX" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="32">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="MfxType" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 84px;">
+                    <ui:Label text="Name" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="MfxTypeName" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Pad X" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="MfxPadX" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <Klak.UIToolkit.ClampedIntegerField label="Pad Y" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="MfxPadY" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:Toggle label="Hold">
+                </ui:Toggle>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="part-selector" class="control-group">
             <ui:Label text="Part Select" class="control-group-label" />
             <ui:VisualElement class="control-row">
@@ -129,6 +160,37 @@
                 </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="ifx-settings" class="control-group">
+            <ui:Label text="Insert FX" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="38">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:VisualElement class="caption-area" style="width: 84px;">
+                    <ui:Label text="Name" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="IfxTypeName" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField label="Edit" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
+                    </Bindings>
+                </Klak.UIToolkit.ClampedIntegerField>
+                <ui:Toggle label="On">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
+                    </Bindings>
+                </ui:Toggle>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement class="control-row">
         <ui:VisualElement name="osc-settings" class="control-group">
             <ui:Label text="Oscillator" class="control-group-label" />
             <ui:VisualElement class="control-row">
@@ -168,8 +230,6 @@
                 </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement class="control-row">
         <ui:VisualElement name="filter-settings" class="control-group">
             <ui:Label text="Filter" class="control-group-label" />
             <ui:VisualElement class="control-row">
@@ -269,35 +329,6 @@
                 <ui:Toggle label="MFX">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="MfxSendOnOff" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="ifx-settings" class="control-group">
-            <ui:Label text="Insert FX" class="control-group-label" />
-            <ui:VisualElement class="control-row">
-                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="38">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
-                    </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
-                <ui:VisualElement class="caption-area" style="width: 84px;">
-                    <ui:Label text="Name" class="caption-label">
-                        <Bindings>
-                            <ui:DataBinding property="text" data-source-path="IfxTypeName" binding-mode="ToTarget" />
-                        </Bindings>
-                    </ui:Label>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement class="control-row">
-                <Klak.UIToolkit.ClampedIntegerField label="Edit" low-value="0" high-value="127">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
-                    </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
-                <ui:Toggle label="On">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
                     </Bindings>
                 </ui:Toggle>
             </ui:VisualElement>

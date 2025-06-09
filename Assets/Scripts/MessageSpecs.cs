@@ -137,4 +137,17 @@ public unsafe struct Motion
     public fixed byte sequence[64 * 24];      // 48~1584
 }
 
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public unsafe struct MasterFX
+{
+    public byte reserved1;              // 0
+    public byte type;                   // 1
+    public byte padX;                   // 2
+    public byte padY;                   // 3
+    public byte reserved2;              // 4
+    public byte hold;                   // 5
+    public byte reserved3;              // 6
+    public byte reserved4;              // 7
+}
+
 } // namespace MessageSpecs
