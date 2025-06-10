@@ -2,14 +2,16 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Klak.UIToolkit;
 
+// Pattern Editor: Motion page
+
 public sealed partial class PatternEditor : MonoBehaviour
 {
-    #region Motion slot select buttons
+    #region Motion slot selector
 
-    // Button references
+    // Slot button references
     Button[] _motionSlotButtons = new Button[24];
 
-    // Button factory method
+    // Slot button factory
     Button CreateMotionSlotButton(int index)
     {
         var button = new Button();
@@ -19,68 +21,25 @@ public sealed partial class PatternEditor : MonoBehaviour
         return button;
     }
 
-    // Button callback
+    // Slot selection callback
     void SelectMotionSlot(int index)
     {
+        // Move button highlight
         var prev = _motionSlotButtons[_pattern.MotionSelect - 1];
         var next = _motionSlotButtons[index];
-
         prev.RemoveFromClassList(PartButtonLitClass);
         next.AddToClassList(PartButtonLitClass);
 
+        // Slot selection update
         _pattern.MotionSelect = index + 1;
 
+        // Refresh the entire page to sync with the motion step controls.
         RefreshMotionPage();
     }
 
-    #endregion
-
-    #region Motion step controls
-
-    // Motion step control array (int field + bar)
-    (ClampedIntegerField field, VisualElement bar)[] _motionSteps =
-      new (ClampedIntegerField, VisualElement)[64];
-
-    // Motion step control factory
-    (ClampedIntegerField field, VisualElement bar) CreateMotionStep(int index)
+    // Selector builder
+    void BuildMotionSlotSelector()
     {
-        // Int field
-        var field = new ClampedIntegerField()
-        {
-            label = (index + 1).ToString(),
-            lowValue = 0,
-            highValue = 127
-        };
-
-        field.AddToClassList("motion-value-field");
-
-        field.RegisterValueChangedCallback
-          (e => { _pattern.SetMotionValue(index, e.newValue);
-                  UpdateMotionBar(index); });
-
-        // Bar
-        var bar = new VisualElement();
-        bar.AddToClassList("motion-value-bar");
-
-        // Insert the bar under the int field
-        field.Add(bar);
-        bar.SendToBack();
-
-        return (field, bar);
-    }
-
-    // Motion bar height update based on motion value
-    void UpdateMotionBar(int index)
-        => _motionSteps[index].bar.style.top = new StyleLength
-             (Length.Percent((1 - _pattern.GetMotionValue(index) / 127f) * 100));
-
-    #endregion
-
-    #region Page methods
-
-    void InitMotionPage()
-    {
-        // -- Motion slot selector initialization
         var panel = _uiRoot.Q<VisualElement>("motion-slot-selector");
 
         // 2 rows
@@ -95,33 +54,89 @@ public sealed partial class PatternEditor : MonoBehaviour
             for (int j = 0; j < 12; j++)
             {
                 var index = i * 12 + j;
-                row.Add(_motionSlotButtons[index] = CreateMotionSlotButton(index));
+                _motionSlotButtons[index] = CreateMotionSlotButton(index);
+                row.Add(_motionSlotButtons[index]);
             }
         }
+    }
 
-        // -- Motion step control initialization
-        panel = _uiRoot.Q<VisualElement>("motion-step-editor");
+    #endregion
 
-        // 4 bars
-        for (var bar = 0; bar < 4; bar++)
+    #region Motion step controls
+
+    // Step control array (int field + bar)
+    (ClampedIntegerField field, VisualElement bar)[]
+      _motionSteps = new (ClampedIntegerField, VisualElement)[64];
+
+    // Step control factory
+    (ClampedIntegerField field, VisualElement bar) CreateMotionStep(int index)
+    {
+        // Integer value field
+        var field = new ClampedIntegerField()
+        {
+            label = (index + 1).ToString(),
+            lowValue = 0,
+            highValue = 127
+        };
+        field.AddToClassList("motion-value-field");
+
+        // Value change callback
+        field.RegisterValueChangedCallback(e =>
+        {
+            _pattern.SetMotionValue(index, e.newValue);
+            UpdateMotionStepBar(index);
+        });
+
+        // Bar
+        var bar = new VisualElement();
+        bar.AddToClassList("motion-value-bar");
+
+        // Insert bar under the value field
+        field.Add(bar);
+        bar.SendToBack();
+
+        return (field, bar);
+    }
+
+    // Bar height update
+    void UpdateMotionStepBar(int index)
+        => _motionSteps[index].bar.style.top = new StyleLength
+             (Length.Percent((1 - _pattern.GetMotionValue(index) / 127f) * 100));
+
+    // Step editor builder
+    void BuildMotionStepEditor()
+    {
+        var panel = _uiRoot.Q<VisualElement>("motion-step-editor");
+
+        // 4 rows
+        for (var i = 0; i < 4; i++)
         {
             // Row container
             var row = new VisualElement();
             row.AddToClassList(ControlRowClass);
             panel.Add(row);
 
-            // 16 steps
-            for (int i = 0; i < 16; i++)
+            // 16 steps per row
+            for (int j = 0; j < 16; j++)
             {
-                var index = bar * 16 + i;
+                var index = i * 16 + j;
                 _motionSteps[index] = CreateMotionStep(index);
                 row.Add(_motionSteps[index].field);
 
-                // Spaces per four steps
-                if (i % 4 == 3 && i != 15) row.Add(CreateStepSpacer());
+                // Add spacer every 4 steps
+                if (j % 4 == 3 && i != 15) row.Add(CreateStepSpacer());
             }
         }
+    }
 
+    #endregion
+
+    #region Page methods
+
+    void InitMotionPage()
+    {
+        BuildMotionSlotSelector();
+        BuildMotionStepEditor();
         SelectMotionSlot(0);
     }
 
@@ -130,7 +145,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         for (var i = 0; i < 64; i++)
         {
             _motionSteps[i].field.SetValueWithoutNotify(_pattern.GetMotionValue(i));
-            UpdateMotionBar(i);
+            UpdateMotionStepBar(i);
         }
     }
 
