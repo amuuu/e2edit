@@ -1,12 +1,13 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// Pattern Editor: Step page
+
 public sealed partial class PatternEditor : MonoBehaviour
 {
-    #region Step select buttons
+    #region Step selector
 
-    // Button references
+    // Step button references
     Button[] _stepButtons = new Button[64];
 
     // Style classes
@@ -14,7 +15,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     static readonly string StepButtonLitClass = "step-select-button-selected";
     static readonly string StepButtonDimClass = "step-select-button-on";
 
-    // Create a step select button with a callback.
+    // Step button factory
     Button CreateStepButton(int index)
     {
         var button = new Button();
@@ -23,50 +24,66 @@ public sealed partial class PatternEditor : MonoBehaviour
         return button;
     }
 
-    // Create a spacer element between buttons.
-    VisualElement CreateStepSpacer()
-    {
-        var spacer = new VisualElement();
-        spacer.AddToClassList("step-spacer");
-        return spacer;
-    }
-
     // Step select button callback
     void SelectStep(int i)
     {
+        // Step button highlight
         var prev = _stepButtons[_pattern.StepSelect - 1];
         var next = _stepButtons[i];
-
         prev.RemoveFromClassList(StepButtonLitClass);
         next.AddToClassList(StepButtonLitClass);
 
+        // Dim light on "On" steps
         if (_pattern.StepOnOff)
             prev.AddToClassList(StepButtonDimClass);
         else
             prev.RemoveFromClassList(StepButtonDimClass);
 
+        // Step selection update
         _pattern.StepSelect = i + 1;
+    }
+
+    // Selector builder
+    void BuildStepSelector()
+    {
+        var panel = _uiRoot.Q<VisualElement>("step-selector");
+
+        // 4 rows
+        for (var i = 0; i < 4; i++)
+        {
+            var row = CreateRowContainer(panel);
+
+            // 16 steps per row
+            for (var j = 0; j < 16; j++)
+            {
+                var index = i * 16 + j;
+                row.Add(_stepButtons[index] = CreateStepButton(index));
+
+                // Add spacer every 4 steps
+                if (j % 4 == 3 && i != 15) CreateStepSpacer(row);
+            }
+        }
     }
 
     #endregion
 
     #region Function buttons
 
-    // Copy button
+    // "Copy"
     void OnStepCopyButton()
       => GUIUtility.systemCopyBuffer = JsonUtility.ToJson(_pattern.CurrentStep);
 
-    // Cut button
+    // "Cut"
     void OnStepCutButton()
     {
         OnStepCopyButton();
+        var part = _pattern.PartSelect - 1;
         for (var i = _pattern.StepSelect - 1; i < 63; i++)
-            _pattern.GetStepRef(_pattern.PartSelect - 1, i) =
-              _pattern.GetStepRef(_pattern.PartSelect - 1, i + 1);
+            _pattern.GetStepRef(part, i) = _pattern.GetStepRef(part, i + 1);
         RefreshStepPage();
     }
 
-    // Paste button
+    // "Paste"
     void OnStepPasteButton()
     {
         try
@@ -74,93 +91,98 @@ public sealed partial class PatternEditor : MonoBehaviour
             _pattern.CurrentStep =
               JsonUtility.FromJson<MessageSpecs.Step>(GUIUtility.systemCopyBuffer);
         }
-        catch { /* Simply ignores incompatible data */ }
+        catch { /* Simply ignore incompatible data. */ }
     }
 
-    // Insert button
+    // "Insert"
     void OnStepInsertButton()
     {
+        var part = _pattern.PartSelect - 1;
         for (var i = 63; i > _pattern.StepSelect - 1; i--)
-            _pattern.GetStepRef(_pattern.PartSelect - 1, i) =
-              _pattern.GetStepRef(_pattern.PartSelect - 1, i - 1);
+            _pattern.GetStepRef(part, i) = _pattern.GetStepRef(part, i - 1);
         OnStepPasteButton();
         RefreshStepPage();
     }
 
-    // Duplicate button
+    // "Dup Prev"
     void OnStepDuplicateButton()
     {
-        var (pat, step) = (_pattern.PartSelect - 1, _pattern.StepSelect - 1);
-        if (step == 0) return;
-        _pattern.GetStepRef(pat, step) = _pattern.GetStepRef(pat, step - 1);
+        if (_pattern.StepSelect == 1) return;
+        var (part, step) = (_pattern.PartSelect - 1, _pattern.StepSelect - 1);
+        _pattern.GetStepRef(part, step) = _pattern.GetStepRef(part, step - 1);
     }
 
-    // Step note transpose buttons
+    // Transpose buttons
     void OnStepNoteTransposeButton(int delta)
       => NoteUtil.Transpose(ref _pattern.CurrentStep, delta);
 
-    // Pattern note transpose buttons
+    // Transpose-all buttons
     void OnPatternNoteTransposeButton(int delta)
     {
-        var pat = _pattern.PartSelect - 1;
+        var part = _pattern.PartSelect - 1;
         for (var i = 0; i < 64; i++)
-            NoteUtil.Transpose(ref _pattern.GetStepRef(pat, i), delta);
+            NoteUtil.Transpose(ref _pattern.GetStepRef(part, i), delta);
     }
 
     // Repeat steps button
     void OnRepeatStepsButton()
     {
-        var pat = _pattern.PartSelect - 1;
+        var part = _pattern.PartSelect - 1;
         var length = _uiRoot.Q<IntegerField>("repeat-steps-length").value;
         for (var i = length; i < 64; i++)
-            _pattern.GetStepRef(pat, i) = _pattern.GetStepRef(pat, i % length);
+            _pattern.GetStepRef(part, i) = _pattern.GetStepRef(part, i % length);
         RefreshStepPage();
     }
 
-    // Initialization
-    void InitStepFunctions()
+    // Setting up
+    void SetUpStepFunctions()
     {
-        var copy = _uiRoot.Q<Button>("step-copy-button");
-        var cut = _uiRoot.Q<Button>("step-cut-button");
-        var paste = _uiRoot.Q<Button>("step-paste-button");
-        var insert = _uiRoot.Q<Button>("step-insert-button");
-        var duplicate = _uiRoot.Q<Button>("step-duplicate-button");
-        var noteDown = _uiRoot.Q<Button>("step-note-down-button");
-        var noteUp = _uiRoot.Q<Button>("step-note-up-button");
-        var octDown = _uiRoot.Q<Button>("step-oct-down-button");
-        var octUp = _uiRoot.Q<Button>("step-oct-up-button");
+        var copy        = _uiRoot.Q<Button>("step-copy-button");
+        var cut         = _uiRoot.Q<Button>("step-cut-button");
+        var paste       = _uiRoot.Q<Button>("step-paste-button");
+        var insert      = _uiRoot.Q<Button>("step-insert-button");
+        var duplicate   = _uiRoot.Q<Button>("step-duplicate-button");
+        var noteDown    = _uiRoot.Q<Button>("step-note-down-button");
+        var noteUp      = _uiRoot.Q<Button>("step-note-up-button");
+        var octDown     = _uiRoot.Q<Button>("step-oct-down-button");
+        var octUp       = _uiRoot.Q<Button>("step-oct-up-button");
         var allNoteDown = _uiRoot.Q<Button>("pattern-note-down-button");
-        var allNoteUp = _uiRoot.Q<Button>("pattern-note-up-button");
-        var allOctDown = _uiRoot.Q<Button>("pattern-oct-down-button");
-        var allOctUp = _uiRoot.Q<Button>("pattern-oct-up-button");
-        var repeat = _uiRoot.Q<Button>("repeat-steps-button");
+        var allNoteUp   = _uiRoot.Q<Button>("pattern-note-up-button");
+        var allOctDown  = _uiRoot.Q<Button>("pattern-oct-down-button");
+        var allOctUp    = _uiRoot.Q<Button>("pattern-oct-up-button");
+        var repeat      = _uiRoot.Q<Button>("repeat-steps-button");
 
-        copy.clicked += OnStepCopyButton;
-        cut.clicked += OnStepCutButton;
-        paste.clicked += OnStepPasteButton;
-        insert.clicked += OnStepInsertButton;
-        duplicate.clicked += OnStepDuplicateButton;
-        noteDown.clicked += () => OnStepNoteTransposeButton(-1);
-        noteUp.clicked += () => OnStepNoteTransposeButton(1);
-        octDown.clicked += () => OnStepNoteTransposeButton(-12);
-        octUp.clicked += () => OnStepNoteTransposeButton(12);
-        allNoteDown.clicked += () => OnPatternNoteTransposeButton(-1);
-        allNoteUp.clicked += () => OnPatternNoteTransposeButton(1);
-        allOctDown.clicked += () => OnPatternNoteTransposeButton(-12);
-        allOctUp.clicked += () => OnPatternNoteTransposeButton(12);
-        repeat.clicked += OnRepeatStepsButton;
+        // Callback registration
+        copy        .clicked += OnStepCopyButton;
+        cut         .clicked += OnStepCutButton;
+        paste       .clicked += OnStepPasteButton;
+        insert      .clicked += OnStepInsertButton;
+        duplicate   .clicked += OnStepDuplicateButton;
+        noteDown    .clicked += () => OnStepNoteTransposeButton(-1);
+        noteUp      .clicked += () => OnStepNoteTransposeButton(1);
+        octDown     .clicked += () => OnStepNoteTransposeButton(-12);
+        octUp       .clicked += () => OnStepNoteTransposeButton(12);
+        allNoteDown .clicked += () => OnPatternNoteTransposeButton(-1);
+        allNoteUp   .clicked += () => OnPatternNoteTransposeButton(1);
+        allOctDown  .clicked += () => OnPatternNoteTransposeButton(-12);
+        allOctUp    .clicked += () => OnPatternNoteTransposeButton(12);
+        repeat      .clicked += OnRepeatStepsButton;
 
-        _uiRoot.RegisterCallback<KeyDownEvent>(evt => {
-           if (!IsStepTabActive) return;
-           if (evt.keyCode == KeyCode.C) UIUtil.InvokeButton(copy);
-           if (evt.keyCode == KeyCode.X) UIUtil.InvokeButton(cut);
-           if (evt.keyCode == KeyCode.V) UIUtil.InvokeButton(paste);
-           if (evt.keyCode == KeyCode.I) UIUtil.InvokeButton(insert);
-           if (evt.keyCode == KeyCode.D) UIUtil.InvokeButton(duplicate);
+        // Hotkey via key down events
+        _uiRoot.RegisterCallback<KeyDownEvent>(e =>
+        {
+           if (!IsStepPageActive) return;
+           if (e.keyCode == KeyCode.C) UIUtil.InvokeButton(copy);
+           if (e.keyCode == KeyCode.X) UIUtil.InvokeButton(cut);
+           if (e.keyCode == KeyCode.V) UIUtil.InvokeButton(paste);
+           if (e.keyCode == KeyCode.I) UIUtil.InvokeButton(insert);
+           if (e.keyCode == KeyCode.D) UIUtil.InvokeButton(duplicate);
         });
 
-        _uiRoot.RegisterCallback<NavigationMoveEvent>(e => {
-           if (!IsStepTabActive) return;
+        // Disable navigation by keyboard
+        _uiRoot.RegisterCallback<NavigationMoveEvent>(e =>
+        {
+           if (!IsStepPageActive) return;
            if (e.direction is not
                (NavigationMoveEvent.Direction.Up or
                 NavigationMoveEvent.Direction.Down or
@@ -175,33 +197,16 @@ public sealed partial class PatternEditor : MonoBehaviour
 
     #region Page methods
 
-    void InitStepPage()
+    void SetUpStepPage()
     {
-        var panel = _uiRoot.Q<VisualElement>("step-selector");
-
-        // 4 bars
-        for (var bar = 0; bar < 4; bar++)
-        {
-            var row = CreateRowContainer(panel);
-
-            // 16 steps
-            for (int i = 0; i < 16; i++)
-            {
-                var index = bar * 16 + i;
-                row.Add(_stepButtons[index] = CreateStepButton(index));
-
-                // Spaces per four steps
-                if (i % 4 == 3 && i != 15) row.Add(CreateStepSpacer());
-            }
-        }
-
+        BuildStepSelector();
+        SetUpStepFunctions();
         SelectStep(0);
-
-        InitStepFunctions();
     }
 
     void RefreshStepPage()
     {
+        // Dim light on "On" steps
         for (var i = 0; i < 64; i++)
         {
             var step = _pattern.GetStepRef(_pattern.PartSelect - 1, i);

@@ -15,7 +15,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     #region UI elements
 
     VisualElement _uiRoot;
-    (TabView parent, Tab step, Tab pattern, Tab motion) _tab;
+    (TabView parent, Tab pattern, Tab part, Tab step, Tab motion) _pages;
 
     #endregion
 
@@ -24,8 +24,8 @@ public sealed partial class PatternEditor : MonoBehaviour
     static readonly string NumButtonClass = "part-select-button";
     static readonly string NumButtonLitClass = "part-select-button-selected";
 
-    bool IsStepTabActive
-      => _tab.parent.activeTab == _tab.step;
+    bool IsStepPageActive
+      => _pages.parent.activeTab == _pages.step;
 
     VisualElement CreateRowContainer(VisualElement parent)
     {
@@ -33,6 +33,14 @@ public sealed partial class PatternEditor : MonoBehaviour
         row.AddToClassList("control-row");
         parent.Add(row);
         return row;
+    }
+
+    VisualElement CreateStepSpacer(VisualElement parent)
+    {
+        var spacer = new VisualElement();
+        spacer.AddToClassList("step-spacer");
+        parent.Add(spacer);
+        return spacer;
     }
 
     #endregion
@@ -66,8 +74,9 @@ public sealed partial class PatternEditor : MonoBehaviour
 
     void OnTabChanged(Tab prevTab, Tab newTab)
     {
-        if (newTab == _tab.step) RefreshStepPage();
-        if (newTab == _tab.motion) RefreshMotionPage();
+        if (newTab == _pages.part) RefreshPartPage();
+        if (newTab == _pages.step) RefreshStepPage();
+        if (newTab == _pages.motion) RefreshMotionPage();
     }
 
     #endregion
@@ -85,14 +94,15 @@ public sealed partial class PatternEditor : MonoBehaviour
         _uiRoot.Q<Button>("send-button").clicked += OnSendButton;
         _uiRoot.Q<TabView>().activeTabChanged += OnTabChanged;
 
-        _tab.parent = _uiRoot.Q<TabView>();
-        _tab.pattern = _uiRoot.Q<Tab>("pattern-tab");
-        _tab.step = _uiRoot.Q<Tab>("step-tab");
-        _tab.motion = _uiRoot.Q<Tab>("motion-tab");
+        _pages.parent = _uiRoot.Q<TabView>();
+        _pages.pattern = _uiRoot.Q<Tab>("pattern-tab");
+        _pages.part = _uiRoot.Q<Tab>("part-tab");
+        _pages.step = _uiRoot.Q<Tab>("step-tab");
+        _pages.motion = _uiRoot.Q<Tab>("motion-tab");
 
-        InitPartPage();
-        InitStepPage();
-        InitMotionPage();
+        SetUpPartPage();
+        SetUpStepPage();
+        SetUpMotionPage();
     }
 
     void OnDestroy()

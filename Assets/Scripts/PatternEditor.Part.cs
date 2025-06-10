@@ -37,7 +37,7 @@ public sealed partial class PatternEditor : MonoBehaviour
 
     #region Page methods
 
-    void InitPartPage()
+    void SetUpPartPage()
     {
         var panel = _uiRoot.Q<VisualElement>("part-selector");
 
@@ -47,7 +47,7 @@ public sealed partial class PatternEditor : MonoBehaviour
             var row = CreateRowContainer(panel);
 
             // 8 parts per row
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 var index = i * 8 + j;
                 _partButtons[index] = CreatePartButton(index);
@@ -57,6 +57,8 @@ public sealed partial class PatternEditor : MonoBehaviour
 
         SelectPart(0);
     }
+
+    void RefreshPartPage() {}
 
     #endregion
 }

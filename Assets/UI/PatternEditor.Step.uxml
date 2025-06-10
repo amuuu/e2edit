@@ -2,10 +2,10 @@
     <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
     <ui:VisualElement class="control-row">
         <ui:VisualElement name="step-selector" class="control-group">
-            <ui:Label text="Step Select" class="control-group-label" />
+            <ui:Label text="Step Selector" class="control-group-label" />
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
-            <ui:Label text="Step Functions" class="control-group-label" />
+            <ui:Label text="Functions" class="control-group-label" />
             <ui:VisualElement class="control-row">
                 <ui:Button name="step-copy-button" text="Copy" class="step-function-button" />
                 <ui:Button name="step-paste-button" text="Paste" class="step-function-button" />
@@ -20,7 +20,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement class="control-row">
-        <ui:VisualElement name="step-parameters" class="control-group">
+        <ui:VisualElement class="control-group">
             <ui:Label text="Parameters" class="control-group-label" />
             <ui:VisualElement class="control-row">
                 <ui:Toggle label="On">
@@ -52,7 +52,7 @@
                 </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="step-notes" class="control-group">
+        <ui:VisualElement class="control-group">
             <ui:Label text="Notes" class="control-group-label" />
             <ui:VisualElement class="control-row">
                 <Klak.UIToolkit.ClampedIntegerField label="Note1" low-value="0" high-value="128">
@@ -108,7 +108,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
-            <ui:Label text="Step Transpose" class="control-group-label" />
+            <ui:Label text="Transpose" class="control-group-label" />
             <ui:VisualElement class="control-row">
                 <ui:Button name="step-note-down-button" text="-1" class="step-function-button" />
                 <ui:Button name="step-note-up-button" text="+1" class="step-function-button" />
