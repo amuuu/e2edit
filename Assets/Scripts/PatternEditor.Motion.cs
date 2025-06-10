@@ -15,7 +15,7 @@ public sealed partial class PatternEditor : MonoBehaviour
     Button CreateMotionSlotButton(int index)
     {
         var button = new Button();
-        button.AddToClassList(PartButtonClass);
+        button.AddToClassList(NumButtonClass);
         button.clicked += () => SelectMotionSlot(index);
         button.text = (index + 1).ToString();
         return button;
@@ -27,8 +27,8 @@ public sealed partial class PatternEditor : MonoBehaviour
         // Move button highlight
         var prev = _motionSlotButtons[_pattern.MotionSelect - 1];
         var next = _motionSlotButtons[index];
-        prev.RemoveFromClassList(PartButtonLitClass);
-        next.AddToClassList(PartButtonLitClass);
+        prev.RemoveFromClassList(NumButtonLitClass);
+        next.AddToClassList(NumButtonLitClass);
 
         // Slot selection update
         _pattern.MotionSelect = index + 1;
@@ -45,10 +45,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         // 2 rows
         for (var i = 0; i < 2; i++)
         {
-            // Row container
-            var row = new VisualElement();
-            row.AddToClassList(ControlRowClass);
-            panel.Add(row);
+            var row = CreateRowContainer(panel);
 
             // 12 slots per row
             for (int j = 0; j < 12; j++)
@@ -111,10 +108,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         // 4 rows
         for (var i = 0; i < 4; i++)
         {
-            // Row container
-            var row = new VisualElement();
-            row.AddToClassList(ControlRowClass);
-            panel.Add(row);
+            var row = CreateRowContainer(panel);
 
             // 16 steps per row
             for (int j = 0; j < 16; j++)

@@ -182,10 +182,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         // 4 bars
         for (var bar = 0; bar < 4; bar++)
         {
-            // Row container
-            var row = new VisualElement();
-            row.AddToClassList(ControlRowClass);
-            panel.Add(row);
+            var row = CreateRowContainer(panel);
 
             // 16 steps
             for (int i = 0; i < 16; i++)

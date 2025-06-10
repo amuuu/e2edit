@@ -19,10 +19,21 @@ public sealed partial class PatternEditor : MonoBehaviour
 
     #endregion
 
-    #region Tab helpers
+    #region Common UI helpers
+
+    static readonly string NumButtonClass = "part-select-button";
+    static readonly string NumButtonLitClass = "part-select-button-selected";
 
     bool IsStepTabActive
       => _tab.parent.activeTab == _tab.step;
+
+    VisualElement CreateRowContainer(VisualElement parent)
+    {
+        var row = new VisualElement();
+        row.AddToClassList("control-row");
+        parent.Add(row);
+        return row;
+    }
 
     #endregion
 
@@ -79,7 +90,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         _tab.step = _uiRoot.Q<Tab>("step-tab");
         _tab.motion = _uiRoot.Q<Tab>("motion-tab");
 
-        InitPatternPage();
+        InitPartPage();
         InitStepPage();
         InitMotionPage();
     }

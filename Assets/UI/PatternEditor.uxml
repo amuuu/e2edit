@@ -1,5 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="PatternTab" src="project://database/Assets/UI/PatternEditor.Pattern.uxml?fileID=9197481963319205126&amp;guid=89f1567b6ca6640c999344f21200d9cd&amp;type=3#PatternEditor.Pattern" />
+    <ui:Template name="PartTab" src="project://database/Assets/UI/PatternEditor.Part.uxml?fileID=9197481963319205126&amp;guid=d673fedfa7ed448b4b99333c743daa5b&amp;type=3#PatternEditor.Part" />
     <ui:Template name="StepTab" src="project://database/Assets/UI/PatternEditor.Step.uxml?fileID=9197481963319205126&amp;guid=303fff210a20e4c189dd7e278abb4e61&amp;type=3#PatternEditor.Step" />
     <ui:Template name="MotionTab" src="project://database/Assets/UI/PatternEditor.Motion.uxml?fileID=9197481963319205126&amp;guid=1ad67e24472744b20a5111fb3dd5df2a&amp;type=3#PatternEditor.Motion" />
     <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
@@ -13,6 +14,9 @@
         <ui:TabView>
             <ui:Tab label="Pattern" name="pattern-tab">
                 <ui:Instance template="PatternTab" />
+            </ui:Tab>
+            <ui:Tab label="Part" name="part-tab">
+                <ui:Instance template="PartTab" />
             </ui:Tab>
             <ui:Tab label="Step" name="step-tab">
                 <ui:Instance template="StepTab" />
