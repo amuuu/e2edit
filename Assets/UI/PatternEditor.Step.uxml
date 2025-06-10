@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
     <ui:VisualElement class="control-row">
         <ui:VisualElement name="step-selector" class="control-group">
-            <ui:Label text="Step Selector" class="control-group-label" />
+            <ui:Label text="Step Select" class="control-group-label" />
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
             <ui:Label text="Step Functions" class="control-group-label" />

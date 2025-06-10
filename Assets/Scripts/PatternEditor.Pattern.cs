@@ -3,32 +3,42 @@ using UnityEngine.UIElements;
 
 public sealed partial class PatternEditor : MonoBehaviour
 {
-    // Part button references
+    #region Part select buttons
+
+    // Button references
     Button[] _partButtons = new Button[16];
 
-    // Part button factory method
+    // Style classes
+    static readonly string ControlRowClass = "control-row";
+    static readonly string PartButtonClass = "part-select-button";
+    static readonly string PartButtonLitClass = "part-select-button-selected";
+
+    // Button factory method
     Button CreatePartButton(int index)
     {
         var button = new Button();
-        button.AddToClassList("part-select-button");
+        button.AddToClassList(PartButtonClass);
         button.clicked += () => SelectPart(index);
         button.text = (index + 1).ToString();
         return button;
     }
 
-    // Part button callback
+    // Button callback
     void SelectPart(int index)
     {
         var prev = _partButtons[_pattern.PartSelect - 1];
         var next = _partButtons[index];
 
-        prev.RemoveFromClassList("part-select-button-selected");
-        next.AddToClassList("part-select-button-selected");
+        prev.RemoveFromClassList(PartButtonLitClass);
+        next.AddToClassList(PartButtonLitClass);
 
         _pattern.PartSelect = index + 1;
     }
 
-    // Tab initialization
+    #endregion
+
+    #region Page methods
+
     void InitPatternPage()
     {
         var panel = _uiRoot.Q<VisualElement>("part-selector");
@@ -38,7 +48,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         {
             // Row container
             var row = new VisualElement();
-            row.AddToClassList("control-row");
+            row.AddToClassList(ControlRowClass);
             panel.Add(row);
 
             // 8 parts per row
@@ -51,4 +61,6 @@ public sealed partial class PatternEditor : MonoBehaviour
 
         SelectPart(0);
     }
+
+    #endregion
 }

@@ -10,19 +10,20 @@ public sealed partial class PatternEditor : MonoBehaviour
     Button[] _stepButtons = new Button[64];
 
     // Style classes
+    static readonly string StepButtonClass = "step-select-button";
     static readonly string StepButtonLitClass = "step-select-button-selected";
     static readonly string StepButtonDimClass = "step-select-button-on";
 
-    // Button factory method
+    // Create a step select button with a callback.
     Button CreateStepButton(int index)
     {
         var button = new Button();
-        button.AddToClassList("step-select-button");
+        button.AddToClassList(StepButtonClass);
         button.clicked += () => SelectStep(index);
         return button;
     }
 
-    // Spacer factory method
+    // Create a spacer element between buttons.
     VisualElement CreateStepSpacer()
     {
         var spacer = new VisualElement();
@@ -30,7 +31,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         return spacer;
     }
 
-    // Button callback
+    // Step select button callback
     void SelectStep(int i)
     {
         var prev = _stepButtons[_pattern.StepSelect - 1];
@@ -183,7 +184,7 @@ public sealed partial class PatternEditor : MonoBehaviour
         {
             // Row container
             var row = new VisualElement();
-            row.AddToClassList("control-row");
+            row.AddToClassList(ControlRowClass);
             panel.Add(row);
 
             // 16 steps
