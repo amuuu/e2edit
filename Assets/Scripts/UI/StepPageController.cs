@@ -173,6 +173,9 @@ public sealed class StepPageController : MonoBehaviour
         RefreshPage();
     }
 
+    void DoNotesAudition()
+      => AsyncUtil.Forget(PatternDataHandler.PlayCurrentStepAsync(0.1f));
+
     void SetUpStepFunctions()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
@@ -191,6 +194,7 @@ public sealed class StepPageController : MonoBehaviour
         var allOctDown  = root.Q<Button>("pattern-oct-down-button");
         var allOctUp    = root.Q<Button>("pattern-oct-up-button");
         var repeat      = root.Q<Button>("repeat-steps-button");
+        var audition    = root.Q<Button>("notes-audition-button");
 
         // Callback registration
         copy        .clicked += DoCopyFunction;
@@ -207,6 +211,7 @@ public sealed class StepPageController : MonoBehaviour
         allOctDown  .clicked += () => TransposeAll(-12);
         allOctUp    .clicked += () => TransposeAll(12);
         repeat      .clicked += DoRepeatStepsFunction;
+        audition    .clicked += DoNotesAudition;
 
         // Hotkey via key down events
         root.RegisterCallback<KeyDownEvent>(e =>
@@ -217,6 +222,7 @@ public sealed class StepPageController : MonoBehaviour
            if (e.keyCode == KeyCode.V) UIHelper.InvokeButton(paste);
            if (e.keyCode == KeyCode.I) UIHelper.InvokeButton(insert);
            if (e.keyCode == KeyCode.D) UIHelper.InvokeButton(duplicate);
+           if (e.keyCode == KeyCode.A) UIHelper.InvokeButton(audition);
         });
 
         // Disable navigation by keyboard

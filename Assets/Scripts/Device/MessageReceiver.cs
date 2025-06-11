@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-sealed class MessageReceiver : IDisposable
+public sealed class MessageReceiver : IDisposable
 {
     public ReadOnlySpan<byte> PatternBuffer
       => new ReadOnlySpan<byte>(_buffer, 0, 16384);

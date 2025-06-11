@@ -1,6 +1,6 @@
 using System;
 
-sealed class MessageSender : IDisposable
+public sealed class MessageSender : IDisposable
 {
     RtMidi.MidiOut _midiPort;
 
@@ -47,5 +47,21 @@ sealed class MessageSender : IDisposable
         var body = SysExCodec.EncodeTo7Bit(data, _buffer.AsSpan(header.Length));
         _buffer[header.Length + body.Length] = 0xF7;
         _midiPort.SendMessage(_buffer.AsSpan(0, header.Length + body.Length + 1));
+    }
+
+    public void SendNoteOn(int channel, int note, int velocity)
+    {
+        _buffer[0] = (byte)(0x90 + channel);
+        _buffer[1] = (byte)note;
+        _buffer[2] = (byte)velocity;
+        _midiPort.SendMessage(_buffer.AsSpan(0, 3));
+    }
+
+    public void SendNoteOff(int channel, int note)
+    {
+        _buffer[0] = (byte)(0x80 + channel);
+        _buffer[1] = (byte)note;
+        _buffer[2] = 0;
+        _midiPort.SendMessage(_buffer.AsSpan(0, 3));
     }
 }

@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Monitor" />
+    <Style src="project://database/Assets/UI/Groovebox.uss?fileID=7433441132597879392&amp;guid=1e3cc081bd36049edae84d40df8ba5a8&amp;type=3#Groovebox" />
     <ui:VisualElement class="control-row">
         <ui:VisualElement name="step-selector" class="control-group">
             <ui:Label text="Step Selector" class="control-group-label" />
@@ -106,6 +106,7 @@
                     </ui:Label>
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:Button name="notes-audition-button" text="A" style="position: absolute; top: 2px; right: 2px; font-size: 8px;" />
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
             <ui:Label text="Transpose" class="control-group-label" />
