@@ -37,12 +37,3 @@ public static class NoteUtil
         if (step.noteSlot4 > 0) step.noteSlot4 = (byte)Math.Clamp(step.noteSlot4 + delta, 1, 128);
     }
 }
-
-public static class UIUtil
-{
-    public static void InvokeButton(Button button)
-    {
-        using (var e = new NavigationSubmitEvent() { target = button } )
-            button.SendEvent(e);
-    }
-}
