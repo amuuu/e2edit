@@ -7,13 +7,17 @@ public sealed class ToolbarController : MonoBehaviour
 
     void OnReceiveButtonClicked()
     {
-        AsyncUtil.Forget(PatternDataHandler.ReceiveFromDeviceAsync());
+        var handler = GetComponent<PatternDataHandler>();
+        AsyncUtil.Forget(handler.ReceiveFromDeviceAsync());
         GetComponent<StepPageController>().RefreshPage();
         GetComponent<MotionPageController>().RefreshPage();
     }
 
     void OnSendButtonClicked()
-      => AsyncUtil.Forget(PatternDataHandler.SendToDeviceAsync());
+    {
+        var handler = GetComponent<PatternDataHandler>();
+        AsyncUtil.Forget(handler.SendToDeviceAsync());
+    }
 
     #endregion
 

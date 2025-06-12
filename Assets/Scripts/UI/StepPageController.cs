@@ -174,7 +174,7 @@ public sealed class StepPageController : MonoBehaviour
     }
 
     void DoNotesAudition()
-      => AsyncUtil.Forget(PatternDataHandler.PlayCurrentStepAsync(0.1f));
+      => AsyncUtil.Forget(GetComponent<PatternDataHandler>().PlayCurrentStepAsync(0.1f));
 
     void SetUpStepFunctions()
     {

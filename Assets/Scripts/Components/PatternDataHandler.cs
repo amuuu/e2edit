@@ -4,19 +4,24 @@ using UnityEngine.UIElements;
 
 public sealed class PatternDataHandler : MonoBehaviour
 {
-    #region Singleton-like pulic interface
+    #region Public interface
 
     public static ref PatternDataView Data => ref _data;
 
-    public static async Awaitable ReceiveFromDeviceAsync()
+    public async Awaitable ReceiveFromDeviceAsync()
     {
+        var device = GetComponent<DeviceHandler>();
+
         try
         {
-            var count = _receiver.PatternUpdateCount;
-            _sender.SendCurrentPatternDataDumpRequest();
-            while (count == _receiver.PatternUpdateCount)
+            var count = device.Receiver.PatternUpdateCount;
+
+            device.Sender.SendCurrentPatternDataDumpRequest();
+
+            while (count == device.Receiver.PatternUpdateCount)
                 await Awaitable.NextFrameAsync();
-            _receiver.PatternBuffer.CopyTo(_data.AsBytes);
+
+            device.Receiver.PatternBuffer.CopyTo(_data.AsBytes);
         }
         catch (Exception e)
         {
@@ -24,15 +29,20 @@ public sealed class PatternDataHandler : MonoBehaviour
         }
     }
 
-    public static async Awaitable SendToDeviceAsync()
+    public async Awaitable SendToDeviceAsync()
     {
-        _sender.SendPatternData(_data.AsBytes);
-        await Awaitable.NextFrameAsync();
+        var device = GetComponent<DeviceHandler>();
+
+        device.Sender.SendPatternData(_data.AsBytes);
+
         // TODO: Check response
+        await Awaitable.NextFrameAsync();
     }
 
-    public static async Awaitable PlayCurrentStepAsync(float duration)
+    public async Awaitable PlayCurrentStepAsync(float duration)
     {
+        var device = GetComponent<DeviceHandler>();
+
         var channel = _data.PartSelect - 1;
         var note1 = _data.StepNote1 - 1;
         var note2 = _data.StepNote2 - 1;
@@ -40,48 +50,31 @@ public sealed class PatternDataHandler : MonoBehaviour
         var note4 = _data.StepNote4 - 1;
         var vel = _data.StepVelocity;
 
-        if (note1 >= 0) _sender.SendNoteOn(channel, note1, vel);
-        if (note2 >= 0) _sender.SendNoteOn(channel, note2, vel);
-        if (note3 >= 0) _sender.SendNoteOn(channel, note3, vel);
-        if (note4 >= 0) _sender.SendNoteOn(channel, note4, vel);
+        if (note1 >= 0) device.Sender.SendNoteOn(channel, note1, vel);
+        if (note2 >= 0) device.Sender.SendNoteOn(channel, note2, vel);
+        if (note3 >= 0) device.Sender.SendNoteOn(channel, note3, vel);
+        if (note4 >= 0) device.Sender.SendNoteOn(channel, note4, vel);
 
         await Awaitable.WaitForSecondsAsync(duration);
 
-        if (note1 >= 0) _sender.SendNoteOff(channel, note1);
-        if (note2 >= 0) _sender.SendNoteOff(channel, note2);
-        if (note3 >= 0) _sender.SendNoteOff(channel, note3);
-        if (note4 >= 0) _sender.SendNoteOff(channel, note4);
+        if (note1 >= 0) device.Sender.SendNoteOff(channel, note1);
+        if (note2 >= 0) device.Sender.SendNoteOff(channel, note2);
+        if (note3 >= 0) device.Sender.SendNoteOff(channel, note3);
+        if (note4 >= 0) device.Sender.SendNoteOff(channel, note4);
     }
 
     #endregion
 
     #region Private objects
 
-    static PatternDataView _data;
-    static MessageReceiver _receiver;
-    static MessageSender _sender;
+    static PatternDataView _data = new PatternDataView();
 
     #endregion
 
     #region MonoBehaviour implementation
 
     void OnEnable()
-    {
-        if (_data != null) return;
-
-        _data = new PatternDataView();
-        _receiver = new MessageReceiver();
-        _sender = new MessageSender();
-
-        GetComponent<UIDocument>().rootVisualElement.dataSource = _data;
-    }
-
-    void OnDisable()
-    {
-        _sender?.Dispose();
-        _receiver?.Dispose();
-        (_data, _sender, _receiver) = (null, null, null);
-    }
+      => GetComponent<UIDocument>().rootVisualElement.dataSource = _data;
 
     #endregion
 }
