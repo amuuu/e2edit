@@ -21,7 +21,7 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string MfxTypeName
-      => StringTable.Instance.mfxTypes[MfxType - 1];
+      => GlobalStringTable.MfxTypes[MfxType - 1];
 
     [CreateProperty]
     public int MfxPadX

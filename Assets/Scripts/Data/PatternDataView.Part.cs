@@ -65,11 +65,11 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string OscillatorTypeName
-      => StringTable.Instance.oscillatorTypes[OscillatorType - 1];
+      => GlobalStringTable.OscillatorTypes[OscillatorType - 1];
 
     [CreateProperty]
     public string OscillatorTypeCategory
-      => StringTable.Instance.oscillatorCategories[OscillatorType - 1];
+      => GlobalStringTable.OscillatorCategories[OscillatorType - 1];
 
     [CreateProperty]
     public int OscillatorEdit
@@ -83,7 +83,7 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string FilterTypeName
-      => StringTable.Instance.filterTypes[FilterType - 1];
+      => GlobalStringTable.FilterTypes[FilterType - 1];
 
     [CreateProperty]
     public int FilterCutoff
@@ -107,7 +107,7 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string ModulationTypeName
-      => StringTable.Instance.modulationTypes[ModulationType - 1];
+      => GlobalStringTable.ModulationTypes[ModulationType - 1];
 
     [CreateProperty]
     public int ModulationSpeed
@@ -156,7 +156,7 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string GrooveTypeName
-      => StringTable.Instance.grooveTypes[GrooveType - 1];
+      => GlobalStringTable.GrooveTypes[GrooveType - 1];
 
     [CreateProperty]
     public int GrooveDepth
@@ -175,7 +175,7 @@ public sealed partial class PatternDataView
 
     [CreateProperty]
     public string IfxTypeName
-      => StringTable.Instance.ifxTypes[IfxType - 1];
+      => GlobalStringTable.IfxTypes[IfxType - 1];
 
     [CreateProperty]
     public int IfxEdit
