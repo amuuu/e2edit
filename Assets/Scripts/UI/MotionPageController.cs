@@ -1,33 +1,11 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 using Klak.UIToolkit;
 
-public sealed class MotionPageController : MonoBehaviour
+public sealed class MotionPageController
 {
-    #region Public methods
-
-    public void RefreshPage()
-    {
-        ref var data = ref PatternDataHandler.Data;
-
-        for (var i = 0; i < 64; i++)
-        {
-            _steps[i].field.SetValueWithoutNotify(data.GetMotionValue(i));
-            UpdateStepBar(i);
-        }
-    }
-
-    #endregion
-
-    #region Page state tracking
+    #region Private members
 
     bool IsPageActive { get; set; }
-
-    void OnTabChanged(Tab prevTab, Tab newTab)
-    {
-        IsPageActive = (newTab == this.FindUI<Tab>("motion-tab"));
-        if (IsPageActive) RefreshPage();
-    }
 
     #endregion
 
@@ -59,12 +37,12 @@ public sealed class MotionPageController : MonoBehaviour
         data.MotionSelect = index + 1;
 
         // Refresh page to sync with step controls.
-        RefreshPage();
+        RefreshStepEditor();
     }
 
-    void BuildSlotSelector()
+    void BuildSlotSelector(VisualElement root)
     {
-        var panel = this.FindUI("motion-slot-selector");
+        var panel = root.Q("motion-slot-selector");
 
         // 2 rows
         for (var i = 0; i < 2; i++)
@@ -128,9 +106,9 @@ public sealed class MotionPageController : MonoBehaviour
     }
 
     // Step editor builder
-    void BuildStepEditor()
+    void BuildStepEditor(VisualElement root)
     {
-        var panel = this.FindUI("motion-step-editor");
+        var panel = root.Q("motion-step-editor");
 
         // 4 rows
         for (var i = 0; i < 4; i++)
@@ -150,15 +128,40 @@ public sealed class MotionPageController : MonoBehaviour
         }
     }
 
+    void RefreshStepEditor()
+    {
+        ref var data = ref PatternDataHandler.Data;
+
+        for (var i = 0; i < 64; i++)
+        {
+            _steps[i].field.SetValueWithoutNotify(data.GetMotionValue(i));
+            UpdateStepBar(i);
+        }
+    }
+
     #endregion
 
-    #region MonoBehaviour implementation
+    #region Constructor
 
-    void Start()
+    public MotionPageController(VisualElement root)
     {
-        this.FindUI<TabView>().activeTabChanged += OnTabChanged;
-        BuildSlotSelector();
-        BuildStepEditor();
+        // Control search
+        var tab = root.Q<Tab>("motion-tab");
+
+        // Tab change callback
+        root.Q<TabView>().activeTabChanged += (prevTab, newTab) => {
+            IsPageActive = (newTab == tab);
+            if (IsPageActive) RefreshStepEditor();
+        };
+
+        // Pattern data refresh callback
+        PatternDataHandler.DataRefreshed += RefreshStepEditor;
+
+        // Setting up
+        BuildSlotSelector(root);
+        BuildStepEditor(root);
+
+        // Initial state
         SelectSlot(0);
     }
 

@@ -9,17 +9,6 @@ public static class UIHelper
     public static readonly string StepButtonLitClass = "step-select-button-selected";
     public static readonly string StepButtonDimClass = "step-select-button-on";
 
-    public static T FindUI<T>(this MonoBehaviour self, string name)
-      where T : VisualElement
-      => self.GetComponent<UIDocument>().rootVisualElement.Q<T>(name);
-
-    public static T FindUI<T>(this MonoBehaviour self)
-      where T : VisualElement
-      => self.GetComponent<UIDocument>().rootVisualElement.Q<T>();
-
-    public static VisualElement FindUI(this MonoBehaviour self, string name)
-      => self.GetComponent<UIDocument>().rootVisualElement.Q(name);
-
     public static void InvokeButton(Button button)
     {
         using (var e = new NavigationSubmitEvent() { target = button } )

@@ -1,36 +1,13 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public sealed class StepPageController : MonoBehaviour
+public sealed class StepPageController
 {
-    #region Public methods
-
-    public void RefreshPage()
-    {
-        ref var data = ref PatternDataHandler.Data;
-
-        // Dim light on "On" steps
-        for (var i = 0; i < 64; i++)
-        {
-            var step = data.GetStepRef(data.PartSelect - 1, i);
-            if (step.onOff > 0)
-                _stepButtons[i].AddToClassList(UIHelper.StepButtonDimClass);
-            else
-                _stepButtons[i].RemoveFromClassList(UIHelper.StepButtonDimClass);
-        }
-    }
-
-    #endregion
-
-    #region Page state tracking
+    #region Private members
 
     bool IsPageActive { get; set; }
 
-    void OnTabChanged(Tab prevTab, Tab newTab)
-    {
-        IsPageActive = (newTab == this.FindUI<Tab>("step-tab"));
-        if (IsPageActive) RefreshPage();
-    }
+    IntegerField _repeatStepLengthField;
 
     #endregion
 
@@ -67,9 +44,9 @@ public sealed class StepPageController : MonoBehaviour
         data.StepSelect = i + 1;
     }
 
-    void BuildStepSelector()
+    void BuildStepSelector(VisualElement root)
     {
-        var panel = this.FindUI("step-selector");
+        var panel = root.Q("step-selector");
 
         // 4 rows
         for (var i = 0; i < 4; i++)
@@ -86,6 +63,21 @@ public sealed class StepPageController : MonoBehaviour
                 // Add spacer every 4 steps
                 if (j % 4 == 3 && i != 15) UIHelper.CreateStepSpacer(row);
             }
+        }
+    }
+
+    void RefreshStepSelector()
+    {
+        ref var data = ref PatternDataHandler.Data;
+
+        // Dim light on "On" steps
+        for (var i = 0; i < 64; i++)
+        {
+            var step = data.GetStepRef(data.PartSelect - 1, i);
+            if (step.onOff > 0)
+                _stepButtons[i].AddToClassList(UIHelper.StepButtonDimClass);
+            else
+                _stepButtons[i].RemoveFromClassList(UIHelper.StepButtonDimClass);
         }
     }
 
@@ -110,7 +102,7 @@ public sealed class StepPageController : MonoBehaviour
         for (var i = data.StepSelect - 1; i < 63; i++)
             data.GetStepRef(part, i) = data.GetStepRef(part, i + 1);
 
-        RefreshPage();
+        RefreshStepSelector();
     }
 
     void DoPasteFunction()
@@ -136,7 +128,7 @@ public sealed class StepPageController : MonoBehaviour
 
         DoPasteFunction();
 
-        RefreshPage();
+        RefreshStepSelector();
     }
 
     void DoDupPrevFunction()
@@ -165,21 +157,19 @@ public sealed class StepPageController : MonoBehaviour
         ref var data = ref PatternDataHandler.Data;
         var part = data.PartSelect - 1;
 
-        var length = this.FindUI<IntegerField>("repeat-steps-length").value;
+        var length = _repeatStepLengthField.value;
 
         for (var i = length; i < 64; i++)
             data.GetStepRef(part, i) = data.GetStepRef(part, i % length);
 
-        RefreshPage();
+        RefreshStepSelector();
     }
 
     void DoNotesAudition()
-      => AsyncUtil.Forget(GetComponent<PatternDataHandler>().PlayCurrentStepAsync(0.1f));
+      => AsyncUtil.Forget(PatternDataHandler.PlayCurrentStepAsync(0.1f));
 
-    void SetUpStepFunctions()
+    void SetUpStepFunctions(VisualElement root)
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
-
         var copy        = root.Q<Button>("step-copy-button");
         var cut         = root.Q<Button>("step-cut-button");
         var paste       = root.Q<Button>("step-paste-button");
@@ -241,13 +231,28 @@ public sealed class StepPageController : MonoBehaviour
 
     #endregion
 
-    #region MonoBehaviour implementation
+    #region Constructor
 
-    void Start()
+    public StepPageController(VisualElement root)
     {
-        this.FindUI<TabView>().activeTabChanged += OnTabChanged;
-        BuildStepSelector();
-        SetUpStepFunctions();
+        // Control search
+        var tab = root.Q<Tab>("step-tab");
+        _repeatStepLengthField = root.Q<IntegerField>("step-length-field");
+
+        // Tab change callback
+        root.Q<TabView>().activeTabChanged += (prevTab, newTab) => {
+            IsPageActive = (newTab == tab);
+            if (IsPageActive) RefreshStepSelector();
+        };
+
+        // Pattern data refresh callback
+        PatternDataHandler.DataRefreshed += RefreshStepSelector;
+
+        // Setting up
+        BuildStepSelector(root);
+        SetUpStepFunctions(root);
+
+        // Initial state
         SelectStep(0);
     }
 

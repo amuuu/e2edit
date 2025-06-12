@@ -1,7 +1,6 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
-public sealed class PartPageController : MonoBehaviour
+public sealed class PartPageController
 {
     #region Part selector
 
@@ -33,11 +32,10 @@ public sealed class PartPageController : MonoBehaviour
 
     #endregion
 
-    #region MonoBehaviour implementation
+    #region Constructor
 
-    void Start()
+    public PartPageController(VisualElement root)
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
         var panel = root.Q<VisualElement>("part-selector");
 
         // 2 rows
