@@ -17,7 +17,7 @@ public sealed class PartPageController
 
     void SelectPart(int index)
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
 
         // Part button highlight
         var prev = _partButtons[data.PartSelect - 1];

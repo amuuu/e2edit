@@ -24,7 +24,7 @@ public sealed class MotionPageController
 
     void SelectSlot(int index)
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
 
         // Slot button highlight
         var prev = _slotButtons[data.MotionSelect - 1];
@@ -100,7 +100,7 @@ public sealed class MotionPageController
     // Bar height update
     void UpdateStepBar(int index)
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
         var height = (1 - data.GetMotionValue(index) / 127.0f) * 100;
         _steps[index].bar.style.top = new StyleLength(Length.Percent(height));
     }
@@ -130,7 +130,7 @@ public sealed class MotionPageController
 
     void RefreshStepEditor()
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
 
         for (var i = 0; i < 64; i++)
         {
@@ -155,7 +155,7 @@ public sealed class MotionPageController
         };
 
         // Pattern data refresh callback
-        PatternDataHandler.DataRefreshed += RefreshStepEditor;
+        PatternDataHandler.OnDataRefresh += RefreshStepEditor;
 
         // Setting up
         BuildSlotSelector(root);

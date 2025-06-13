@@ -25,7 +25,7 @@ public sealed class StepPageController
 
     void SelectStep(int i)
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
 
         // Step button highlight
         var prev = _stepButtons[data.StepSelect - 1];
@@ -68,7 +68,7 @@ public sealed class StepPageController
 
     void RefreshStepSelector()
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
 
         // Dim light on "On" steps
         for (var i = 0; i < 64; i++)
@@ -94,7 +94,7 @@ public sealed class StepPageController
 
     void DoCutFunction()
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
         var part = data.PartSelect - 1;
 
         DoCopyFunction();
@@ -120,7 +120,7 @@ public sealed class StepPageController
 
     void DoInsertFunction()
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
         var part = data.PartSelect - 1;
 
         for (var i = 63; i > data.StepSelect - 1; i--)
@@ -133,7 +133,7 @@ public sealed class StepPageController
 
     void DoDupPrevFunction()
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
         var (part, step) = (data.PartSelect - 1, data.StepSelect - 1);
 
         if (step > 0)
@@ -145,7 +145,7 @@ public sealed class StepPageController
 
     void TransposeAll(int delta)
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
         var part = data.PartSelect - 1;
 
         for (var i = 0; i < 64; i++)
@@ -154,7 +154,7 @@ public sealed class StepPageController
 
     void DoRepeatStepsFunction()
     {
-        ref var data = ref PatternDataHandler.Data;
+        var data = PatternDataHandler.Data;
         var part = data.PartSelect - 1;
 
         var length = _repeatStepLengthField.value;
@@ -166,7 +166,10 @@ public sealed class StepPageController
     }
 
     void DoNotesAudition()
-      => AsyncUtil.Forget(PatternDataHandler.PlayCurrentStepAsync(0.1f));
+    {
+        var data = PatternDataHandler.Data;
+        AsyncUtil.Forget(DeviceHandler.PlayCurrentStepAsync(data, 0.1f));
+    }
 
     void SetUpStepFunctions(VisualElement root)
     {
@@ -246,7 +249,7 @@ public sealed class StepPageController
         };
 
         // Pattern data refresh callback
-        PatternDataHandler.DataRefreshed += RefreshStepSelector;
+        PatternDataHandler.OnDataRefresh += RefreshStepSelector;
 
         // Setting up
         BuildStepSelector(root);
