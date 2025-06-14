@@ -217,19 +217,6 @@ public sealed class StepPageController
            if (e.keyCode == KeyCode.D) UIHelper.InvokeButton(duplicate);
            if (e.keyCode == KeyCode.A) UIHelper.InvokeButton(audition);
         });
-
-        // Disable navigation by keyboard
-        root.RegisterCallback<NavigationMoveEvent>(e =>
-        {
-           if (!IsPageActive) return;
-           if (e.direction is not
-               (NavigationMoveEvent.Direction.Up or
-                NavigationMoveEvent.Direction.Down or
-                NavigationMoveEvent.Direction.Left or
-                NavigationMoveEvent.Direction.Right)) return;
-           e.StopPropagation();
-           root.focusController.IgnoreEvent(e);
-         });
     }
 
     #endregion
