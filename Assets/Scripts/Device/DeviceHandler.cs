@@ -45,10 +45,9 @@ public static class DeviceHandler
 
     public static async Awaitable SendPatternAsync(PatternDataView src)
     {
+        var count = _receiver.AckCount;
         lock (_sender) _sender.SendPatternData(src.AsBytes);
-
-        // TODO: Check response
-        await Awaitable.NextFrameAsync();
+        while (count == _receiver.AckCount) await Awaitable.NextFrameAsync();
     }
 
     #endregion
