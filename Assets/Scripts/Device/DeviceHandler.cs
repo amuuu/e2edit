@@ -8,45 +8,48 @@ public static class DeviceHandler
 {
     public static float ClockTempo { get; set; } = 120;
 
-    static Thread _thread;
+    static Thread _clockThread;
+    static ManualResetEventSlim _playEvent;
     static bool _running;
 
     public static void StartClockThread()
     {
+        _clockThread = new Thread(SendClockLoop) { IsBackground = true };
+        _playEvent = new ManualResetEventSlim(false);
         _running = true;
-        _thread = new Thread(SendClockLoop);
-        _thread.IsBackground = true;
-        _thread.Start();
+
+        _clockThread.Start();
     }
 
     public static void StopClockThread()
     {
         _running = false;
-        _thread?.Join();
-        _thread = null;
+        _playEvent.Set();
+        _clockThread?.Join();
+        _clockThread = null;
     }
 
     static void SendClockLoop()
     {
         var stopwatch = Stopwatch.StartNew();
-        var nextTick = stopwatch.ElapsedTicks;
 
         while (_running)
         {
-            var now = stopwatch.ElapsedTicks;
+            _playEvent.Wait();
 
-            var tempo = System.Math.Max(80, ClockTempo);
-            var intervalMs = (60000.0 / tempo) / 24.0;
-            var intervalTicks = intervalMs * (Stopwatch.Frequency / 1000.0);
+            var nextTick = stopwatch.ElapsedTicks;
 
-            if (now >= nextTick)
+            while (_running && _playEvent.IsSet)
             {
+                while (_running && _playEvent.IsSet && stopwatch.ElapsedTicks < nextTick)
+                    Thread.SpinWait(1000);
+
+                if (!_running || !_playEvent.IsSet) break;
+
                 lock (_sender) _sender.SendSingleByte(0xF8);
-                nextTick += (long)intervalTicks;
-            }
-            else
-            {
-                Thread.SpinWait(1000);
+
+                var interval = 60.0 / (24 * Math.Max(80, ClockTempo));
+                nextTick += (long)(interval * Stopwatch.Frequency);
             }
         }
     }
@@ -85,10 +88,17 @@ public static class DeviceHandler
     #region Playback
 
     public static void StartPlaying()
-      => _sender.SendSingleByte(0xFA);
+    {
+        _sender.SendSingleByte(0xFA);
+        _playEvent.Set();
+    }
 
     public static void StopPlaying()
-      => _sender.SendSingleByte(0xFB);
+    {
+        _sender.SendSingleByte(0xFC);
+        _sender.SendSingleByte(0xFC);
+        _playEvent.Reset();
+    }
 
     public static async Awaitable
       PlayCurrentStepAsync(PatternDataView data, float duration)

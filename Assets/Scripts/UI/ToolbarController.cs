@@ -8,7 +8,6 @@ public sealed class ToolbarController
             var data = PatternDataHandler.Data;
             AsyncUtil.Forget(DeviceHandler.ReceivePatternAsync(data));
             PatternDataHandler.NotifyDataRefresh();
-            DeviceHandler.ClockTempo = PatternDataHandler.Data.Tempo;
         };
 
         root.Q<Button>("send-button").clicked += () => {
@@ -17,6 +16,7 @@ public sealed class ToolbarController
         };
 
         root.Q<Button>("play-button").clicked += () => {
+            DeviceHandler.ClockTempo = PatternDataHandler.Data.Tempo;
             DeviceHandler.StartPlaying();
         };
 
