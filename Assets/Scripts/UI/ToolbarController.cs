@@ -7,9 +7,8 @@ public sealed class ToolbarController
 
     public ToolbarController(VisualElement root)
     {
-        root.Q<Button>("receive-button").clicked += () => {
-            var data = PatternDataHandler.Data;
-            AsyncUtil.Forget(DeviceHandler.ReceivePatternAsync(data));
+        root.Q<Button>("receive-button").clicked += async () => {
+            await DeviceHandler.ReceivePatternAsync(PatternDataHandler.Data);
             PatternDataHandler.NotifyDataRefresh();
         };
 

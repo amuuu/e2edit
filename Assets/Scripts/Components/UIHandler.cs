@@ -36,6 +36,12 @@ public sealed class UIHandler : MonoBehaviour
         DeviceHandler.TearDown();
     }
 
+    async Awaitable Start()
+    {
+        await DeviceHandler.ReceivePatternAsync(PatternDataHandler.Data);
+        PatternDataHandler.NotifyDataRefresh();
+    }
+
     void Update()
     {
         if (Keyboard.current.spaceKey.wasReleasedThisFrame)
