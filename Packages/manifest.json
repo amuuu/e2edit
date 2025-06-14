@@ -9,8 +9,9 @@
     }
   ],
   "dependencies": {
-    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.inputsystem": "1.14.0",
     "jp.keijiro.klak.ui-toolkit-assets": "0.2.0",
-    "jp.keijiro.rtmidi": "2.1.2"
+    "jp.keijiro.rtmidi": "2.1.2",
+    "com.unity.modules.uielements": "1.0.0"
   }
 }
