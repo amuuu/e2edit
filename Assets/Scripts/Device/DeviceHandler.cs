@@ -54,6 +54,9 @@ public static class DeviceHandler
 
     #region Playback
 
+    public static bool IsPlaying
+      => _playEvent.IsSet;
+
     public static void StartPlaying()
     {
         _sender.SendSingleByte(0xFA);

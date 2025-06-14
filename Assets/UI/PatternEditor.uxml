@@ -8,7 +8,6 @@
         <ui:VisualElement name="tool-bar">
             <ui:VisualElement style="flex-direction: row;">
                 <ui:Button text="Receive" name="receive-button" />
-                <ui:Button text="Send" name="send-button" />
                 <ui:Button name="stop-button" style="background-image: url(&quot;project://database/Assets/UI/StopButton.png?fileID=2800000&amp;guid=a0bbad7afd77b4683bbab666cd6e4a53&amp;type=3#StopButton&quot;); width: 26px;" />
                 <ui:Button name="play-button" style="background-image: url(&quot;project://database/Assets/UI/PlayButton.png?fileID=2800000&amp;guid=5e098f4902fd14404b0a7f5380a83fd0&amp;type=3#PlayButton&quot;); width: 26px;" />
             </ui:VisualElement>

@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public sealed class ToolbarController
@@ -10,18 +11,27 @@ public sealed class ToolbarController
             PatternDataHandler.NotifyDataRefresh();
         };
 
-        root.Q<Button>("send-button").clicked += () => {
-            var data = PatternDataHandler.Data;
-            AsyncUtil.Forget(DeviceHandler.SendPatternAsync(data));
-        };
+        root.Q<Button>("play-button").clicked += () =>
+            AsyncUtil.Forget(SendAndPlayAsync());
 
-        root.Q<Button>("play-button").clicked += () => {
-            DeviceHandler.ClockTempo = PatternDataHandler.Data.Tempo;
-            DeviceHandler.StartPlaying();
-        };
-
-        root.Q<Button>("stop-button").clicked += () => {
+        root.Q<Button>("stop-button").clicked += () =>
             DeviceHandler.StopPlaying();
-        };
+
+        root.RegisterCallback<KeyDownEvent>(e => {
+            if (e.keyCode == KeyCode.Space)
+            {
+                if (DeviceHandler.IsPlaying)
+                    DeviceHandler.StopPlaying();
+                else
+                    AsyncUtil.Forget(SendAndPlayAsync());
+            }
+        });
+    }
+
+    async Awaitable SendAndPlayAsync()
+    {
+        await DeviceHandler.SendPatternAsync(PatternDataHandler.Data);
+        DeviceHandler.ClockTempo = PatternDataHandler.Data.Tempo;
+        DeviceHandler.StartPlaying();
     }
 }
