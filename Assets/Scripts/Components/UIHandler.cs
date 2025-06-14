@@ -17,9 +17,9 @@ public sealed class UIHandler : MonoBehaviour
         new StepPageController(root);
         new MotionPageController(root);
 
-        DeviceHandler.StartClockThread();
+        DeviceHandler.SetUp();
     }
 
     void OnDisable()
-      => DeviceHandler.StopClockThread();
+      => DeviceHandler.TearDown();
 }

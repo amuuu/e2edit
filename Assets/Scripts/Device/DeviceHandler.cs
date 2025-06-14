@@ -6,53 +6,21 @@ using Debug = UnityEngine.Debug;
 
 public static class DeviceHandler
 {
-    public static float ClockTempo { get; set; } = 120;
+    #region Public properties
 
-    static Thread _clockThread;
-    static ManualResetEventSlim _playEvent;
-    static bool _running;
+    public static float ClockTempo { get; set; }
 
-    public static void StartClockThread()
-    {
-        _clockThread = new Thread(SendClockLoop) { IsBackground = true };
-        _playEvent = new ManualResetEventSlim(false);
-        _running = true;
+    #endregion
 
-        _clockThread.Start();
-    }
+    #region Lifecycle
 
-    public static void StopClockThread()
-    {
-        _running = false;
-        _playEvent.Set();
-        _clockThread?.Join();
-        _clockThread = null;
-    }
+    public static void SetUp()
+      => StartClockThread();
 
-    static void SendClockLoop()
-    {
-        var stopwatch = Stopwatch.StartNew();
+    public static void TearDown()
+      => StopClockThread();
 
-        while (_running)
-        {
-            _playEvent.Wait();
-
-            var nextTick = stopwatch.ElapsedTicks;
-
-            while (_running && _playEvent.IsSet)
-            {
-                while (_running && _playEvent.IsSet && stopwatch.ElapsedTicks < nextTick)
-                    Thread.SpinWait(1000);
-
-                if (!_running || !_playEvent.IsSet) break;
-
-                lock (_sender) _sender.SendSingleByte(0xF8);
-
-                var interval = 60.0 / (24 * Math.Max(80, ClockTempo));
-                nextTick += (long)(interval * Stopwatch.Frequency);
-            }
-        }
-    }
+    #endregion
 
     #region Data transfer
 
@@ -60,13 +28,13 @@ public static class DeviceHandler
     {
         try
         {
+            // Send request and wait for receiver to update.
             var count = _receiver.PatternUpdateCount;
-
             lock (_sender) _sender.SendCurrentPatternDataDumpRequest();
-
             while (count == _receiver.PatternUpdateCount)
                 await Awaitable.NextFrameAsync();
 
+            // Pattern data update
             _receiver.PatternBuffer.CopyTo(dest.AsBytes);
         }
         catch (Exception e)
@@ -131,10 +99,78 @@ public static class DeviceHandler
 
     #endregion
 
-    #region Private objects
+    #region Message sender/receiver
 
     static MessageReceiver _receiver = new MessageReceiver();
     static MessageSender _sender = new MessageSender();
 
     #endregion
+
+    #region Clock sender thread
+
+    static Thread _clockThread;
+    static ManualResetEventSlim _playEvent;
+    static bool _running;
+
+    static double ClockInterval
+      => 60.0 / (24 * Math.Max(80, ClockTempo));
+
+    static void StartClockThread()
+    {
+        // Initialization
+        _clockThread = new Thread(ClockThreadMethod) { IsBackground = true };
+        _playEvent = new ManualResetEventSlim(false);
+        _running = true;
+
+        // Thread start
+        _clockThread.Start();
+    }
+
+    static void StopClockThread()
+    {
+        // Stop state
+        _running = false;
+        _playEvent.Set();
+
+        // Thread finalization
+        _clockThread.Join();
+        _clockThread = null;
+
+        // Play event finalization
+        _playEvent.Dispose();
+        _playEvent = null;
+    }
+
+    static void ClockThreadMethod()
+    {
+        var sw = Stopwatch.StartNew();
+
+        while (_running)
+        {
+            // Wait for play event.
+            _playEvent.Wait();
+
+            // Next tick: The fist tick is sent immediately.
+            var nextTick = sw.ElapsedTicks;
+
+            // Repeat until the stop condition is met.
+            while (_running && _playEvent.IsSet)
+            {
+                if (sw.ElapsedTicks < nextTick)
+                {
+                    // Before next tick: Do spin wait.
+                    Thread.SpinWait(1000);
+                }
+                else
+                {
+                    // Next tick reached: Send clock and update next tick.
+                    lock (_sender) _sender.SendSingleByte(0xF8);
+                    nextTick += (long)(ClockInterval * Stopwatch.Frequency);
+                }
+            }
+        }
+    }
+
+    #endregion
+
 }
