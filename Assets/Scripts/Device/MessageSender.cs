@@ -64,4 +64,10 @@ public sealed class MessageSender : IDisposable
         _buffer[2] = 0;
         _midiPort.SendMessage(_buffer.AsSpan(0, 3));
     }
+
+    public void SendSingleByte(byte data)
+    {
+        _buffer[0] = data;
+        _midiPort.SendMessage(_buffer.AsSpan(0, 1));
+    }
 }

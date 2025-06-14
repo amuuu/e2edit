@@ -9,6 +9,8 @@
             <ui:VisualElement style="flex-direction: row;">
                 <ui:Button text="Receive" name="receive-button" />
                 <ui:Button text="Send" name="send-button" />
+                <ui:Button text="Play" name="play-button" />
+                <ui:Button text="Stop" name="stop-button" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:TabView>
