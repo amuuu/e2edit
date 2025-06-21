@@ -15,7 +15,7 @@ public sealed class MotionPageController
 
     Button CreateSlotButton(int index)
     {
-        var button = new Button();
+        var button = new Button() { focusable = false };
         button.AddToClassList(UIHelper.NumButtonClass);
         button.clicked += () => SelectSlot(index);
         button.text = (index + 1).ToString();
@@ -75,7 +75,8 @@ public sealed class MotionPageController
         {
             label = (index + 1).ToString(),
             lowValue = 0,
-            highValue = 127
+            highValue = 127,
+            focusable = false
         };
         field.AddToClassList("motion-value-field");
 
