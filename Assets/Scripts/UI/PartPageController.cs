@@ -12,6 +12,7 @@ public sealed class PartPageController
         button.AddToClassList(UIHelper.NumButtonClass);
         button.clicked += () => SelectPart(index);
         button.text = (index + 1).ToString();
+        button.focusable = false;
         return button;
     }
 

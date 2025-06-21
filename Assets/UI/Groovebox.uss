@@ -43,6 +43,10 @@
     flex-direction: row;
 }
 
+.control-column {
+    justify-content: center;
+}
+
 /* Part select button */
 
 .part-select-button {

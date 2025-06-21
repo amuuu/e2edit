@@ -65,7 +65,7 @@
                         <ui:DataBinding property="value" data-source-path="MfxPadY" binding-mode="TwoWay" />
                     </Bindings>
                 </Klak.UIToolkit.ClampedIntegerField>
-                <ui:Toggle label="Hold">
+                <ui:Toggle label="Hold" focusable="false">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="MfxHold" binding-mode="TwoWay" />
                     </Bindings>

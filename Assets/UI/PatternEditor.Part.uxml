@@ -7,43 +7,49 @@
         <ui:VisualElement class="control-group">
             <ui:Label text="Part Settings" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <ui:Toggle label="Mute">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="Mute" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
-                <ui:Toggle label="VSense">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="TrigPadVelocity" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
-                <ui:Toggle label="Scale">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="ScaleMode" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
-                <ui:Toggle label="Priority">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="PartPriority" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
-                <E2Controls.E2Knob label="Steps" low-value="1" high-value="16">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-            </ui:VisualElement>
-            <ui:VisualElement class="control-row">
-                <ui:EnumField label="Voice" value="Mono1" type="MessageSpecs.VoiceType, Assembly-CSharp" style="width: 100px;">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="VoiceType" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:EnumField>
-                <ui:EnumField label="Motion Seq" value="Off" type="MessageSpecs.MotionType, Assembly-CSharp" style="width: 100px;">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="MotionType" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:EnumField>
+                <ui:VisualElement class="control-column">
+                    <ui:EnumField label="Voice" value="Mono1" type="MessageSpecs.VoiceType, Assembly-CSharp" style="width: 72px;" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="VoiceType" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:EnumField>
+                    <ui:EnumField label="Motion Seq" value="Off" type="MessageSpecs.MotionType, Assembly-CSharp" style="width: 72px;" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="MotionType" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:EnumField>
+                </ui:VisualElement>
+                <ui:VisualElement class="control-column">
+                    <E2Controls.E2Knob label="Steps" low-value="1" high-value="16">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="LastStep" binding-mode="TwoWay" />
+                        </Bindings>
+                    </E2Controls.E2Knob>
+                </ui:VisualElement>
+                <ui:VisualElement class="control-column">
+                    <ui:Toggle label="Mute" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="Mute" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                    <ui:Toggle label="Velocity" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="TrigPadVelocity" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                </ui:VisualElement>
+                <ui:VisualElement class="control-column">
+                    <ui:Toggle label="Scale" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="ScaleMode" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                    <ui:Toggle label="Priority" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="PartPriority" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
@@ -176,16 +182,16 @@
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
             <ui:Label text="EG" class="control-group-label" />
-                <E2Controls.E2Knob label="Attack" low-value="0" high-value="127">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="EgAttack" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-                <E2Controls.E2Knob label="Decay" low-value="0" high-value="127">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="EgDecayRelease" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
+            <E2Controls.E2Knob label="Attack" low-value="0" high-value="127">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="EgAttack" binding-mode="TwoWay" />
+                </Bindings>
+            </E2Controls.E2Knob>
+            <E2Controls.E2Knob label="Decay" low-value="0" high-value="127">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="EgDecayRelease" binding-mode="TwoWay" />
+                </Bindings>
+            </E2Controls.E2Knob>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement class="control-row">
@@ -202,21 +208,30 @@
                         <ui:DataBinding property="value" data-source-path="AmpPan" binding-mode="TwoWay" />
                     </Bindings>
                 </E2Controls.E2Knob>
-                <ui:Toggle label="Env">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="EgOnOff" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
-                <ui:Toggle label="MFX">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="MfxSendOnOff" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
+                <ui:VisualElement class="control-column">
+                    <ui:Toggle label="Env" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="EgOnOff" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                    <ui:Toggle label="MFX" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="MfxSendOnOff" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
             <ui:Label text="Insert FX" class="control-group-label" />
             <ui:VisualElement class="control-row">
+                <ui:VisualElement class="control-column">
+                    <ui:Toggle label="On" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                </ui:VisualElement>
                 <E2Controls.E2Knob label="Type" low-value="1" high-value="38">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
@@ -234,11 +249,6 @@
                         <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
                     </Bindings>
                 </E2Controls.E2Knob>
-                <ui:Toggle label="On">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
