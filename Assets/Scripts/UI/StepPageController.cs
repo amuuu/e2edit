@@ -17,10 +17,9 @@ public sealed class StepPageController
 
     Button CreateStepButton(int index)
     {
-        var button = new Button();
+        var button = new Button() { focusable = false };
         button.AddToClassList(UIHelper.StepButtonClass);
         button.clicked += () => SelectStep(index);
-        button.focusable = false;
         return button;
     }
 

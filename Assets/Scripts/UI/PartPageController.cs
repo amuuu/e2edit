@@ -8,11 +8,10 @@ public sealed class PartPageController
 
     Button CreatePartButton(int index)
     {
-        var button = new Button();
+        var button = new Button() { focusable = false };
         button.AddToClassList(UIHelper.NumButtonClass);
         button.clicked += () => SelectPart(index);
         button.text = (index + 1).ToString();
-        button.focusable = false;
         return button;
     }
 
