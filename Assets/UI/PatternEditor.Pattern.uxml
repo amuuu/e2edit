@@ -4,19 +4,14 @@
         <ui:VisualElement class="control-group">
             <ui:Label text="Pattern Settings" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <ui:TextField label="Name" placeholder-text="(empty)" hide-placeholder-on-focus="true" style="width: 208px;">
+                <ui:TextField label="Name" placeholder-text="(empty)" hide-placeholder-on-focus="true" style="width: 140px;">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="PatternName" binding-mode="TwoWay" />
                     </Bindings>
                 </ui:TextField>
-                <Klak.UIToolkit.ClampedIntegerField label="Level" low-value="0" high-value="127">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
-                    </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
-                <ui:EnumField label="Beat Type" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp" style="width: 120px;">
+                <ui:EnumField label="Beat Type" value="_16thNote" type="MessageSpecs.Beat, Assembly-CSharp" style="width: 88px;">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Beat" binding-mode="TwoWay" />
                     </Bindings>
@@ -26,26 +21,33 @@
                         <ui:DataBinding property="value" data-source-path="Tempo" binding-mode="TwoWay" />
                     </Bindings>
                 </Klak.UIToolkit.ClampedFloatField>
-                <Klak.UIToolkit.ClampedIntegerField label="Length" low-value="1" high-value="4">
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <E2Controls.E2Knob label="Length" low-value="1" high-value="4">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Length" binding-mode="TwoWay" />
                     </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
-                <Klak.UIToolkit.ClampedIntegerField label="Swing" low-value="-48" high-value="48">
+                </E2Controls.E2Knob>
+                <E2Controls.E2Knob label="Swing" low-value="-48" high-value="48" is-relative="true">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="Swing" binding-mode="TwoWay" />
                     </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
+                </E2Controls.E2Knob>
+                <E2Controls.E2Knob label="Level" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="PlayLevel" binding-mode="TwoWay" />
+                    </Bindings>
+                </E2Controls.E2Knob>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
             <ui:Label text="Master FX" class="control-group-label" />
             <ui:VisualElement class="control-row">
-                <Klak.UIToolkit.ClampedIntegerField label="Type" low-value="1" high-value="32">
+                <E2Controls.E2Knob label="Type" low-value="1" high-value="32">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="MfxType" binding-mode="TwoWay" />
                     </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
+                </E2Controls.E2Knob>
                 <ui:VisualElement class="caption-area" style="width: 84px;">
                     <ui:Label text="Name" class="caption-label">
                         <Bindings>
@@ -55,21 +57,23 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement class="control-row">
-                <Klak.UIToolkit.ClampedIntegerField label="Pad X" low-value="0" high-value="127">
+                <E2Controls.E2Knob label="Pad X" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="MfxPadX" binding-mode="TwoWay" />
                     </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
-                <Klak.UIToolkit.ClampedIntegerField label="Pad Y" low-value="0" high-value="127">
+                </E2Controls.E2Knob>
+                <E2Controls.E2Knob label="Pad Y" low-value="0" high-value="127">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="MfxPadY" binding-mode="TwoWay" />
                     </Bindings>
-                </Klak.UIToolkit.ClampedIntegerField>
-                <ui:Toggle label="Hold" focusable="false">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="MfxHold" binding-mode="TwoWay" />
-                    </Bindings>
-                </ui:Toggle>
+                </E2Controls.E2Knob>
+                <ui:VisualElement class="control-column">
+                    <ui:Toggle label="Hold" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="MfxHold" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
