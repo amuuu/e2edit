@@ -12,6 +12,7 @@
     --color-label-dim: rgb(128, 128, 128);
     --color-line-dim: rgba(226, 150, 65, 0.3);
     --color-line-dim-hover: rgba(226, 150, 65, 0.4);
+    --color-line-gray: rgb(80, 80, 80);
     --color-bg-hover: rgba(255, 255, 255, 0.05);
     --color-bg-active: rgba(255, 255, 255, 0.1);
 }

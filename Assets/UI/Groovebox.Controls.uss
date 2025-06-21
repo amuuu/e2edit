@@ -4,6 +4,7 @@
     -unity-font-definition: var(--font-bold);
     font-size: 10px;
     color: var(--color-line);
+    text-overflow: clip;
 }
 
 /* Label */

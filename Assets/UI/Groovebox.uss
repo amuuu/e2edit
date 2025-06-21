@@ -1,5 +1,6 @@
 @import "Groovebox.Common.uss";
 @import "Groovebox.Controls.uss";
+@import "Groovebox.Custom.uss";
 
 /* Labels */
 
@@ -34,6 +35,7 @@
     background-color: var(--color-panel);
     border-radius: 4px;
     padding: 6px;
+    padding-bottom: 4px;
     margin: 4px;
 }
 
