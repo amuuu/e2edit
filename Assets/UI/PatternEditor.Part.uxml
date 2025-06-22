@@ -181,20 +181,53 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
-            <ui:Label text="EG" class="control-group-label" />
-            <E2Controls.E2Knob label="Attack" low-value="0" high-value="127">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="EgAttack" binding-mode="TwoWay" />
-                </Bindings>
-            </E2Controls.E2Knob>
-            <E2Controls.E2Knob label="Decay" low-value="0" high-value="127">
-                <Bindings>
-                    <ui:DataBinding property="value" data-source-path="EgDecayRelease" binding-mode="TwoWay" />
-                </Bindings>
-            </E2Controls.E2Knob>
+            <ui:Label text="Insert FX" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <E2Controls.E2Knob label="Type" low-value="1" high-value="38">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
+                    </Bindings>
+                </E2Controls.E2Knob>
+                <ui:VisualElement class="caption-area" style="width: 84px;">
+                    <ui:Label text="Name" class="caption-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="IfxTypeName" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
+                <E2Controls.E2Knob label="Edit" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
+                    </Bindings>
+                </E2Controls.E2Knob>
+                <ui:VisualElement class="control-column">
+                    <ui:Toggle label="On" focusable="false">
+                        <Bindings>
+                            <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Toggle>
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement class="control-row">
+        <ui:VisualElement class="control-group">
+            <ui:Label text="EG" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <E2Controls.E2Knob label="Attack" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="EgAttack" binding-mode="TwoWay" />
+                    </Bindings>
+                </E2Controls.E2Knob>
+                <E2Controls.E2Knob label="Decay" low-value="0" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="EgDecayRelease" binding-mode="TwoWay" />
+                    </Bindings>
+                </E2Controls.E2Knob>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement class="control-group">
             <ui:Label text="Amp" class="control-group-label" />
             <ui:VisualElement class="control-row">
@@ -220,35 +253,6 @@
                         </Bindings>
                     </ui:Toggle>
                 </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement class="control-group">
-            <ui:Label text="Insert FX" class="control-group-label" />
-            <ui:VisualElement class="control-row">
-                <ui:VisualElement class="control-column">
-                    <ui:Toggle label="On" focusable="false">
-                        <Bindings>
-                            <ui:DataBinding property="value" data-source-path="IfxOnOff" binding-mode="TwoWay" />
-                        </Bindings>
-                    </ui:Toggle>
-                </ui:VisualElement>
-                <E2Controls.E2Knob label="Type" low-value="1" high-value="38">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="IfxType" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-                <ui:VisualElement class="caption-area" style="width: 84px;">
-                    <ui:Label text="Name" class="caption-label">
-                        <Bindings>
-                            <ui:DataBinding property="text" data-source-path="IfxTypeName" binding-mode="ToTarget" />
-                        </Bindings>
-                    </ui:Label>
-                </ui:VisualElement>
-                <E2Controls.E2Knob label="Edit" low-value="0" high-value="127">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="IfxEdit" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -32,8 +32,7 @@
 
 .control-group {
     flex-direction: column;
-    flex-grow: 0;
-    flex-shrink: 1;
+    align-self: flex-start;
     background-color: var(--color-panel);
     border-radius: 4px;
     padding: 6px;

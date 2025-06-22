@@ -50,7 +50,7 @@
     border-color: var(--color-line);
     border-width: 1px;
     padding: 0;
-    margin: 4px;
+    margin: 4px 6px 4px 6px;
 }
 
 .unity-toggle__checkmark {
