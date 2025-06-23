@@ -14,7 +14,7 @@ public static class NoteUtil
     static NoteUtil()
     {
         _noteNames = new string[129];
-        _noteNames[0] = "Off";
+        _noteNames[0] = "--";
 
         var names = new[]
           { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };

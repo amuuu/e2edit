@@ -20,9 +20,51 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement class="control-row">
+        <ui:VisualElement class="control-row">
+            <ui:VisualElement class="control-group">
+                <ui:Label text="Step Notes" class="control-group-label" />
+                <E2Controls.E2ChordKeyboard>
+                    <Bindings>
+                        <ui:DataBinding property="note1" data-source-path="StepNote1" binding-mode="ToWay" />
+                        <ui:DataBinding property="note2" data-source-path="StepNote2" binding-mode="ToWay" />
+                        <ui:DataBinding property="note3" data-source-path="StepNote3" binding-mode="ToWay" />
+                        <ui:DataBinding property="note4" data-source-path="StepNote4" binding-mode="ToWay" />
+                    </Bindings>
+                </E2Controls.E2ChordKeyboard>
+                <ui:VisualElement class="control-row">
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:Label class="keyboard-chord-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote1Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label class="keyboard-chord-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote2Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label class="keyboard-chord-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote3Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label class="keyboard-chord-label">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="StepNote4Name" binding-mode="ToTarget" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Button name="notes-audition-button" text="Play" class="keyboard-audition-button" focusable="false" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement class="control-group">
-            <ui:Label text="Parameters" class="control-group-label" />
+            <ui:Label text="Step Parameters" class="control-group-label" />
             <ui:VisualElement class="control-row">
+                <E2Controls.E2Knob label="Velocity" low-value="1" high-value="127">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="StepVelocity" binding-mode="TwoWay" />
+                    </Bindings>
+                </E2Controls.E2Knob>
                 <ui:VisualElement class="control-column">
                     <ui:Toggle label="On" focusable="false">
                         <Bindings>
@@ -35,11 +77,8 @@
                         </Bindings>
                     </ui:Toggle>
                 </ui:VisualElement>
-                <E2Controls.E2Knob label="Velocity" low-value="1" high-value="127">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="StepVelocity" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
                 <E2Controls.E2Knob label="Gate" low-value="0" high-value="97">
                     <Bindings>
                         <ui:DataBinding property="value" data-source-path="StepGateTime" binding-mode="TwoWay" />
@@ -53,77 +92,18 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="control-group">
-            <ui:Label text="Notes" class="control-group-label" />
-            <ui:VisualElement class="control-row">
-                <E2Controls.E2Knob label="Note1" low-value="0" high-value="128">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="StepNote1" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-                <ui:VisualElement class="caption-area" style="width: 34px;">
-                    <ui:Label text="C#4" class="caption-label">
-                        <Bindings>
-                            <ui:DataBinding property="text" data-source-path="StepNote1Name" binding-mode="ToTarget" />
-                        </Bindings>
-                    </ui:Label>
-                </ui:VisualElement>
-                <E2Controls.E2Knob label="Note2" low-value="0" high-value="128">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="StepNote2" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-                <ui:VisualElement class="caption-area" style="width: 34px;">
-                    <ui:Label text="C#4" class="caption-label">
-                        <Bindings>
-                            <ui:DataBinding property="text" data-source-path="StepNote2Name" binding-mode="ToTarget" />
-                        </Bindings>
-                    </ui:Label>
-                </ui:VisualElement>
-                <E2Controls.E2Knob label="Note3" low-value="0" high-value="128">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="StepNote3" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-                <ui:VisualElement class="caption-area" style="width: 34px;">
-                    <ui:Label text="C#4" class="caption-label">
-                        <Bindings>
-                            <ui:DataBinding property="text" data-source-path="StepNote3Name" binding-mode="ToTarget" />
-                        </Bindings>
-                    </ui:Label>
-                </ui:VisualElement>
-                <E2Controls.E2Knob label="Note4" low-value="0" high-value="128">
-                    <Bindings>
-                        <ui:DataBinding property="value" data-source-path="StepNote4" binding-mode="TwoWay" />
-                    </Bindings>
-                </E2Controls.E2Knob>
-                <ui:VisualElement class="caption-area" style="width: 34px;">
-                    <ui:Label text="C#4" class="caption-label">
-                        <Bindings>
-                            <ui:DataBinding property="text" data-source-path="StepNote4Name" binding-mode="ToTarget" />
-                        </Bindings>
-                    </ui:Label>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:Button name="notes-audition-button" text="A" style="position: absolute; top: 2px; right: 2px; font-size: 8px;" focusable="false" />
-        </ui:VisualElement>
-        <ui:VisualElement class="control-group">
-            <ui:Label text="Repeat Steps" class="control-group-label" />
-            <ui:VisualElement class="control-row">
-                <E2Controls.E2Knob name="repeat-steps-length" label="Length" value="4" low-value="1" high-value="63" />
-                <ui:Button name="repeat-steps-button" text="Repeat" class="step-function-button" focusable="false" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement class="control-row">
-        <ui:VisualElement class="control-group">
-            <ui:Label text="Transpose" class="control-group-label" />
+            <ui:Label text="Step Transpose" class="control-group-label" />
             <ui:VisualElement class="control-row">
                 <ui:Button name="step-note-down-button" text="-1" class="step-function-button" focusable="false" />
                 <ui:Button name="step-note-up-button" text="+1" class="step-function-button" focusable="false" />
+            </ui:VisualElement>
+            <ui:VisualElement class="control-row">
                 <ui:Button name="step-oct-down-button" text="-Oct" class="step-function-button" focusable="false" />
                 <ui:Button name="step-oct-up-button" text="+Oct" class="step-function-button" focusable="false" />
             </ui:VisualElement>
         </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement class="control-row">
         <ui:VisualElement class="control-group">
             <ui:Label text="Transpose All" class="control-group-label" />
             <ui:VisualElement class="control-row">
@@ -131,6 +111,13 @@
                 <ui:Button name="pattern-note-up-button" text="+1" class="step-function-button" focusable="false" />
                 <ui:Button name="pattern-oct-down-button" text="-Oct" class="step-function-button" focusable="false" />
                 <ui:Button name="pattern-oct-up-button" text="+Oct" class="step-function-button" focusable="false" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="control-group">
+            <ui:Label text="Repeat Steps" class="control-group-label" />
+            <ui:VisualElement class="control-row">
+                <Klak.UIToolkit.ClampedIntegerField name="repeat-steps-length" label="Length" value="4" low-value="1" high-value="63" forcusable="false" />
+                <ui:Button name="repeat-steps-button" text="Repeat" class="step-function-button" focusable="false" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

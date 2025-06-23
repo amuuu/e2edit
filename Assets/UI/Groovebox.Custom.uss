@@ -41,6 +41,100 @@
     padding: 1px;
     background-color: var(--color-panel);
     border-color: var(--color-label);
-    border-width: 0.5px;
+    border-width: 1px;
     display: none;
+}
+
+/* Piano Key Base Styles */
+
+.e2-piano-key {
+    border-width: 1px;
+    border-color: var(--color-line);
+    background-color: var(--color-panel);
+}
+
+.e2-piano-key--no-left {
+    border-left-width: 0;
+}
+
+/* White Key Styles */
+
+.e2-piano-key__white {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.e2-piano-key__white.e2-piano-key:hover {
+    background-color: var(--color-line-30);
+}
+
+.e2-piano-key__white.e2-piano-key--pressed {
+    background-color: var(--color-line-50);
+}
+
+.e2-piano-key__white.e2-piano-key--pressed:hover {
+    background-color: var(--color-line-60);
+}
+
+/* Black Key Styles */
+.e2-piano-key__black {
+    position: absolute;
+    top: 0;
+    height: 60%;
+}
+
+.e2-piano-key__black.e2-piano-key:hover {
+    background-color: var(--color-line-30);
+}
+
+.e2-piano-key__black.e2-piano-key--pressed {
+    background-color: var(--color-line-50);
+}
+
+.e2-piano-key__black.e2-piano-key--pressed:hover {
+    background-color: var(--color-line-60);
+}
+
+/* Chord Keyboard Styles */
+
+.e2-chord-keyboard {
+    flex-direction: column;
+    margin: 2px;
+    padding: 2px;
+    width: 320px;
+    height: 80px;
+}
+
+.e2-chord-keyboard__toolbar {
+    flex-direction: row;
+}
+
+.e2-chord-keyboard-container {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.e2-chord-keyboard__shift-button {
+    border-radius: 4px;
+    width: 20px;
+    margin: 2px;
+    padding: 2px;
+    font-size: 8px;
+}
+
+.e2-chord-keyboard__octave-label {
+    flex-grow: 1;
+    font-size: 9px;
+    align-self: center;
+    color: var(--color-line);
+}
+
+.keyboard-chord-label {
+    color: var(--color-label-dim);
+}
+
+.keyboard-audition-button {
+    font-size: 8px;
+    padding: 0px 2px;
+    margin: 0px 4px;
 }
