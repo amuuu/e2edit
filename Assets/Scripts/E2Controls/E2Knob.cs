@@ -89,6 +89,9 @@ public sealed partial class E2Knob : BaseField<int>
         _overlay = new();
         _overlay.AddToClassList(overlayLabelUssClassName);
         _input.Add(_overlay);
+
+        // Non focusable by default
+        focusable = false;
     }
 
     public override void SetValueWithoutNotify(int newValue)
