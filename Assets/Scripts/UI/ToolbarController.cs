@@ -24,12 +24,4 @@ public sealed class ToolbarController
             DeviceHandler.StopPlaying();
         };
     }
-
-    public void TogglePlayStop()
-    {
-        if (DeviceHandler.IsPlaying)
-            UIHelper.InvokeButton(_stopButton);
-        else
-            UIHelper.InvokeButton(_playButton);
-    }
 }

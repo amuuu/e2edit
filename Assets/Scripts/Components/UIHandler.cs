@@ -10,6 +10,7 @@ public sealed class UIHandler : MonoBehaviour
     PartPageController _partPage;
     StepPageController _stepPage;
     MotionPageController _motionPage;
+    HotKeyHandler _hotKey;
 
     void OnEnable()
     {
@@ -22,6 +23,7 @@ public sealed class UIHandler : MonoBehaviour
         _partPage = new PartPageController(root);
         _stepPage = new StepPageController(root);
         _motionPage = new MotionPageController(root);
+        _hotKey = new HotKeyHandler(root);
 
         DeviceHandler.SetUp();
     }
@@ -32,6 +34,7 @@ public sealed class UIHandler : MonoBehaviour
         _partPage = null;
         _stepPage = null;
         _motionPage = null;
+        _hotKey = null;
 
         DeviceHandler.TearDown();
     }
@@ -40,11 +43,5 @@ public sealed class UIHandler : MonoBehaviour
     {
         await DeviceHandler.ReceivePatternAsync(PatternDataHandler.Data);
         PatternDataHandler.NotifyDataRefresh();
-    }
-
-    void Update()
-    {
-        if (Keyboard.current.spaceKey.wasReleasedThisFrame)
-            _toolbar.TogglePlayStop();
     }
 }

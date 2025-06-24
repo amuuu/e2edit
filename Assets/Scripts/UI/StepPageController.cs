@@ -205,18 +205,6 @@ public sealed class StepPageController
         allOctUp    .clicked += () => TransposeAll(12);
         repeat      .clicked += DoRepeatStepsFunction;
         audition    .clicked += DoNotesAudition;
-
-        // Hotkey via key down events
-        root.RegisterCallback<KeyDownEvent>(e =>
-        {
-           if (!IsPageActive) return;
-           if (e.keyCode == KeyCode.C) UIHelper.InvokeButton(copy);
-           if (e.keyCode == KeyCode.X) UIHelper.InvokeButton(cut);
-           if (e.keyCode == KeyCode.V) UIHelper.InvokeButton(paste);
-           if (e.keyCode == KeyCode.I) UIHelper.InvokeButton(insert);
-           if (e.keyCode == KeyCode.D) UIHelper.InvokeButton(duplicate);
-           if (e.keyCode == KeyCode.A) UIHelper.InvokeButton(audition);
-        });
     }
 
     #endregion
