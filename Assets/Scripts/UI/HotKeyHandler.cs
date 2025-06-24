@@ -4,10 +4,15 @@ using UnityEngine.UIElements;
 
 public sealed class HotKeyHandler
 {
-    void MakeButtonHotKey(string key, VisualElement root, string buttonName)
+    void MakeButtonHotKey(string key, Tab tab, string buttonName)
     {
+        var button = tab.Q<Button>(buttonName);
         var action = new InputAction(binding: $"<Keyboard>/{key}");
-        action.performed += (_) => UIHelper.InvokeButton(root.Q<Button>(buttonName));
+        action.performed += (_) => {
+            if (tab.panel.focusController.focusedElement != null) return;
+            if ((tab.parent as TabView).activeTab != tab) return;
+            UIHelper.InvokeButton(button);
+        };
         action.Enable();
     }
 
@@ -15,6 +20,7 @@ public sealed class HotKeyHandler
     {
         var action = new InputAction(binding: "<Keyboard>/space");
         action.performed += (_) => {
+            if (root.panel.focusController.focusedElement != null) return;
             if (DeviceHandler.IsPlaying)
                 UIHelper.InvokeButton(root.Q<Button>("stop-button"));
             else
@@ -25,12 +31,13 @@ public sealed class HotKeyHandler
 
     public HotKeyHandler(VisualElement root)
     {
-        MakeButtonHotKey("c", root, "step-copy-button");
-        MakeButtonHotKey("x", root, "step-cut-button");
-        MakeButtonHotKey("v", root, "step-paste-button");
-        MakeButtonHotKey("i", root, "step-insert-button");
-        MakeButtonHotKey("d", root, "step-duplicate-button");
-        MakeButtonHotKey("a", root, "notes-audition-button");
+        var tab = root.Q<Tab>("step-tab");
+        MakeButtonHotKey("c", tab, "step-copy-button");
+        MakeButtonHotKey("x", tab, "step-cut-button");
+        MakeButtonHotKey("v", tab, "step-paste-button");
+        MakeButtonHotKey("i", tab, "step-insert-button");
+        MakeButtonHotKey("d", tab, "step-duplicate-button");
+        MakeButtonHotKey("a", tab, "notes-audition-button");
         MakePlayStopHotKey(root);
     }
 }

@@ -223,7 +223,8 @@ public sealed partial class E2ChordKeyboard : VisualElement
 
     Button CreateShiftButton(string text, int direction)
     {
-        var button = new Button(() => ShiftOctave(direction)){ text = text };
+        var button = new Button(() => ShiftOctave(direction))
+          { text = text, focusable = false };
         button.AddToClassList("e2-chord-keyboard__shift-button");
         return button;
     }
