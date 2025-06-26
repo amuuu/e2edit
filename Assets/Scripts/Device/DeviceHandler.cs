@@ -1,24 +1,31 @@
 using System;
-using System.Diagnostics;
-using System.Threading;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public static class DeviceHandler
 {
     #region Public properties
 
-    public static float ClockTempo { get; set; }
+    public static float ClockTempo
+      { get => _sender.ClockTempo; set => _sender.ClockTempo = value; }
 
     #endregion
 
     #region Lifecycle
 
     public static void SetUp()
-      => StartClockThread();
+    {
+        _sender = new MessageSender();
+        _receiver = new MessageReceiver();
+    }
 
     public static void TearDown()
-      => StopClockThread();
+    {
+        _sender.Dispose();
+        _sender = null;
+
+        _receiver.Dispose();
+        _receiver = null;
+    }
 
     #endregion
 
@@ -55,20 +62,13 @@ public static class DeviceHandler
     #region Playback
 
     public static bool IsPlaying
-      => _playEvent.IsSet;
+      => _sender.IsPlaying;
 
     public static void StartPlaying()
-    {
-        _sender.SendSingleByte(0xFA);
-        _playEvent.Set();
-    }
+      => _sender.StartPlaying();
 
     public static void StopPlaying()
-    {
-        _sender.SendSingleByte(0xFC);
-        _sender.SendSingleByte(0xFC);
-        _playEvent.Reset();
-    }
+      => _sender.StopPlaying();
 
     public static async Awaitable
       PlayCurrentStepAsync(PatternDataView data, float duration)
@@ -103,76 +103,8 @@ public static class DeviceHandler
 
     #region Message sender/receiver
 
-    static MessageReceiver _receiver = new MessageReceiver();
-    static MessageSender _sender = new MessageSender();
+    static MessageSender _sender;
+    static MessageReceiver _receiver;
 
     #endregion
-
-    #region Clock sender thread
-
-    static Thread _clockThread;
-    static ManualResetEventSlim _playEvent;
-    static bool _running;
-
-    static double ClockInterval
-      => 60.0 / (24 * Math.Max(80, ClockTempo));
-
-    static void StartClockThread()
-    {
-        // Initialization
-        _clockThread = new Thread(ClockThreadMethod) { IsBackground = true };
-        _playEvent = new ManualResetEventSlim(false);
-        _running = true;
-
-        // Thread start
-        _clockThread.Start();
-    }
-
-    static void StopClockThread()
-    {
-        // Stop state
-        _running = false;
-        _playEvent.Set();
-
-        // Thread finalization
-        _clockThread.Join();
-        _clockThread = null;
-
-        // Play event finalization
-        _playEvent.Dispose();
-        _playEvent = null;
-    }
-
-    static void ClockThreadMethod()
-    {
-        var sw = Stopwatch.StartNew();
-
-        while (_running)
-        {
-            // Wait for play event.
-            _playEvent.Wait();
-
-            // Next tick: The fist tick is sent immediately.
-            var nextTick = sw.ElapsedTicks;
-
-            // Repeat until the stop condition is met.
-            while (_running && _playEvent.IsSet)
-            {
-                if (sw.ElapsedTicks < nextTick)
-                {
-                    // Before next tick: Do spin wait.
-                    Thread.SpinWait(1000);
-                }
-                else
-                {
-                    // Next tick reached: Send clock and update next tick.
-                    lock (_sender) _sender.SendSingleByte(0xF8);
-                    nextTick += (long)(ClockInterval * Stopwatch.Frequency);
-                }
-            }
-        }
-    }
-
-    #endregion
-
 }
